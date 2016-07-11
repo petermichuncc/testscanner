@@ -1,6 +1,14 @@
 
 
 <template name="first">
+<!--
+<script>
+  $(document).ready(function() {
+    $('select').material_select();
+  });
+
+</script>
+-->
 <body class="">
  
  <div id="repairlog_container" class="center" >
@@ -10,26 +18,45 @@
 
  <div class="center">
  
-     <form method="POST"  class="workcenterSelection" id="submit">
+     <form method="POST"  class="workcenterSelection col s12" id="submit">
      {{#if $.Session.equals 'count' 0}}
-      <button class="btn btn-default 1 cyan accent-4 z-depth-2 whitetext" type="submit">Start data entry</button>
+      <button class="btn btn-default 1 blue darken-4 z-depth-2 whitetext" type="submit">Start data entry</button>
  {{else}}
  {{#if $.Session.equals 'count' 1}}
     <div size="5" class="input-group datetimepicker textblack">
     <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
     <input class="set-due-date form-control textblack" size="5" id="date" type="text"/>
   </div>
-  <input class="btn waves-effect waves-light  cyan accent-4 z-depth-2 " type="submit">
+  <input class="btn waves-effect waves-light  blue darken-4 z-depth-2 " type="submit">
  {{else}}
  {{#if $.Session.equals 'count' 2}}
+  <div class="center">
+            
+            <div class="input-field col center mytext">
+                <input id="initials" type="text" class="validate mytext " autofocus autocomplete="off"/>
+                <label for="" class="center"> {{text}} </label>
+            </div>
+        </div>
+        <!--
 <div class="center ">
         {{text}} 
-     <input type="initials" name="initials"  required class="form-control mytext"  id="initials" placeholder="UPC" data-disable-touch-keyboard autofocus autocomplete="off">
+     <input type="initials" name="initials"  required class="form-control mytext"  id="initials" placeholder="Name" data-disable-touch-keyboard autofocus autocomplete="off">
        
  </div>
+-->
+<input class="btn waves-effect waves-light  blue darken-4 z-depth-2 " type="submit">
+ {{else}}
+ {{#if $.Session.equals 'count' 3}}
+<!-- Add a drop down menu here  -->
+
+
+       
+                 
+ 
+
 
 <input class="btn waves-effect waves-light  cyan accent-4 z-depth-2 " type="submit">
-
+		{{/if}} 
  		{{/if}}  
        {{/if}}   
        {{/if}} 

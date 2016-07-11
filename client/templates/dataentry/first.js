@@ -6,8 +6,9 @@ Session.set("count",0)
 /*$('#initials').on('blur',function(){
    if (this.value.length < 4) $(this).focus();
 });*/
-this.$('.datetimepicker').datetimepicker();
 
+this.$('.datetimepicker').datetimepicker();
+ $('select').material_select();
 $("#initials").focus();
 
  $('.input').keypress(function(e) {
