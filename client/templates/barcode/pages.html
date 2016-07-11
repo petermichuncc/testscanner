@@ -1,0 +1,120 @@
+<template name="two">
+ {{kanbancomponent}}
+<body class={{check}}>
+ 
+<div id="repairlog_container" class="center" >
+<img src="logo.jpg " class="z-depth-3"><br><br>
+            <div id="centered_box"  class="z-depth-5 center">
+ <div class="center">
+   
+  
+        Please scan the job order: <input type="initials" name="initials" required class="form-control mytext"  id="initials" placeholder="UPC" autofocus>
+       </div>
+      
+
+<button class="btn btn-default 1 #78909c blue-grey lighten-1 z-depth-2 " type="submit">Restart job</button>
+
+</div>
+
+</div>
+
+</body>
+
+</template>
+
+<template name="three">
+<!--<link href="css/toastr.css" rel="stylesheet"/>
+<script src="js/toastr.js"></script>-->
+<script src=https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.js></script>
+<!--testing out touch screen detection-->
+<body class={{good}}>
+
+<div class="center" id="repairlog_container">
+<img src="logo.jpg " class="z-depth-3"><br><br>
+            <div id="centered_box"  class="z-depth-5">
+          
+         
+         {{check}}
+        
+        <!-- Change the text here-->
+       <div class="center ">
+        {{text}} 
+     
+
+        <input type="initials" name="initials"  required class="form-control mytext"  id="initials" placeholder="UPC" data-disable-touch-keyboard autofocus autocomplete="off">
+       
+       </div>
+          
+       {{colorFxn}}
+       
+      <!-- create two divs one left aligned and one left aligned with margin/padding-->
+     
+     {{part}}
+     
+    {{desc}}
+
+
+{{#if kanbancheck}}
+<button class="btn btn-default 2 #78909c blue z-depth-2 " type="submit">Kanban Ticket Override</button>
+<br>
+{{/if}}
+
+<form action="{{pathFor 'one'}}">
+<button class="btn btn-default #78909c blue-grey lighten-1 z-depth-2 center" style="outline:none;-moz-outline:none" hidefocus="true" type="submit">Restart job</button>
+</form>
+</div>
+</div>
+
+<script>
+function myFunction(e) {
+    //document.getElementById("demo").innerHTML = "Hello World";
+ // e.stopPropagation();
+$( ".ch" ).hide();
+
+$("#initials").focus();
+  /*
+if (Modernizr.touch) {
+    console.log("success here")
+    // Disable keyboard by adding readonly attribute to field
+     
+    $("#initials").blur();
+   
+    
+  }
+    
+$("#initials").focus();
+*/
+
+
+}
+</script>
+ 
+
+
+
+
+
+
+
+</body>
+
+</template>
+
+<!--
+
+ <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header center centertest">
+          
+          <h4 class="modal-title colortest blue modaltest">The color is: {{colorDescription}} </h4>
+        </div>
+        <div class="modal-body center">
+            <img class="img-responsive center" height="100%" width="100%" src={{color}} alt="image" />
+        </div>
+        <div class="modal-footer">
+          <button type="button" data-dismiss="modal" class="btn btn-primary modal-close">OK</button>
+        </div>
+      </div>
+    </div>
+
+ -->

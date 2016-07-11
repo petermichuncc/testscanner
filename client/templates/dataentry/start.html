@@ -1,0 +1,66 @@
+
+
+<template name="first">
+<body class="">
+ 
+ <div id="repairlog_container" class="center" >
+<img src="logo.jpg " class="z-depth-3"><br><br>
+            <div id="centered_box_data"  class="z-depth-5 center">
+            
+
+ <div class="center">
+ 
+     <form method="POST"  class="workcenterSelection" id="submit">
+     {{#if $.Session.equals 'count' 0}}
+      <button class="btn btn-default 1 cyan accent-4 z-depth-2 whitetext" type="submit">Start data entry</button>
+ {{else}}
+ {{#if $.Session.equals 'count' 1}}
+    <div size="5" class="input-group datetimepicker textblack">
+    <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
+    <input class="set-due-date form-control textblack" size="5" id="date" type="text"/>
+  </div>
+  <input class="btn waves-effect waves-light  cyan accent-4 z-depth-2 " type="submit">
+ {{else}}
+ {{#if $.Session.equals 'count' 2}}
+<div class="center ">
+        {{text}} 
+     <input type="initials" name="initials"  required class="form-control mytext"  id="initials" placeholder="UPC" data-disable-touch-keyboard autofocus autocomplete="off">
+       
+ </div>
+
+<input class="btn waves-effect waves-light  cyan accent-4 z-depth-2 " type="submit">
+
+ 		{{/if}}  
+       {{/if}}   
+       {{/if}} 
+       
+       </form>
+      <!-- <input type="submit" value="Submit" class="btn btn-primary"/> -->
+
+
+</div>
+
+</div>
+</div>
+
+</body>
+
+</template>
+
+
+
+<template name="final1">
+<body class="green">
+ 
+<div id="repairlog_container" class="center" >
+<img src="logo.jpg " class="z-depth-3"><br><br>
+            <div id="centered_box"  class="z-depth-5 center">
+ Start production
+ <form action="{{pathFor 'one'}}">
+<button class="btn btn-default 1 #78909c blue-grey lighten-1 z-depth-2 " type="submit">Start a new job</button>
+</form>
+</div>
+</div>
+
+</body>
+</template>

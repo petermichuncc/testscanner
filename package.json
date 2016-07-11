@@ -1,0 +1,24 @@
+{
+  "scripts": {
+    "meteor": "set MONGO_URL=mongodb://10.87.39.103:27017/mongoBlog"
+  },
+  "dependencies": {
+    "classnames": "^2.2.5",
+    "history": "^3.0.0",
+    "meteor-node-stubs": "^0.2.3",
+    "react": "^15.1.0",
+    "react-addons": "^0.9.1-deprecated",
+    "react-addons-create-fragment": "^15.1.0",
+    "react-addons-css-transition-group": "^15.1.0",
+    "react-addons-linked-state-mixin": "^15.1.0",
+    "react-addons-perf": "^15.1.0",
+    "react-addons-pure-render-mixin": "^15.1.0",
+    "react-addons-test-utils": "^15.1.0",
+    "react-addons-transition-group": "^15.1.0",
+    "react-addons-update": "^15.1.0",
+    "react-dom": "^15.1.0",
+    "react-router": "^2.5.1",
+    "simpledb-php": "^1.1.0",
+    "odbc": "1.2.1"
+  }
+}

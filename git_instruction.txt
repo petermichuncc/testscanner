@@ -1,0 +1,19 @@
+When you need to add your changes locally
+
+git add . 
+
+when you need to set a commit message
+
+git commit -am "THE REASON FOR THIS COMMIT"
+
+when you need to push to github
+
+git push  ( it is going to give you a long warning but ignore it, and it will work)
+
+if you have merged some work on the website, make sure you pull first
+
+git pull
+
+make sure you stick to your branch
+
+git checkout -b frontend
