@@ -1,0 +1,88 @@
+
+
+<template name="first">
+<script>
+
+
+
+</script>
+<body class="">
+ 
+ <div id="repairlog_container" class="center" >
+<img src="logo.jpg " class="z-depth-3"><br><br>
+            <div id="centered_box_data"  class="z-depth-5 center">
+            
+
+ <div class="center">
+ 
+     
+     
+     {{#if $.Session.equals 'count' 0}}
+   
+  
+ <button class="btn btn-default 1 blue darken-4 z-depth-2 whitetext" type="submit">Start data entry</button>
+ 
+      
+ {{else}}
+ {{#if $.Session.equals 'count' 1}}
+  
+          
+                <div class='input-group date mytext' id='datetimepicker1'>
+                    <input type='text' class="form-control" />
+                    <span class="input-group-addon">
+                        <span class="glyphicon glyphicon-calendar"></span>
+                    </span>
+                </div>
+       
+       
+        <script type="text/javascript">
+            $(function () {
+                $('#datetimepicker1').datetimepicker();
+            });
+        </script>
+ 
+  <input class="btn waves-effect waves-light 1 blue darken-4 z-depth-2 " type="submit">
+   
+ {{else}}
+ {{#if $.Session.equals 'count' 2}}
+
+  <div class="center">
+            
+            <div class="input-field col center mytext">
+                <input  type="text" class="validate mytext " autofocus autocomplete="off"/>
+                <label for="" class="center"> {{text}} </label>
+            </div>
+        </div>
+  
+<input class="btn waves-effect waves-light 2 blue darken-4 z-depth-2 " type="submit">
+ {{else}}
+ {{#if $.Session.equals 'count' 3}}
+<!-- Add a drop down menu here  -->
+
+
+       
+                 
+ 
+
+
+<input class="btn waves-effect waves-light 3 blue darken-4 z-depth-2 " type="submit">
+		{{/if}} 
+ 		{{/if}}  
+       {{/if}}   
+       {{/if}} 
+      
+     
+      <!-- <input type="submit" value="Submit" class="btn btn-primary"/> -->
+
+
+</div>
+
+</div>
+</div>
+
+</body>
+
+</template>
+
+
+

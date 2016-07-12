@@ -8,7 +8,7 @@ Session.set("count",0)
 });*/
 
 this.$('.datetimepicker').datetimepicker();
- $('select').material_select();
+
 $("#initials").focus();
 
  $('.input').keypress(function(e) {
@@ -21,13 +21,17 @@ $("#initials").focus();
 
 
 }
-   
+ 
 //var nowsync=TimeSync.serverTime(null, 300000);
 Template.first.helpers({
     text: function () {
       //In this function I will return the text asking for the user to enter specific data
 
       if (Session.get("count")===2)
+      {
+        return "Please enter your name: "
+      }
+       else if (Session.get("count")===3)
       {
         return "Please enter your name: "
       }
@@ -44,14 +48,38 @@ Template.first.helpers({
 "submit .workcenterSelection": function(event){
  event.defaultPrevented;
  
-count=count+1;
-Session.set("count",count)
+
 console.log("this is the count "+count)
 
 return false;
 },
 'click .1': function(event, template){
  //Router.go('one')
+//I need to store the user submitted date into a session variable
+
+var test = $( "#test" ).val()
+console.log("this is the test "+ test)
+ count=count+1;
+Session.set("count",count)
+
+},
+'click .2': function(event, template){
+ //Router.go('one')
+
+ count=count+1;
+Session.set("count",count)
+
+},
+'click .3': function(event, template){
+ //Router.go('one')
+
+ count=count+1;
+Session.set("count",count)
+
+},
+'click .4': function(event, template){
+ //Router.go('one')
+
  count=count+1;
 Session.set("count",count)
 
