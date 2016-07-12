@@ -9,6 +9,7 @@ Session.set("count",0)
 
 this.$('.datetimepicker').datetimepicker();
  //$('select').material_select();
+
 $("#initials").focus();
 
  $('.input').keypress(function(e) {

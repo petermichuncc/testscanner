@@ -47,11 +47,11 @@ Template.first.helpers({
       }
       else if (Session.get("count")===2)
       {
-        return "Please enter your name: "
+        return "Please select a department: "
       }
        else if (Session.get("count")===3)
       {
-        return "Please select the department: "
+        return "Please select a workcenter: "
       }
      
   },
@@ -121,7 +121,8 @@ Session.set("count",count)
 },
 'click .3': function(event, template){
  //Router.go('one')
-
+var test=$( "#s1" ).val();
+console.log("this is the test "+ test);
  count=count+1;
 Session.set("count",count)
 

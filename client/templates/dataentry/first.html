@@ -58,15 +58,48 @@
        {{/if}}   
        {{/if}} 
 {{#if showdd}}
+{{text}}
+ {{#if $.Session.equals 'count' 2}}
 <!--Need a drop down menu here-->
-  <div class="center">
-            
-            <div class="input-field col center mytext">
-                <input id="name" type="text" class="validate mytext " autofocus autocomplete="off"/>
-                <label for="" class="center"> {{text}} </label>
-            </div>
-        </div>
-  
+
+ <div class="form-group mytext">
+    
+    <select id="s1" class="form-control drop">
+      <option value="">Datacom</option>
+       <option value="">Packing</option>
+       <option value="">Manual</option>
+       <option value="">SCD</option>
+       <option value="">Manual Boxes</option>
+       <option value="">Metals</option>
+       <option value="">Raceway</option>
+       <option value="">WIU</option>
+       <option value="">Auto boxes</option>
+    </select>
+
+</div>
+{{else}}
+{{#if $.Session.equals 'count' 3}}
+<!--At this poin the drop down will be loaded with
+the work centers associated with the previously selected
+items -->
+ <div class="form-group mytext">
+    
+    <select id="s1" class="form-control drop">
+      <option value="">Datacom</option>
+       <option value="">Packing</option>
+       <option value="">Manual</option>
+       <option value="">SCD</option>
+       <option value="">Manual Boxes</option>
+       <option value="">Metals</option>
+       <option value="">Raceway</option>
+       <option value="">WIU</option>
+       <option value="">Auto boxes</option>
+    </select>
+
+</div>
+ {{/if}}
+  {{/if}}
+
 <input class="btn waves-effect waves-light 2 blue darken-4 z-depth-2 " type="submit">      
      {{/if}}
  {{#if showtext}}
