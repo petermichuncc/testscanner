@@ -1,7 +1,22 @@
 import React from 'react';
 import { createContainer } from 'meteor/react-meteor-data';
+var showdd=null
+var showtext=null
 var count=0;
 Session.set("count",0)
+
+if (Meteor.isClient) {
+
+Template.registerHelper('showtext',function(input){
+ return Session.get("showtext");
+});
+
+Template.registerHelper('showdd',function(input){
+  return Session.get("showdd");
+});
+
+}
+
     Template.first.rendered = function () {
 /*$('#initials').on('blur',function(){
    if (this.value.length < 4) $(this).focus();
@@ -26,16 +41,49 @@ $("#initials").focus();
 Template.first.helpers({
     text: function () {
       //In this function I will return the text asking for the user to enter specific data
-
-      if (Session.get("count")===2)
+      if (Session.get("count")===1)
+      {
+        return "Please select the date: "
+      }
+      else if (Session.get("count")===2)
       {
         return "Please enter your name: "
       }
        else if (Session.get("count")===3)
       {
-        return "Please enter your name: "
+        return "Please select the department: "
       }
      
+  },
+  show: function(){
+
+// I will create a boolean that will show true if the count is 2 or 3
+if (Session.get("count")==2||Session.get("count")==3)
+{
+
+  Session.set("showdd",true)
+}
+else
+{
+ 
+  Session.set("showdd",false)
+}
+
+if (Session.get("count")>3)
+{
+  
+  Session.set("showtext",true)
+}
+else
+{
+  
+  Session.set("showtext", false)
+}
+
+
+
+
+
   }
   
 });
@@ -57,7 +105,7 @@ return false;
  //Router.go('one')
 //I need to store the user submitted date into a session variable
 
-var test = $( "#test" ).val()
+var test = $( "#date" ).val()
 console.log("this is the test "+ test)
  count=count+1;
 Session.set("count",count)
@@ -65,7 +113,8 @@ Session.set("count",count)
 },
 'click .2': function(event, template){
  //Router.go('one')
-
+var test = $( "#name" ).val()
+console.log("this is the test "+ test)
  count=count+1;
 Session.set("count",count)
 

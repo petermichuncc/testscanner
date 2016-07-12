@@ -7,7 +7,7 @@
 
 </script>
 <body class="">
- 
+ {{show}}
  <div id="repairlog_container" class="center" >
 <img src="logo.jpg " class="z-depth-3"><br><br>
             <div id="centered_box_data"  class="z-depth-5 center">
@@ -26,9 +26,9 @@
  {{else}}
  {{#if $.Session.equals 'count' 1}}
   
-          
+          <!--
                 <div class='input-group date mytext' id='datetimepicker1'>
-                    <input type='text' class="form-control center" />
+                    <input type='text' class="form-control center" id="date"/>
                     <span class="input-group-addon">
                         <span class="glyphicon glyphicon-calendar"></span>
                     </span>
@@ -40,38 +40,47 @@
                 $('#datetimepicker1').datetimepicker({format: 'MM/DD/YYYY'});
             });
         </script>
+ -->
+<span class="center"> {{text}} </span>
+<div class="mytext">
+ <input id="date" type="date" class="datepicker center">
  
-  <input class="btn waves-effect waves-light 1 blue darken-4 z-depth-2 " type="submit">
-   
- {{else}}
- {{#if $.Session.equals 'count' 2}}
+ </div>
+ <script>
+ $('.datepicker').pickadate({
+    selectMonths: true, // Creates a dropdown to control month
+    selectYears: 15 // Creates a dropdown of 15 years to control year
+  });
 
+ </script>
+  <input class="btn waves-effect waves-light 1 blue darken-4 z-depth-2 " type="submit">
+    
+       {{/if}}   
+       {{/if}} 
+{{#if showdd}}
+<!--Need a drop down menu here-->
   <div class="center">
             
             <div class="input-field col center mytext">
-                <input  type="text" class="validate mytext " autofocus autocomplete="off"/>
+                <input id="name" type="text" class="validate mytext " autofocus autocomplete="off"/>
                 <label for="" class="center"> {{text}} </label>
             </div>
         </div>
   
-<input class="btn waves-effect waves-light 2 blue darken-4 z-depth-2 " type="submit">
- {{else}}
- {{#if $.Session.equals 'count' 3}}
-<!-- Add a drop down menu here  -->
+<input class="btn waves-effect waves-light 2 blue darken-4 z-depth-2 " type="submit">      
+     {{/if}}
+ {{#if showtext}}
 
-
-       
-                 
- 
-
-
-<input class="btn waves-effect waves-light 3 blue darken-4 z-depth-2 " type="submit">
-		{{/if}} 
- 		{{/if}}  
-       {{/if}}   
-       {{/if}} 
-      
-     
+  <div class="center">
+            
+            <div class="input-field col center mytext">
+                <input id="name" type="text" class="validate mytext " autofocus autocomplete="off"/>
+                <label for="" class="center"> {{text}} </label>
+            </div>
+        </div>
+  
+<input class="btn waves-effect waves-light 2 blue darken-4 z-depth-2 " type="submit">      
+     {{/if}}
       <!-- <input type="submit" value="Submit" class="btn btn-primary"/> -->
 
 
