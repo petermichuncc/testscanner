@@ -280,7 +280,7 @@ Datacenters.insert({
 Datacenters.insert({
 	department: "wiu",
      workcenter: 3021,
-     description: 'wiiu'
+     description: 'wiu'
     });
 
 Datacenters.insert({
