@@ -21,7 +21,10 @@ Template.registerHelper('showdd',function(input){
 /*$('#initials').on('blur',function(){
    if (this.value.length < 4) $(this).focus();
 });*/
+
+
  Meteor.subscribe('datacenters');
+
 this.$('.datetimepicker').datetimepicker();
 
 $("#initials").focus();
@@ -43,22 +46,55 @@ Template.first.helpers({
       //In this function I will return the text asking for the user to enter specific data
       if (Session.get("count")===1)
       {
-        return "Please select the date: "
+        return "Please enter your name: "
       }
       else if (Session.get("count")===2)
       {
-        return "Please select a department: "
+        return "Please select a date: "
       }
        else if (Session.get("count")===3)
       {
-        return "Please select a workcenter: "
+        return "Please enter the planned: "
       }
-     
+      else if (Session.get("count")===4)
+      {
+        return "Please enter the actual: "
+      }
+     else if (Session.get("count")===5)
+      {
+        return "Please enter the SS: "
+      }
+      else if (Session.get("count")===6)
+      {
+        return "Please select the shift: "
+      }
+      else if (Session.get("count")===7)
+      {
+        return "Please select the department: "
+      }
+      else if (Session.get("count")===8)
+      {
+        return "Please select the workcenter: "
+      }
   },
   show: function(){
 
 // I will create a boolean that will show true if the count is 2 or 3
-if (Session.get("count")==2||Session.get("count")==3)
+if (Session.get("count")>=1 && Session.get("count")<6)
+{
+  
+  Session.set("showtext",true)
+}
+else
+{
+  
+  Session.set("showtext", false)
+}
+
+
+
+
+if (Session.get("count")>=6)
 {
 
   Session.set("showdd",true)
@@ -69,16 +105,6 @@ else
   Session.set("showdd",false)
 }
 
-if (Session.get("count")>3)
-{
-  
-  Session.set("showtext",true)
-}
-else
-{
-  
-  Session.set("showtext", false)
-}
 
 
 
@@ -110,14 +136,27 @@ console.log("this is the count "+count)
 
 return false;
 },
-'click .1': function(event, template){
+'click .0': function(event, template){
  //Router.go('one')
 //I need to store the user submitted date into a session variable
 
+ count=count+1;
+Session.set("count",count)
+
+},
+'click .1': function(event, template){
+ //Router.go('one')
+//I need to store the user submitted date into a session variable
+$(function(){
+       $("input").prop('required',true);
+});
 var test = $( "#date" ).val()
 console.log("this is the test "+ test)
  count=count+1;
 Session.set("count",count)
+
+//setup if statements that set session variables based on
+//the current count 
 
 },
 'click .2': function(event, template){

@@ -128,6 +128,7 @@ Session.set("bagtag",0)
 Session.set("boxtag",0)
  Session.set("kanbanquestion", false)
  Session.set("descshow",false)
+ Session.set("result", null)
 }  
 
 
@@ -312,6 +313,7 @@ if (typeof ReactiveMethod.call('compare', scan2,Session.get("scanned"))==="strin
 {
 
      var result=ReactiveMethod.call('compare', scan2,Session.get("scanned"))
+     Session.set("result",result)
      console.log("this is the result "+ result)
 
  if(result==="red" && run===true)
@@ -326,12 +328,12 @@ if (typeof ReactiveMethod.call('compare', scan2,Session.get("scanned"))==="strin
   var test3="The partnumber you scanned was: "
        test3=test3.concat(scan2)
 //don't show description if it was ekanban
-Materialize.toast(test3, 999000,'blue ch')
+Materialize.toast(test3, 999000,'blue ch z-depth-2')
         if (typeof scan2desc=="string")
         {
        var test4="Description: "
          test4=test4.concat(scan2desc)
-        Materialize.toast(test4, 999000,'blue ch')
+        Materialize.toast(test4, 999000,'blue ch z-depth-2')
         Template.instance().state.set('partscandesc',test4)
       }
      var test2="The partnumber should have been: "
@@ -341,8 +343,8 @@ Materialize.toast(test3, 999000,'blue ch')
    
     test5=test5.concat(Session.get("scannedDesc"))
  
-  Materialize.toast(test2, 999000,'orange ch')
-    Materialize.toast(test5, 999000,'orange ch')
+  Materialize.toast(test2, 999000,'orange ch z-depth-2')
+    Materialize.toast(test5, 999000,'orange ch z-depth-2')
 //I also need to show a toast with a button that in it
 //
 var colortest=' <button class="btn btn-default 6 #78909c blue z-depth-5 " id="test1" onclick="myFunction()" >Acknowledge</button>'
@@ -362,7 +364,7 @@ $('#test1').mouseup(function() { this.blur() })
    else if(result==="green" && run===true)
    {
     Session.set("descshow",false)
-    Materialize.toast('Match', 4000,'light-blue lighten-2')
+    Materialize.toast('Match', 4000,'light-blue lighten-2 z-depth-2')
     //count shouldn't go up after the bag and box are scanned and
     //the scanned item was ekanban
     count=count+1
@@ -555,7 +557,7 @@ Session.set("kanbanquestion", false)
 else if (Template.instance().state.get("counter")>=2 &&Session.get("kanbanquestion")===true)
 {
 
-Materialize.toast("Do you have a Kanban ticket?", 4000,'light-blue lighten-2')
+Materialize.toast("Do you have a Kanban ticket?", 4000,'light-blue lighten-2 z-depth-2')
   good=true
   
     
@@ -570,8 +572,8 @@ return good
 //I need to have two different functions based on if the scanned item 
 // was good or not
  
-
- if (typeof ReactiveMethod.call('color', Session.get("scan2"))==="object"&&Template.instance().state.get("kanban")===true)
+//only do this if the job scanned was green
+ if (typeof ReactiveMethod.call('color', Session.get("scan2"))==="object"&&Template.instance().state.get("kanban")===true &&Session.get("result")==="green")
   {
 
    
@@ -620,7 +622,7 @@ colorshow=true
 Template.instance().state.set("color", colorLocation)
 
 
-var colortest='<div class="mytextnew"> <img class="img-responsive z-depth-1 " height="100px" width="100px" src="colors/'
+var colortest='<div class="mytextnew"> <img class="img-responsive z-depth-2 " height="100px" width="100px" src="colors/'
 colortest=colortest.concat(suffix)
 colortest=colortest.concat(".jpg\"")
 colortest=colortest.concat(" /> </div>")
@@ -637,13 +639,13 @@ console.log("this is the colortest "+ colortest)
 //console.log("this is the text " +Template.instance().state.get("text"))
 if (Template.instance().state.get("text")===false)
 {
-   Materialize.toast2(test2, 10000, 'light-blue accent-4 z-depth-1');
+   Materialize.toast2(test2, 10000, 'light-blue accent-4 z-depth-2');
     Materialize.toast2($toastContent, 10000, '');
 }
  else if (Template.instance().state.get("text")===true)
 {
 
-   Materialize.toast2(test2, 999000, 'light-blue accent-4 cp z-depth-1');
+   Materialize.toast2(test2, 999000, 'light-blue accent-4 cp z-depth-2');
  
     Materialize.toast2($toastContent, 999000, 'cp');
 }

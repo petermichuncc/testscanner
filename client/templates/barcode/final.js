@@ -4,7 +4,7 @@
 
 Template.final.rendered =function(){
 
-Materialize.toast('Good job', 999000, 'light-blue lighten-2 cp')
+Materialize.toast('Good job', 999000, 'light-blue lighten-2 cp z-depth-2')
 //Add code to save the person and partnumber of job to a database
 console.log("tech " + Session.get("tech")+ " partnumber " + Session.get("scanned")+ "mismatch scans "+Session.get("record")+"override" + Session.get("override"))
 

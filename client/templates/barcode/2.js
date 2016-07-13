@@ -111,7 +111,7 @@ if (typeof ReactiveMethod.call('orderdesc', Session.get("scan"))==="object"&& ru
 if (typeof ReactiveMethod.call('order', Session.get("scan"))==="string"&& run===true && Template.instance().state.get("check")===true )
  {          
 run=false
-     Materialize.toast('That was a correct job order', 8000,'light-blue accent-4')
+     Materialize.toast('That was a correct job order', 8000,'light-blue accent-4 z-depth-2')
      
    Session.setPersistent("scanned",ReactiveMethod.call('order', Session.get("scan")))
   
@@ -127,7 +127,7 @@ run=false
   
      
    
-    Materialize.toast('That was not a correct job order', 8000,'orange darken-2')
+    Materialize.toast('That was not a correct job order', 8000,'orange darken-2 z-depth-2')
      go="red"
       run=false
   }

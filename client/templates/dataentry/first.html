@@ -15,47 +15,15 @@
 
  <div class="center">
  
-     
+ 
      
      {{#if $.Session.equals 'count' 0}}
    
   
- <button class="btn btn-default 1 z-depth-2 whitetext" type="submit">Start data entry</button>
+ <button class="btn btn-default 0 z-depth-3 whitetext" type="submit">Start data entry</button>
  
-      
- {{else}}
- {{#if $.Session.equals 'count' 1}}
-  
-          <!--
-                <div class='input-group date mytext' id='datetimepicker1'>
-                    <input type='text' class="form-control center" id="date"/>
-                    <span class="input-group-addon">
-                        <span class="glyphicon glyphicon-calendar"></span>
-                    </span>
-                </div>
-       
-       
-        <script type="text/javascript">
-            $(function () {
-                $('#datetimepicker1').datetimepicker({format: 'MM/DD/YYYY'});
-            });
-        </script>
- -->
-<span class="center"> {{text}} </span>
-<div class="mytext">
- <input id="date" type="date" class="datepicker center">
  
- </div>
- <script>
- $('.datepicker').pickadate({
-    selectMonths: true, // Creates a dropdown to control month
-    selectYears: 15 // Creates a dropdown of 15 years to control year
-  });
 
- </script>
-  <input class="btn waves-effect waves-light 1  z-depth-2 " type="submit">
-    
-       {{/if}}   
        {{/if}} 
 {{#if showdd}}
 {{text}}
@@ -64,7 +32,7 @@
 
  <div class="form-group mytext">
     
-    <select id="s1" class="form-control drop">
+    <select id="s1" class="form-control drop" required>
       <option value="datacom">Datacom</option>
        <option value="packing">Packing</option>
        <option value="manual">Manual</option>
@@ -84,7 +52,7 @@ the work centers associated with the previously selected
 items -->
  <div class="form-group mytext">
     
-    <select id="s1" class="form-control drop">
+    <select id="s1" class="form-control drop" required>
       <!--{{#each workcenter}}
       <option value="">{{this}}</option>
  
@@ -101,19 +69,47 @@ items -->
  {{/if}}
   {{/if}}
 
-<input class="btn waves-effect waves-light 2 z-depth-2 " type="submit">      
+ <button class="btn btn-default 2 z-depth-3 whitetext" type="submit">Next</button>   
      {{/if}}
  {{#if showtext}}
-
+ {{#if $.Session.equals 'count' 1}}
   <div class="center">
             
             <div class="input-field col center mytext">
-                <input id="name" type="text" class="validate mytext " autofocus autocomplete="off"/>
+                <input id="name" type="text" class="validate mytext " autofocus autocomplete="off" required/>
                 <label for="" class="center"> {{text}} </label>
             </div>
         </div>
+      {{else}}
+      {{#if $.Session.equals 'count' 2}}
+<span class="center"> {{text}} </span>
+
+<div class="mytext">
+   
+ <input id="date" name="date" type="date" class="datepicker center" required/>
   
-<input class="btn waves-effect waves-light 2 z-depth-2 " type="submit">      
+ </div>
+ 
+  
+  
+
+
+    <script>
+
+ 
+ $('.datepicker').pickadate({
+    selectMonths: true, // Creates a dropdown to control month
+    selectYears: 15 // Creates a dropdown of 15 years to control year
+  });
+
+ </script>
+
+
+
+    {{/if}}  
+  {{/if}}
+ <button class="btn btn-default 1 z-depth-3 whitetext" type="submit">Next</button>
+
      {{/if}}
       <!-- <input type="submit" value="Submit" class="btn btn-primary"/> -->
 
@@ -129,3 +125,9 @@ items -->
 
 
 
+<!--
+
+Date
+
+
+ -->
