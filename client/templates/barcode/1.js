@@ -1,8 +1,6 @@
 import React from 'react';
 import { createContainer } from 'meteor/react-meteor-data';
 var countnew=0;
-Session.set("countnew",0)
-
     Template.one.rendered = function () {
 /*$('#initials').on('blur',function(){
    if (this.value.length < 4) $(this).focus();
@@ -44,9 +42,7 @@ Template.one.helpers({
 return false;
 },
 'click .1': function(event, template){
- 
- countnew=countnew+1
- Session.set("countnew",countnew)
+ //Router.go('one')
  console.log("this is a test")   
 
 }

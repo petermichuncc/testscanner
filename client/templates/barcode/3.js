@@ -639,13 +639,13 @@ console.log("this is the colortest "+ colortest)
 //console.log("this is the text " +Template.instance().state.get("text"))
 if (Template.instance().state.get("text")===false)
 {
-   Materialize.toast2(test2, 10000, 'light-blue accent-4 z-depth-2');
+   Materialize.toast2(test2, 10000, 'light-blue lighten-2 z-depth-2');
     Materialize.toast2($toastContent, 10000, '');
 }
  else if (Template.instance().state.get("text")===true)
 {
 
-   Materialize.toast2(test2, 999000, 'light-blue accent-4 cp z-depth-2');
+   Materialize.toast2(test2, 999000, 'light-blue lighten-2 cp z-depth-2');
  
     Materialize.toast2($toastContent, 999000, 'cp');
 }
