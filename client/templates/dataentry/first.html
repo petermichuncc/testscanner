@@ -20,7 +20,7 @@
      {{#if $.Session.equals 'count' 0}}
    
   
- <button class="btn btn-default 1 blue darken-4 z-depth-2 whitetext" type="submit">Start data entry</button>
+ <button class="btn btn-default 1 z-depth-2 whitetext" type="submit">Start data entry</button>
  
       
  {{else}}
@@ -53,7 +53,7 @@
   });
 
  </script>
-  <input class="btn waves-effect waves-light 1 blue darken-4 z-depth-2 " type="submit">
+  <input class="btn waves-effect waves-light 1  z-depth-2 " type="submit">
     
        {{/if}}   
        {{/if}} 
@@ -85,22 +85,20 @@ items -->
  <div class="form-group mytext">
     
     <select id="s1" class="form-control drop">
-      <option value="">Datacom</option>
-       <option value="">Packing</option>
-       <option value="">Manual</option>
-       <option value="">SCD</option>
-       <option value="">Manual Boxes</option>
-       <option value="">Metals</option>
-       <option value="">Raceway</option>
-       <option value="">WIU</option>
-       <option value="">Auto boxes</option>
+      {{#each workcenter}}
+      <option value="">{{this}}</option>
+ 
+		{{/each}}
+
+       
+
     </select>
 
 </div>
  {{/if}}
   {{/if}}
 
-<input class="btn waves-effect waves-light 2 blue darken-4 z-depth-2 " type="submit">      
+<input class="btn waves-effect waves-light 2 z-depth-2 " type="submit">      
      {{/if}}
  {{#if showtext}}
 
@@ -112,7 +110,7 @@ items -->
             </div>
         </div>
   
-<input class="btn waves-effect waves-light 2 blue darken-4 z-depth-2 " type="submit">      
+<input class="btn waves-effect waves-light 2 z-depth-2 " type="submit">      
      {{/if}}
       <!-- <input type="submit" value="Submit" class="btn btn-primary"/> -->
 

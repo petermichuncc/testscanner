@@ -4,7 +4,7 @@ var showdd=null
 var showtext=null
 var count=0;
 Session.set("count",0)
-
+var people = [1, 2, 3, 4, 5, 6, 7]
 if (Meteor.isClient) {
 
 Template.registerHelper('showtext',function(input){
@@ -84,6 +84,15 @@ else
 
 
 
+  },
+  workcenter: function()
+  {
+    //Here I will determine which array to send back
+    //basically I need 9 different arrays
+    
+    var people = [1, 2, 3, 4, 5, 6, 7]
+
+    return people
   }
   
 });
