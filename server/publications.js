@@ -3,3 +3,7 @@
 Meteor.publish('scans', function() {
   return Scans.find();
 });
+
+Meteor.publish('datacenters', function() {
+  return Datacenters.find();
+});

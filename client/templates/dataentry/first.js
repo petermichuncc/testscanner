@@ -21,7 +21,7 @@ Template.registerHelper('showdd',function(input){
 /*$('#initials').on('blur',function(){
    if (this.value.length < 4) $(this).focus();
 });*/
-
+ Meteor.subscribe('datacenters');
 this.$('.datetimepicker').datetimepicker();
 
 $("#initials").focus();
@@ -85,14 +85,27 @@ else
 
 
   },
-  workcenter: function()
+  workcenters: function()
   {
     //Here I will determine which array to send back
     //basically I need 9 different arrays
-    
-    var people = [1, 2, 3, 4, 5, 6, 7]
+    var datacom=[1001,1020,1021]
+    var packing=[1012,1013]
+    var manual=[1058,1059]
+    var scd=[1095,1096,1097]
+    var manualBoxes=[1501,1502,1503,1504,1505,1506,1508,1511,1513,1514,1515,1516,1517,1518,1519,1520,2043]
+    var metals=[2006,2018,2039,2060,2071,2091,2092]
+    var raceway=[6020,6021,6105,6234,6304,6305,6308,6315,6316,6318,6319,6320,6341,6343,6345,6346,6355,6364,6370]
+    var wiu=[3021]
+    var autoBoxes=[5101,5102,5103,5104,5105,5300]
 
-    return people
+
+
+
+
+    
+
+    return Datacenters.find()
   }
   
 });

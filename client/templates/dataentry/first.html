@@ -85,11 +85,14 @@ items -->
  <div class="form-group mytext">
     
     <select id="s1" class="form-control drop">
-      {{#each workcenter}}
+      <!--{{#each workcenter}}
       <option value="">{{this}}</option>
  
+		{{/each}}-->
+{{#each workcenters}}
+      <option value="">{{workcenter}}</option>
+ 
 		{{/each}}
-
        
 
     </select>
