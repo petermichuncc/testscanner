@@ -10,6 +10,7 @@
  {{show}}
  <div id="repairlog_container" class="center" >
 <img src="logo.jpg " class="z-depth-3"><br><br>
+
             <div id="centered_box_data"  class="z-depth-5 center">
             
 
@@ -26,11 +27,10 @@
 
        {{/if}} 
 {{#if showdd}}
-{{text}}
- {{#if $.Session.equals 'count' 2}}
-<!--Need a drop down menu here-->
+  <label for="" class="datetext"> <span class="fontbigger"> {{text}} </span> </label>
 
- <div class="form-group mytext">
+{{#if $.Session.equals 'count' 3}}
+<div class="form-group mytext">
     
     <select id="s1" class="form-control drop" required>
       <option value="datacom">Datacom</option>
@@ -45,49 +45,73 @@
     </select>
 
 </div>
+
+
 {{else}}
-{{#if $.Session.equals 'count' 3}}
-<!--At this poin the drop down will be loaded with
-the work centers associated with the previously selected
-items -->
- <div class="form-group mytext">
+ {{#if $.Session.equals 'count' 4}}
+<!--Need a drop down menu here-->
+
+ 
+<div class="form-group mytext">
     
     <select id="s1" class="form-control drop" required>
-      <!--{{#each workcenter}}
-      <option value="">{{this}}</option>
- 
-		{{/each}}-->
+     
 {{#each workcenters}}
-      <option value="">{{workcenter}} {{description}}</option>
+      <option value="{{workcenter}}">{{workcenter}} {{description}}</option>
  
-		{{/each}}
+    {{/each}}
        
 
     </select>
 
 </div>
+
+{{else}}
+{{#if $.Session.equals 'count' 5}}
+<!--At this poin the drop down will be loaded with
+the work centers associated with the previously selected
+items -->
+ 
+<div class="form-group mytext">
+    
+    <select id="s1" class="form-control drop" required>
+      <option value="shift 1">1</option>
+       <option value="shift 2">2</option>
+       <option value="shift 3">3</option>
+       <option value="shift 4">4</option>
+     </select>
+
+</div>
+{{/if}}
  {{/if}}
   {{/if}}
 
  <button class="btn btn-default 2 z-depth-3 whitetext" type="submit">Next</button>   
      {{/if}}
+     {{#if $.Session.equals 'count' 8}}
+
+<button class="btn btn-default 3 z-depth-3 whitetext" type="submit">Finished</button>  
+<button class="btn btn-default 4 z-depth-3 whitetext" type="submit">Next entry</button>  
+     {{/if}}
  {{#if showtext}}
  {{#if $.Session.equals 'count' 1}}
-  <div class="center">
+  <div class="mytext ">
             
-            <div class="input-field col center mytext">
-                <input id="name" type="text" class="validate mytext " autofocus autocomplete="off" required/>
-                <label for="" class="center"> {{text}} </label>
+            <div class="input-field col ">
+                <input id="name" type="text" class="validate " autofocus autocomplete="off" required/>
+                <label for="" class="fontbigger"><span class="fontbigger"> {{text}} </span></label>
             </div>
         </div>
+         <button class="btn btn-default 1 z-depth-3 whitetext" type="submit">Next</button>
       {{else}}
       {{#if $.Session.equals 'count' 2}}
-<span class="center"> {{text}} </span>
+
 
 <div class="mytext">
+  <label for="" class="datetext"> <span class="fontbigger"> {{text}} </span> </label>
    
  <input id="date" name="date" type="date" class="datepicker center" required/>
-  
+ 
  </div>
  
   
@@ -101,14 +125,28 @@ items -->
     selectMonths: true, // Creates a dropdown to control month
     selectYears: 15 // Creates a dropdown of 15 years to control year
   });
-
+$('#date').focus();
  </script>
+  <button class="btn btn-default 1 z-depth-3 whitetext" type="submit">Next</button>
+   {{else}}
+      {{#if $.Session.equals 'textgo' 1}}
+<!--Here show the input asking for planned -->
+<div class="center">
+            
+            <div class="input-field col center mytext">
+                <input id="name" type="text" class="validate mytext " autofocus autocomplete="off" required/>
+                <label for="" class="center"> <span class="fontbigger"> {{text}} </span> </label>
+            </div>
+        </div>
+<script>
+$('#name').focus();
 
-
-
+</script>
+ <button class="btn btn-default 1 z-depth-3 whitetext" type="submit">Next</button>
+      {{/if}}
     {{/if}}  
   {{/if}}
- <button class="btn btn-default 1 z-depth-3 whitetext" type="submit">Next</button>
+
 
      {{/if}}
       <!-- <input type="submit" value="Submit" class="btn btn-primary"/> -->

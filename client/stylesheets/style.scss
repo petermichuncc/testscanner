@@ -1,12 +1,28 @@
 
 //---------------------------------------------
+a {
+   
+    text-decoration: none;
+}
+a:hover {
+    color: white;
+    text-decoration: none;
+}
 
+.datetext
+{
 
+  color: #9e9e9e;
+  font-size: 1rem;
+}
 
+.fontbigger
+{
+font-size: 150%
 
+}
 
-
-
+/* Refresh test */
 
 .colorimg
 {
@@ -157,16 +173,22 @@ margin: 0;
        
 }
 .mytext {
-    margin: auto;
+    margin: 0 auto; 
     width: 20vw;
  
 }
 .mytextnew {
 
-     margin: auto;
+     margin: 0 auto; 
     width: 15vw;
      
  
+}
+.mytexttest
+{
+
+ width: 20vw;
+  
 }
 body {
   height:100vh;
