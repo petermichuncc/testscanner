@@ -85,7 +85,7 @@ items -->
 {{/if}}
  {{/if}}
   {{/if}}
-
+<button class="btn btn-default 5 z-depth-3 whitetext" type="submit">Previous</button>
  <button class="btn btn-default 2 z-depth-3 whitetext" type="submit">Next</button>   
      {{/if}}
      {{#if $.Session.equals 'count' 8}}
@@ -102,6 +102,12 @@ items -->
                 <label for="" class="fontbigger"><span class="fontbigger"> {{text}} </span></label>
             </div>
         </div>
+<script>
+
+ 
+
+$('#name').focus();
+ </script>
          <button class="btn btn-default 1 z-depth-3 whitetext" type="submit">Next</button>
       {{else}}
       {{#if $.Session.equals 'count' 2}}
@@ -127,6 +133,7 @@ items -->
   });
 $('#date').focus();
  </script>
+ <button class="btn btn-default 5 z-depth-3 whitetext" type="submit">Previous</button> 
   <button class="btn btn-default 1 z-depth-3 whitetext" type="submit">Next</button>
    {{else}}
       {{#if $.Session.equals 'textgo' 1}}
@@ -142,6 +149,7 @@ $('#date').focus();
 $('#name').focus();
 
 </script>
+<button class="btn btn-default 5 z-depth-3 whitetext" type="submit">Previous</button>
  <button class="btn btn-default 1 z-depth-3 whitetext" type="submit">Next</button>
       {{/if}}
     {{/if}}  

@@ -137,11 +137,11 @@ Template.first.helpers({
       }
       else if (Session.get("count")===6)
       {
-        return "Please enter the planned: "
+        return "Please enter the planned (units): "
       }
       else if (Session.get("count")===7)
       {
-        return "Please enter the actual: "
+        return "Please enter the actual (units): "
         
       }
       
@@ -266,8 +266,11 @@ console.log("this is the count " + count + "This is the session " + Session.get(
  {
   console.log("name date planned actual shift department workcenter " +name+ " "+ date+" "+ planned+" "+ actual+" "+ shift+" "+  department +" "+ workcenter )
 //Here I will insert the data into dataentries
+var productivity=Number(actual)/Number(planned)
+var productivity=productivity.toFixed(3);
+var productivity=productivity * Number(100)
 
-Meteor.call('datasInsert',name,date,department,workcenter,shift,planned,actual )
+Meteor.call('datasInsert',name,date,department,workcenter,shift,planned,actual,productivity )
 
 var word=myFunction()
 var color=myFunctionColor()
@@ -330,5 +333,23 @@ Session.set("count",count)
  count=2
 Session.set("count",count)
 
+},
+'click .5': function(event, template){
+ //Router.go('one')
+if (count>=2)
+{
+  count=count-1;
+  Session.set("count",count)
 }
+if (count>=6)
+{
+  Session.set("textgo",1)
+}
+else
+{
+  Session.set("textgo",0)
+}
+
+
+},
 })

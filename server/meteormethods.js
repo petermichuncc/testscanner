@@ -14,7 +14,7 @@ Meteor.methods({
     Scans.insert(post);
 
   },
-  datasInsert: function(name,date,department,workcenter,shift,planned,actual) {
+  datasInsert: function(name,date,department,workcenter,shift,planned,actual,productivity) {
   
     Dataentries.insert({
   name: name,
@@ -23,7 +23,8 @@ Meteor.methods({
      workcenter: workcenter,
      shift:shift,
      planned:planned,
-     actual:actual
+     actual:actual,
+     productivity: productivity
     });
 
   },
