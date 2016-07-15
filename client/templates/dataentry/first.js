@@ -92,7 +92,7 @@ Template.registerHelper('showdd',function(input){
 
 
  Meteor.subscribe('datacenters');
-
+Meteor.subscribe('dataentries');
 this.$('.datetimepicker').datetimepicker();
 
 $("#initials").focus();
@@ -264,7 +264,11 @@ console.log("this is the count " + count + "This is the session " + Session.get(
 //the current count 
  if (count===8)
  {
-  console.log("name date planned actual ss shift department workcenter " +name+ " "+ date+" "+ planned+" "+ actual+" "+ ss+" "+ shift+" "+  department +" "+ workcenter )
+  console.log("name date planned actual shift department workcenter " +name+ " "+ date+" "+ planned+" "+ actual+" "+ shift+" "+  department +" "+ workcenter )
+//Here I will insert the data into dataentries
+
+Meteor.call('datasInsert',name,date,department,workcenter,shift,planned,actual )
+
 var word=myFunction()
 var color=myFunctionColor()
 console.log("this is myFunction "+ word)

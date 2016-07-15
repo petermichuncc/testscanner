@@ -7,3 +7,7 @@ Meteor.publish('scans', function() {
 Meteor.publish('datacenters', function() {
   return Datacenters.find();
 });
+
+Meteor.publish('dataentries', function() {
+  return Dataentries.find();
+});

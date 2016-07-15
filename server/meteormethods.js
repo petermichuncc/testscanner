@@ -14,6 +14,19 @@ Meteor.methods({
     Scans.insert(post);
 
   },
+  datasInsert: function(name,date,department,workcenter,shift,planned,actual) {
+  
+    Dataentries.insert({
+  name: name,
+     date: date,
+     department: department,
+     workcenter: workcenter,
+     shift:shift,
+     planned:planned,
+     actual:actual
+    });
+
+  },
   part: function(upc) {
     try{
  var newString=upc
