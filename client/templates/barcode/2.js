@@ -106,8 +106,10 @@ if (typeof ReactiveMethod.call('orderdesc', Session.get("scan"))==="object"&& ru
    //I can return an object and grab the partnumber here too
    var desc=object.desc
    var partnumber=object.partnumber
+     var ordernumber=object.ordernumber
   Session.setPersistent("scannedDesc", desc)
   Session.setPersistent("scannedPartnumber", partnumber)
+    Session.setPersistent("scannedOrdernumber", Session.get("scan"))
 }
 if (typeof ReactiveMethod.call('order', Session.get("scan"))==="string"&& run===true && Template.instance().state.get("check")===true )
  {          
@@ -117,6 +119,7 @@ run=false
    Session.setPersistent("scanned",ReactiveMethod.call('order', Session.get("scan")))
   
  console.log("this is the desc "+ Session.get("scannedDesc") )
+ console.log("this is the order "+ Session.get("scannedOrdernumber") )
   // scan1=Session.get("scan")
   Router.go('three')
       go="green"
@@ -146,7 +149,7 @@ return go
 Template.two.events({
     // events go here
 'click .1': function(event, template){
- Router.go('one')
+ Router.go('two')
  console.log("this is a test")   
 
 }

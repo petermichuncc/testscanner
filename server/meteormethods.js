@@ -273,17 +273,25 @@ orderdesc: function(upc)
 }
   },
  
-  rawmaterial: function(upc)
+  rawmaterial: function(upc,order)
   {
       
      try{
       upc=Number(upc)
-     
+       order1=Number(order)
+      order=order.trim()
       console.log("this is upc1 " + upc)
-if (Orders.find({itemid:upc}).count()>=1)
+      console.log("here is the order " + order)
+if (Orders.find({itemid:upc,ordernumber:order}).count()>=1)
       {
+        console.log("there is a order ")
+        return Orders.find({itemid:upc,ordernumber:order}).fetch().pop().partnumber
         
-        return Orders.find({itemid:upc}).fetch().pop().partnumber
+      }
+     else if (Orders.find({itemid:upc,ordernumber:order1}).count()>=1)
+      {
+        console.log("there is a order ")
+        return Orders.find({itemid:upc,ordernumber:order1}).fetch().pop().partnumber
         
       }
       else
@@ -539,7 +547,7 @@ return text
 
 
         },       
- kanbanpart: function (upc) {
+ kanbanpart: function (upc,order) {
        //So this function will take in an ekanban upc or item id
        //It will then find the suffix of the item id and then find the associated
        //color from the colors collection.    
@@ -548,10 +556,10 @@ return text
         upc=Number(upc)
      
       console.log("this is upc1 " + upc)
-if (Orders.find({itemid:upc}).count()>=1)
+if (Orders.find({itemid:upc,ordernumber:order}).count()>=1)
       {
         
-        var partnumber= Orders.find({itemid:upc}).fetch().pop().partnumber
+        var partnumber= Orders.find({itemid:upc,ordernumber:order}).fetch().pop().partnumber
         
       }
       else

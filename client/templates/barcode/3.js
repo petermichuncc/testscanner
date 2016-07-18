@@ -285,18 +285,18 @@ Template.three.helpers({
      var scan2desc=scan2.desc
      scan2=scan2.partnumber
   }
-  else if (typeof ReactiveMethod.call('rawmaterial', Session.get("scan2"))==="string"&&run===true && Template.instance().state.get("counter")>=2)
+  else if (typeof ReactiveMethod.call('rawmaterial', Session.get("scan2"),Session.get("scannedOrdernumber"))==="string"&&run===true && Template.instance().state.get("counter")>=2)
   {
     //This checks if it is a raw material that was
     Template.instance().state.set("kanban", true)
      //Template.instance().state.set("kanbangood", true)
      
-     var scan2=ReactiveMethod.call('rawmaterial', Session.get("scan2"))
+     var scan2=ReactiveMethod.call('rawmaterial', Session.get("scan2"),Session.get("scannedOrdernumber"))
      
- if (typeof ReactiveMethod.call('kanbanpart', Session.get("scan2"))==="string")
+ if (typeof ReactiveMethod.call('kanbanpart', Session.get("scan2"),Session.get("scannedOrdernumber"))==="string")
   {
     //This checks if it is a raw material that was
-    var scan2desc=ReactiveMethod.call('kanbanpart', Session.get("scan2"))
+    var scan2desc=ReactiveMethod.call('kanbanpart', Session.get("scan2"),Session.get("scannedOrdernumber"))
     
   }
   else
@@ -695,7 +695,7 @@ x().then(function(done) {
 
  Template.three.events({
  'click .1': function(event, template){
- Router.go('one')
+ Router.go('two')
   
 
 },
