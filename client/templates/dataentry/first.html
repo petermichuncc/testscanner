@@ -26,6 +26,7 @@
  
 
        {{/if}} 
+       
 {{#if showdd}}
   <label for="" class="datetext"> <span class="fontbigger"> {{text}} </span> </label>
 
@@ -98,7 +99,7 @@ items -->
   <div class="mytext ">
             
             <div class="input-field col ">
-                <input id="name" type="text" class="validate " autofocus autocomplete="off" required/>
+                <input id="name" type="text" class="validate required" autofocus autocomplete="off" required/>
                 <label for="" class="fontbigger"><span class="fontbigger"> {{text}} </span></label>
             </div>
         </div>
@@ -108,7 +109,7 @@ items -->
 
 $('#name').focus();
  </script>
-         <button class="btn btn-default 1 z-depth-3 whitetext" type="submit">Next</button>
+         <button class="btn btn-default 1 z-depth-3 whitetext" value="Validate Form" type="submit">Next</button>
       {{else}}
       {{#if $.Session.equals 'count' 2}}
 

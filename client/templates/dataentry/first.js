@@ -216,13 +216,13 @@ Session.set("count",count)
 'click .1': function(event, template){
  //Router.go('one')
 //I need to store the user submitted date into a session variable
-$(function(){
-       $("input").prop('required',true);
-});
 
+var value=''
 if (count===1)
 {
   name=$( "#name" ).val()
+  value=$( "#name" ).val()
+  console.log("THis is the input in if statement" +$( "#name" ).val())
   Session.set("name",name)
   $('#name').val('');
   $("#name").focus();
@@ -230,6 +230,7 @@ if (count===1)
 else if (count===2)
 {
   date=$( "#date" ).val()
+  value=$( "#date" ).val()
   date=moment(date).format("YYYY-MM-DD")
   $('#date').val('');
   $("#date").focus();
@@ -239,17 +240,30 @@ else if (count===6)
 {
 
   planned=$( "#name" ).val()
+   value=$( "#name" ).val()
   $('#name').val('');
   $("#name").focus();
 }
 else if (count===7)
 {
   actual=$( "#name" ).val()
+  value=$( "#name" ).val()
   $('#name').val('');
   $("#name").focus();
 }
 
- count=count+1;
+
+ if(value == ''){
+     
+var color=myFunctionColor()
+
+Materialize.toast("Input can't be left empty", 4000, color)
+   }
+   else
+   {
+    count=count+1;
+   }
+ 
 Session.set("count",count)
 if (count>=6)
 {
@@ -288,9 +302,11 @@ console.log("this is the planned"+ planned)
 'click .2': function(event, template){
  //Router.go('one')
 console.log("this is the count in click 2 " + count)
+var value=''
 if (count===3)
 {
   var test = $( "#s1" ).val()
+  value=$( "#s1" ).val()
 Session.set("department", test)
   department=$( "#s1" ).val()
   
@@ -298,15 +314,28 @@ Session.set("department", test)
 else if (count===4)
 {
     workcenter=$( "#s1" ).val()
+    value=$( "#s1" ).val()
  }
  else if (count===5)
 {
 shift=$( "#s1" ).val()
-    
+  value=$( "#s1" ).val()
  }
 
-console.log("this is the test "+ test)
- count=count+1;
+
+
+
+  if(value == ''){
+     
+var color=myFunctionColor()
+
+Materialize.toast("Input can't be left empty", 4000, color)
+   }
+   else
+   {
+    count=count+1;
+   }
+ 
  Session.set("count",count)
 if (count>=6)
 {
