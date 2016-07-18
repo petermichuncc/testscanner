@@ -686,6 +686,24 @@ x().then(function(done) {
 
 
 
+ },
+ kanbanamount: function()
+ {
+  //basically I need to find the total kanban
+  //this will be in Session.get("kanbancount")
+  //
+  var kanbancount=Session.get("kanbancount")
+
+  //I also need to retrieve an array from the server that has
+  // all of the partnumbers associated with the order
+  //basically I will loop through the kanban db and store
+  //all of the partnumbers 
+
+  //Then I will
+  return
+
+
+
  }
  
 
