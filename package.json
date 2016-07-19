@@ -6,6 +6,8 @@
     "classnames": "^2.2.5",
     "history": "^3.0.0",
     "meteor-node-stubs": "^0.2.3",
+    "mongo-xlsx": "^1.0.12",
+    "odbc": "1.2.1",
     "react": "^15.1.0",
     "react-addons": "^0.9.1-deprecated",
     "react-addons-create-fragment": "^15.1.0",
@@ -19,6 +21,7 @@
     "react-dom": "^15.1.0",
     "react-router": "^2.5.1",
     "simpledb-php": "^1.1.0",
-    "odbc": "1.2.1"
+    "srv-to-csv": "^0.2.0",
+    "to-csv": "^0.1.1"
   }
 }
