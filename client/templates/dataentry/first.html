@@ -21,7 +21,7 @@
      {{#if $.Session.equals 'count' 0}}
    
   
- <button class="btn btn-default 0 z-depth-3 whitetext" type="submit">Start data entry</button>
+ <button class="btn btn-default 0 z-depth-3 whitetext" id="test" type="submit">Start data entry</button>
  
  
 
@@ -87,12 +87,12 @@ items -->
  {{/if}}
   {{/if}}
 <button class="btn btn-default 5 z-depth-3 whitetext" type="submit">Previous</button>
- <button class="btn btn-default 2 z-depth-3 whitetext" type="submit">Next</button>   
+ <button class="btn btn-default 2 z-depth-3 whitetext" id="test" type="submit">Next</button>   
      {{/if}}
      {{#if $.Session.equals 'count' 8}}
 
 <button class="btn btn-default 3 z-depth-3 whitetext" type="submit">Finished</button>  
-<button class="btn btn-default 4 z-depth-3 whitetext" type="submit">Next entry</button>  
+<button class="btn btn-default 4 z-depth-3 whitetext" id="test" type="submit">Next entry</button>  
      {{/if}}
  {{#if showtext}}
  {{#if $.Session.equals 'count' 1}}
@@ -109,7 +109,7 @@ items -->
 
 $('#name').focus();
  </script>
-         <button class="btn btn-default 1 z-depth-3 whitetext" value="Validate Form" type="submit">Next</button>
+         <button class="btn btn-default 1 z-depth-3 whitetext" id="test" value="Validate Form" type="submit">Next</button>
       {{else}}
       {{#if $.Session.equals 'count' 2}}
 
@@ -135,7 +135,7 @@ $('#name').focus();
 $('#date').focus();
  </script>
  <button class="btn btn-default 5 z-depth-3 whitetext" type="submit">Previous</button> 
-  <button class="btn btn-default 1 z-depth-3 whitetext" type="submit">Next</button>
+  <button class="btn btn-default 1 z-depth-3 whitetext" id="test" type="submit">Next</button>
    {{else}}
       {{#if $.Session.equals 'textgo' 1}}
 <!--Here show the input asking for planned -->
@@ -151,7 +151,7 @@ $('#name').focus();
 
 </script>
 <button class="btn btn-default 5 z-depth-3 whitetext" type="submit">Previous</button>
- <button class="btn btn-default 1 z-depth-3 whitetext" type="submit">Next</button>
+ <button class="btn btn-default 1 z-depth-3 whitetext"  id="test" type="submit">Next</button>
       {{/if}}
     {{/if}}  
   {{/if}}

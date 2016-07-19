@@ -89,6 +89,19 @@ Template.registerHelper('showdd',function(input){
 /*$('#initials').on('blur',function(){
    if (this.value.length < 4) $(this).focus();
 });*/
+$(document).keypress(function(event){
+
+    var keycode = (event.keyCode ? event.keyCode : event.which);
+    if(keycode == '13'){
+        $('#test').click();   
+    }
+
+});
+
+
+
+
+
 
 
  Meteor.subscribe('datacenters');
