@@ -305,6 +305,38 @@ if (Orders.find({itemid:upc,ordernumber:order}).count()>=1)
 
   },
 
+   kanbanarray: function(upc,order)
+  {
+      
+     try{
+      upc=Number(upc)
+       order1=Number(order)
+      order=order.trim()
+      console.log("this is upc1 " + upc)
+      console.log("here is the order " + order)
+if (Orders.find({itemid:upc,ordernumber:order}).count()>=1)
+      {
+        console.log("there is a order ")
+        return Orders.find({itemid:upc,ordernumber:order}).fetch().pop().partnumber
+        
+      }
+     else if (Orders.find({itemid:upc,ordernumber:order1}).count()>=1)
+      {
+        console.log("there is a order ")
+        return Orders.find({itemid:upc,ordernumber:order1}).fetch().pop().partnumber
+        
+      }
+      else
+      {
+
+      }
+}catch(err)
+{
+
+}
+
+  }, 
+
   compare: function(upc, upc2) {
     try{
  //This is comparing the partnumbers from the job order

@@ -11,7 +11,7 @@ Session.set("scan",0)
  
 //Session.set("kanbancount", 0)
     this.state = new ReactiveDict();
-    
+    Session.setPersistent("scan",0)
     Session.set("kanbancount",0)
 //initialize or setup all of the time stamps here 
 this.state.set('check', false);
@@ -99,7 +99,8 @@ Template.instance().state.set("check",true)
   },  
   check: function()
   {
-
+ console.log("this is scan " + Session.get("scan"))
+  console.log("this is the run " + run)
 if (typeof ReactiveMethod.call('orderdesc', Session.get("scan"))==="object"&& run===true&& Template.instance().state.get("check")===true)
 {
    var object=ReactiveMethod.call('orderdesc', Session.get("scan"))
@@ -112,7 +113,7 @@ if (typeof ReactiveMethod.call('orderdesc', Session.get("scan"))==="object"&& ru
     Session.setPersistent("scannedOrdernumber", Session.get("scan"))
 }
 if (typeof ReactiveMethod.call('order', Session.get("scan"))==="string"&& run===true && Template.instance().state.get("check")===true )
- {          
+ {      console.log("test a")    
 run=false
      Materialize.toast('That was a correct job order', 8000,'light-blue accent-4 z-depth-2')
      
@@ -126,7 +127,7 @@ run=false
     return "green"
   }
   else if(Session.get("scan")!=0 && run===true&& ReactiveMethod.call('order', Session.get("scan"))===false)
-  { console.log(" false test")
+  { console.log("test b")   
     $('#initials').val('');
   
      
@@ -134,6 +135,11 @@ run=false
     Materialize.toast('That was not a correct job order', 8000,'orange darken-2 z-depth-2')
      go="red"
       run=false
+  }
+  else if (Session.get("scan")==0 && run==true )
+  {console.log("test c")   
+    go=null
+    run=false
   }
 
 return go
@@ -149,8 +155,11 @@ return go
 Template.two.events({
     // events go here
 'click .1': function(event, template){
- Router.go('two')
+  Session.setPersistent("scan",0)
+ $('#initials').focus()
  console.log("this is a test")   
+ console.log("this is scan " + Session.get("scan"))
+ run=true
 
 }
 })
