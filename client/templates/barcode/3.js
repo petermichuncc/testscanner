@@ -473,7 +473,7 @@ else
     
     //Materialize.toast(test3, 15000,'blue')
     }
-    else if (Template.instance().state.get("counter")===2 && Template.instance().state.get("counter")-Session.get("kanbancount")<=1)
+    else if (Template.instance().state.get("counter")===2 )
     {
       //In here I should set the kanban reactive var to false if 5 seconds have passed and it isn't
       //set to true
@@ -496,25 +496,20 @@ else
       return "Please scan the eKanban ticket partnumber: "
      
     }
-    else if (Template.instance().state.get("counter")>2 && Template.instance().state.get("counter")-Session.get("kanbancount")<=1)
-    {
-      Template.instance().state.set("kanbanshow", true)
-    
-      return "Please scan the next eKanban ticket partnumber: "
-     
-    }
+    else if (Template.instance().state.get("counter")===3)
 
-    else if (Template.instance().state.get("counter")>=2 && Template.instance().state.get("counter")-Session.get("kanbancount")>1)
     {
-      //put a set timeout here
+      //test
+      Router.go('final');
+    }
     
-           Router.go('final');
+      
+    
+           
 
        
    
-    }
-
-  },
+    },
   kanbancheck: function()
   {
   

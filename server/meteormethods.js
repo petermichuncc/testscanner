@@ -272,12 +272,78 @@ orderdesc: function(upc)
   return false
 }
   },
- 
+ boxes: function(upc)
+  {
+    try{
+     
+ var box=null
+ var boxdesc=null
+      upc1=Number(upc)
+      upc=upc.trim()
+      //this fxn takes in the upc of the order
+      /*
+       I need to look for orders that contain a order number from the upc 
+       and also that have a component that starts with 31 or 32
+       I need to use a regexp to do this 
+db.products.find( { sku: { $regex: /^ABC/i } } )  finds items that start with ABC
+
+      Orders.find({ itemid: { $regex: /^32/i },ordernumber:upc1 }).fetch().pop().itemid
+
+
+
+        */
+        console.log("this is the count ")
+console.log("test start")
+
+/*
+I need to grab the item description of the box
+//Then look and see if it has the substring "POLYBAG" in it
+
+
+*/
+        if (Orders.find({ itemid: { $regex: /^32/i },ordernumber:upc1}).count()==1)
+      {console.log("test 1")
+        
+       box= Orders.find({ itemid: { $regex: /^32/i },ordernumber:upc1}).fetch().pop()
+      
+      }
+      else if (Orders.find({ itemid: { $regex: /^32/i },ordernumber:upc1}).count()>1)
+      {console.log("test 1")
+        
+       box= Orders.find({ itemid: { $regex: /^32/i },ordernumber:upc1}).fetch().pop()
+      
+      }
+      else if (Orders.find({ itemid: { $regex: /^33/i },ordernumber:upc1}).count()>=1)
+      {console.log("test 2")
+        
+       box= Orders.find({ itemid: { $regex: /^33/i },ordernumber:upc1}).fetch().pop()
+        
+      }
+    else if (Orders.find({ itemid: { $regex: /^32/i },ordernumber:upc}).count()>=1)
+    { console.log("test 3")
+            box= Orders.find({ itemid: { $regex: /^32/i },ordernumber:upc}).fetch().pop()
+     }
+    else if (Orders.find({ itemid: { $regex: /^33/i },ordernumber:upc}).count()>=1)
+    { console.log("test 4")
+            box= Orders.find({ itemid: { $regex: /^33/i },ordernumber:upc}).fetch().pop()
+    }   
+   //Here I need to look in the upc database and retrieve the description for the 
+   //associated partnumber
+   console.log("this is the box "+ box)
+   return box
+
+
+}catch(err)
+{
+  return false
+}
+  },
   rawmaterial: function(upc,order)
   {
       
      try{
-      upc=Number(upc)
+      upc=upc.toString()
+      upc=upc.trim()
        order1=Number(order)
       order=order.trim()
       console.log("this is upc1 " + upc)
@@ -309,7 +375,7 @@ if (Orders.find({itemid:upc,ordernumber:order}).count()>=1)
   {
       
      try{
-      upc=Number(upc)
+      upc=upc.toString()
        order1=Number(order)
       order=order.trim()
       console.log("this is upc1 " + upc)
@@ -585,8 +651,8 @@ return text
        //color from the colors collection.    
       try{
 
-        upc=Number(upc)
-     
+        upc=upc.toString()
+        upc=upc.trim()
       console.log("this is upc1 " + upc)
 if (Orders.find({itemid:upc,ordernumber:order}).count()>=1)
       {

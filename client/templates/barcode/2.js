@@ -86,17 +86,20 @@ Template.instance().state.set("check",true)
       
 
 
-     
-     
-
-  // scan1=Session.get("scan")
-  
-
-  
+ 
   
   }
 
   },  
+  piecesperbag: function () {
+
+ 
+var box = ReactiveMethod.call('boxes', Session.get("scan"))
+box=box.itemid
+console.log("this is boxes "+ box)
+
+     
+  },
   check: function()
   {
  console.log("this is scan " + Session.get("scan"))

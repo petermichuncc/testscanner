@@ -14,26 +14,17 @@ Meteor.subscribe('scans');
 Template.zero.helpers({
     piecesperbag: function () {
 
-    	/*
-			if the item id has 
-			31: box
-			37: label
-			33: 
-
-   	*/
-			/*
-					If there is a 31 in the front then it is a box
-
-		*/
-
-		/*
-			So I need to grab an object from the server that contains the 
-
-
-		*/
+ 
+var box = ReactiveMethod.call('boxes', 1000000008860954)
+console.log("this is boxes "+ box)
 
      
-  }
+  },
+  bagsperbox: function () {
+
+    
+     
+  },
   
 });
 
