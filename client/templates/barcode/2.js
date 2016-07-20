@@ -4,7 +4,7 @@ var scan1=0
 var scan=0
 var run=true
 var go=null
-Session.set("scan",0)
+
 //Add reactive dictionary variable for the pasted content
    Template.two.created = function () {
 
@@ -91,15 +91,7 @@ Template.instance().state.set("check",true)
   }
 
   },  
-  piecesperbag: function () {
-
  
-var box = ReactiveMethod.call('boxes', Session.get("scan"))
-box=box.itemid
-console.log("this is boxes "+ box)
-
-     
-  },
   check: function()
   {
  console.log("this is scan " + Session.get("scan"))
@@ -125,7 +117,7 @@ run=false
  console.log("this is the desc "+ Session.get("scannedDesc") )
  console.log("this is the order "+ Session.get("scannedOrdernumber") )
   // scan1=Session.get("scan")
-  Router.go('three')
+  //Router.go('three')
       go="green"
     return "green"
   }

@@ -295,37 +295,26 @@ db.products.find( { sku: { $regex: /^ABC/i } } )  finds items that start with AB
         console.log("this is the count ")
 console.log("test start")
 
-/*
-I need to grab the item description of the box
-//Then look and see if it has the substring "POLYBAG" in it
-
-
-*/
-        if (Orders.find({ itemid: { $regex: /^32/i },ordernumber:upc1}).count()==1)
+       
+      if (Orders.find({ itemid: { $regex: /^32/i },ordernumber:upc1}).count()>=1)
       {console.log("test 1")
         
        box= Orders.find({ itemid: { $regex: /^32/i },ordernumber:upc1}).fetch().pop()
       
       }
-      else if (Orders.find({ itemid: { $regex: /^32/i },ordernumber:upc1}).count()>1)
-      {console.log("test 1")
-        
-       box= Orders.find({ itemid: { $regex: /^32/i },ordernumber:upc1}).fetch().pop()
-      
-      }
-      else if (Orders.find({ itemid: { $regex: /^33/i },ordernumber:upc1}).count()>=1)
+      else if (Orders.find({ itemid: { $regex: /^31/i },ordernumber:upc1}).count()>=1)
       {console.log("test 2")
         
-       box= Orders.find({ itemid: { $regex: /^33/i },ordernumber:upc1}).fetch().pop()
+       box= Orders.find({ itemid: { $regex: /^31/i },ordernumber:upc1}).fetch().pop()
         
       }
     else if (Orders.find({ itemid: { $regex: /^32/i },ordernumber:upc}).count()>=1)
     { console.log("test 3")
             box= Orders.find({ itemid: { $regex: /^32/i },ordernumber:upc}).fetch().pop()
      }
-    else if (Orders.find({ itemid: { $regex: /^33/i },ordernumber:upc}).count()>=1)
+    else if (Orders.find({ itemid: { $regex: /^31/i },ordernumber:upc}).count()>=1)
     { console.log("test 4")
-            box= Orders.find({ itemid: { $regex: /^33/i },ordernumber:upc}).fetch().pop()
+            box= Orders.find({ itemid: { $regex: /^31/i },ordernumber:upc}).fetch().pop()
     }   
    //Here I need to look in the upc database and retrieve the description for the 
    //associated partnumber
@@ -338,6 +327,57 @@ I need to grab the item description of the box
   return false
 }
   },
+ bags: function(upc)
+  {
+    try{
+     
+ var bag=null
+
+      upc1=Number(upc)
+      upc=upc.trim()
+      //this fxn takes in the upc of the order
+      /*
+       I need to look for orders that contain a order number from the upc 
+       and also that have a component that starts with 31 or 32
+       I need to use a regexp to do this 
+db.products.find( { sku: { $regex: /^ABC/i } } )  finds items that start with ABC
+
+      Orders.find({ itemid: { $regex: /^32/i },ordernumber:upc1 }).fetch().pop().itemid
+
+
+
+        */
+   
+/*
+I need to grab the item description of the box
+//Then look and see if it has the substring "POLYBAG" in it
+
+Do a regex and look for the word POLYBAG in the 
+desc field
+
+*/
+      if (Orders.find({ itemid: { $regex: /^33/i },ordernumber:upc1, desc:{ $regex: /POLYBAG/i }}).count()>=1)
+      {console.log("test 2")
+        
+       bag= Orders.find({ itemid: { $regex: /^33/i },ordernumber:upc1, desc:{ $regex: /POLYBAG/i }}).fetch().pop()
+        
+      }
+     if (Orders.find({ itemid: { $regex: /^33/i },ordernumber:upc, desc:{ $regex: /POLYBAG/i }}).count()>=1)
+    { console.log("test 4")
+            bag= Orders.find({ itemid: { $regex: /^33/i },ordernumber:upc, desc:{ $regex: /POLYBAG/i }}).fetch().pop()
+    }   
+   //Here I need to look in the upc database and retrieve the description for the 
+   //associated partnumber
+   console.log("this is the bag "+ bag)
+   console.log("this is the bag itemid"+ bag.itemid)
+   return bag
+
+
+}catch(err)
+{
+  return false
+}
+  }, 
   rawmaterial: function(upc,order)
   {
       
