@@ -55,8 +55,17 @@ var piecesPerBag=Number(1000)/(Number(1000)*bagusage)
 Session.set("piecesPerBag",piecesPerBag)
 console.log("this is the pieces per bag " + piecesPerBag)
       var output=piecesPerBag.toString()
+      if (piecesPerBag===1)
+      {
      output= output.concat(" piece per bag")
+ }
+ else
+ {
+	output= output.concat(" pieces per bag")
+ 	}
+
      Materialize.toast(output, 999000, 'light-blue lighten-2 cp z-depth-2')
+ 
   },
   bagsperbox: function () {
 
@@ -73,7 +82,15 @@ console.log("this is the boxes " + boxes)
 var bagsPerBox= boxes/Session.get("piecesPerBag")
      console.log("this is the bags per box " + bagsPerBox)
      var output=bagsPerBox.toString()
-     output= output.concat(" bags per box")
+     if (bagsPerBox===1)
+      {
+     output= output.concat(" bag per box")
+ }
+ else
+ {
+	output= output.concat(" bags per box")
+ 	}
+     
      Materialize.toast(output, 999000, 'light-blue lighten-2 cp z-depth-2')
   }
   
