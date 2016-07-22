@@ -377,7 +377,34 @@ desc field
 {
   return false
 }
-  }, 
+  },
+   ekanbans: function(upc)
+  {
+    try{
+     
+  var count=0;
+
+      upc1=Number(upc)
+      upc=upc.trim()
+    
+if (Kanbans.find({ordernumber:upc1}).count()>=1)
+      {
+        count=Kanbans.find({ordernumber:upc1}).count()
+       }
+  if (Kanbans.find({ordernumber:upc}).count()>=1)
+    {
+      count=Kanbans.find({ordernumber:upc}).count()
+    }  
+
+ console.log("this is the kanban count "+ count)
+
+
+
+}catch(err)
+{
+  return false
+}
+  },  
   rawmaterial: function(upc,order)
   {
       
