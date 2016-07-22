@@ -422,18 +422,13 @@ return go
   },
   text:function()
   {
-    //basically I will have three strings that I will concatenate
-    //To the string Please scan the
-    //I'll
-    //Template.instance().state.get("barcode")
-    //if this var is true then 
-    //that means the use scanned a printed bag
-    //Therefore I should not show the text "printed bag"
-    //if it is false I should not show this
-
+   
 //I need to determine if a bag was scanned 
-console.log("this is the  counter " + Template.instance().state.get("counter")+ " and count "+Session.get("kanbancount"))
-var test= Template.instance().state.get("counter")-Session.get("kanbancount")
+
+
+var kanbancount=Number(Session.get("kanbancount"))
+kanbancount=kanbancount+1
+
 console.log("this is the "+test )
 
  if( Template.instance().state.get("counter")==0)
@@ -449,17 +444,7 @@ console.log("this is the "+test )
       
    
 
-/*if (typeof ReactiveMethod.call('text', Session.get("scan2"))==="string")
- {
 
-return ReactiveMethod.call('text', Session.get("scan2"))
-
-  }
-  else
-  {
-    return "Please scan the printed bag or box label"
-  }
-*/
 if (Template.instance().state.get("bag")===true)
 {
  return "Please scan the box label: "
@@ -475,8 +460,14 @@ else
     }
     else if (Template.instance().state.get("counter")===2 )
     {
-      //In here I should set the kanban reactive var to false if 5 seconds have passed and it isn't
-      //set to true
+      
+      /*
+        if TC==2 then "Please scan the ekanban"
+
+        if TC>2 && KC-TC>=0 then "Please scan the next ekanban"
+    
+
+      */
       
    
        function test()
@@ -493,10 +484,15 @@ else
  
       Template.instance().state.set("kanbanshow", true)
     
-      return "Please scan the eKanban ticket partnumber: "
+      return "Please scan the eKanban ticket part number: "
      
     }
-    else if (Template.instance().state.get("counter")===3)
+    else if (Template.instance().state.get("counter")>2 && kanbancount-Template.instance().state.get("counter")>=0)
+    {
+      return "Please scan the next ekanban ticketi part number"
+
+    }
+    else if (kanbancount-Template.instance().state.get("counter")<0)
 
     {
       //test
