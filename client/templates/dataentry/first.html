@@ -34,6 +34,20 @@
 <div class="form-group mytext">
     
     <select id="s1" class="form-control drop" required>
+      <option value="temp">Temp</option>
+       <option value="permanent">Permanent</option>
+     
+    </select>
+
+</div>
+
+
+{{else}}
+ {{#if $.Session.equals 'count' 4}}
+<!--Need a drop down menu here-->
+<div class="form-group mytext">
+    
+    <select id="s1" class="form-control drop" required>
       <option value="datacom">Datacom</option>
        <option value="packing">Packing</option>
        <option value="manual">Manual</option>
@@ -43,17 +57,18 @@
        <option value="raceway">Raceway</option>
        <option value="wiu">WIU</option>
        <option value="autoboxes">Auto boxes</option>
+       <option value="husky">Husky</option>
     </select>
 
 </div>
-
+ 
 
 {{else}}
- {{#if $.Session.equals 'count' 4}}
-<!--Need a drop down menu here-->
-
- 
-<div class="form-group mytext">
+{{#if $.Session.equals 'count' 5}}
+<!--At this poin the drop down will be loaded with
+the work centers associated with the previously selected
+items -->
+ <div class="form-group mytext">
     
     <select id="s1" class="form-control drop" required>
      
@@ -66,13 +81,8 @@
     </select>
 
 </div>
-
 {{else}}
-{{#if $.Session.equals 'count' 5}}
-<!--At this poin the drop down will be loaded with
-the work centers associated with the previously selected
-items -->
- 
+{{#if $.Session.equals 'count' 6}}
 <div class="form-group mytext">
     
     <select id="s1" class="form-control drop" required>
@@ -84,12 +94,13 @@ items -->
 
 </div>
 {{/if}}
+{{/if}}
  {{/if}}
   {{/if}}
 <button class="btn btn-default 5 z-depth-3 whitetext" type="submit">Previous</button>
  <button class="btn btn-default 2 z-depth-3 whitetext" id="test" type="submit">Next</button>   
      {{/if}}
-     {{#if $.Session.equals 'count' 8}}
+     {{#if $.Session.equals 'count' 9}}
 
 <button class="btn btn-default 3 z-depth-3 whitetext" type="submit">Finished</button>  
 <button class="btn btn-default 4 z-depth-3 whitetext" id="test" type="submit">Next entry</button>  

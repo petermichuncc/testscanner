@@ -14,11 +14,12 @@ Meteor.methods({
     Scans.insert(post);
 
   },
-  datasInsert: function(name,date,department,workcenter,shift,planned,actual,productivity) {
+  datasInsert: function(name,date,status,department,workcenter,shift,planned,actual,productivity) {
   
     Dataentries.insert({
-  name: name,
+    name: name,
      date: date,
+     employeestatus: status,
      department: department,
      workcenter: workcenter,
      shift:shift,

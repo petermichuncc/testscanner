@@ -71,6 +71,7 @@ var planned=null
 var actual=null
 var ss=null
 var shift=null
+var status=null
 var department=null
 var workcenter=null
 if (Meteor.isClient) {
@@ -128,31 +129,38 @@ Template.first.helpers({
       console.log("this is the session count in text " + Session.get("count"))
       if (Session.get("count")===1)
       {
-        return "Please enter your name: "
+        return "Please enter employee name: "
       }
+      /*
+        add a new string to return
+      */
       else if (Session.get("count")===2)
       {
         return "Please select a date: "
       }
-       else if (Session.get("count")===3)
+      else if (Session.get("count")===3)
+      {
+        return "Please select employee status: " 
+      }
+       else if (Session.get("count")===4)
       {
         return "Please select the department: "
         
       }
-      else if (Session.get("count")===4)
+      else if (Session.get("count")===5)
       { return "Please select the workcenter: "
        
       }
-     else if (Session.get("count")===5)
+     else if (Session.get("count")===6)
       {
        
       return "Please select the shift: "
       }
-      else if (Session.get("count")===6)
+      else if (Session.get("count")===7)
       {
         return "Please enter the planned (units): "
       }
-      else if (Session.get("count")===7)
+      else if (Session.get("count")===8)
       {
         return "Please enter the actual (units): "
         
@@ -162,7 +170,7 @@ Template.first.helpers({
   show: function(){
 
 // I will create a boolean that will show true if the count is 2 or 3
-if (Session.get("count")>=1 && Session.get("count")<8)
+if (Session.get("count")>=1 && Session.get("count")<9)
 {
   
   Session.set("showtext",true)
@@ -176,7 +184,7 @@ else
 
 
 
-if (Session.get("count")>=3 && Session.get("count")<6)
+if (Session.get("count")>=3 && Session.get("count")<7)
 {
 
   Session.set("showdd",true)
@@ -249,7 +257,7 @@ else if (count===2)
   $("#date").focus();
   $("#name").focus();
 }
-else if (count===6)
+else if (count===7)
 {
 
   planned=$( "#name" ).val()
@@ -257,7 +265,7 @@ else if (count===6)
   $('#name').val('');
   $("#name").focus();
 }
-else if (count===7)
+else if (count===8)
 {
   actual=$( "#name" ).val()
   value=$( "#name" ).val()
@@ -278,7 +286,7 @@ Materialize.toast("Input can't be left empty", 4000, color)
    }
  
 Session.set("count",count)
-if (count>=6)
+if (count>=7)
 {
   Session.set("textgo",1)
 }
@@ -289,15 +297,15 @@ else
 console.log("this is the count " + count + "This is the session " + Session.get("count"))
 //setup if statements that set session variables based on
 //the current count 
- if (count===8)
+ if (count===9)
  {
-  console.log("name date planned actual shift department workcenter " +name+ " "+ date+" "+ planned+" "+ actual+" "+ shift+" "+  department +" "+ workcenter )
+  console.log("name date planned actual status shift department workcenter " +name+ " "+ date+" "+ planned+" "+ actual+" "+ status+" "+ shift+" "+  department +" "+ workcenter )
 //Here I will insert the data into dataentries
 var productivity=Number(actual)/Number(planned)
 var productivity=productivity.toFixed(3);
 var productivity=productivity * Number(100)
 
-Meteor.call('datasInsert',name,date,department,workcenter,shift,planned,actual,productivity )
+Meteor.call('datasInsert',name,date,status,department,workcenter,shift,planned,actual,productivity )
 
 var word=myFunction()
 var color=myFunctionColor()
@@ -320,16 +328,24 @@ if (count===3)
 {
   var test = $( "#s1" ).val()
   value=$( "#s1" ).val()
+
+  status=$( "#s1" ).val()
+  
+ }
+if (count===4)
+{
+  var test = $( "#s1" ).val()
+  value=$( "#s1" ).val()
 Session.set("department", test)
   department=$( "#s1" ).val()
   
  }
-else if (count===4)
+else if (count===5)
 {
     workcenter=$( "#s1" ).val()
     value=$( "#s1" ).val()
  }
- else if (count===5)
+ else if (count===6)
 {
 shift=$( "#s1" ).val()
   value=$( "#s1" ).val()
@@ -350,7 +366,7 @@ Materialize.toast("Input can't be left empty", 4000, color)
    }
  
  Session.set("count",count)
-if (count>=6)
+if (count>=7)
 {
   Session.set("textgo",1)
 }
@@ -383,7 +399,7 @@ if (count>=2)
   count=count-1;
   Session.set("count",count)
 }
-if (count>=6)
+if (count>=7)
 {
   Session.set("textgo",1)
 }

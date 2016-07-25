@@ -1,3 +1,5 @@
+console.log("test")
+
 if (Datacenters.find().count()===0)
 {
 Datacenters.insert({
@@ -313,4 +315,81 @@ Datacenters.insert({
      workcenter: 5300,
      description: '6'
     });
+
+Datacenters.insert({
+    department: "husky",
+     workcenter: 1,
+     description: ''
+    });
+Datacenters.insert({
+    department: "husky",
+     workcenter: 2,
+     description: ''
+    });
+Datacenters.insert({
+    department: "husky",
+     workcenter: 3,
+     description: ''
+    });
+Datacenters.insert({
+    department: "husky",
+     workcenter: 4,
+     description: ''
+    });
+Datacenters.insert({
+    department: "husky",
+     workcenter: 5,
+     description: ''
+    });
+Datacenters.insert({
+    department: "husky",
+     workcenter: 6,
+     description: ''
+    });
+Datacenters.insert({
+    department: "husky",
+     workcenter: 7,
+     description: ''
+    });
+Datacenters.insert({
+    department: "husky",
+     workcenter: 8,
+     description: ''
+    });
+Datacenters.insert({
+    department: "husky",
+     workcenter: 9,
+     description: ''
+    });
+Datacenters.insert({
+    department: "husky",
+     workcenter: 10,
+     description: ''
+    });
+Datacenters.insert({
+    department: "husky",
+     workcenter: 11,
+     description: ''
+    });
+Datacenters.insert({
+    department: "husky",
+     workcenter: 12,
+     description: ''
+    });
+Datacenters.insert({
+    department: "husky",
+     workcenter: 13,
+     description: ''
+    });
+Datacenters.insert({
+    department: "husky",
+     workcenter: 14,
+     description: ''
+    });
+Datacenters.insert({
+    department: "husky",
+     workcenter: 49,
+     description: ''
+    });
+
 }

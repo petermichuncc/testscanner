@@ -77,7 +77,7 @@ Template.two.helpers({
   
  
       var count=ReactiveMethod.call('kanbandb', Session.get("scan"))
-
+      console.log("this is the count "+ count)
 if (typeof count==="number")
 {
 Template.instance().state.set("check",true)
@@ -117,7 +117,7 @@ run=false
  console.log("this is the desc "+ Session.get("scannedDesc") )
  console.log("this is the order "+ Session.get("scannedOrdernumber") )
   // scan1=Session.get("scan")
- //Router.go('three')
+Router.go('three')
       go="green"
     return "green"
   }

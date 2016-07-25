@@ -489,7 +489,7 @@ else
     }
     else if (Template.instance().state.get("counter")>2 && kanbancount-Template.instance().state.get("counter")>=0)
     {
-      return "Please scan the next ekanban ticketi part number"
+      return "Please scan the next ekanban ticket part number"
 
     }
     else if (kanbancount-Template.instance().state.get("counter")<0)
@@ -564,6 +564,9 @@ return good
 // was good or not
  
 //only do this if the job scanned was green
+var kanbancount=Number(Session.get("kanbancount"))
+kanbancount=kanbancount+1
+
  if (typeof ReactiveMethod.call('color', Session.get("scan2"))==="object"&&Template.instance().state.get("kanban")===true &&Session.get("result")==="green")
   {
 
@@ -628,6 +631,12 @@ console.log("this is the colortest "+ colortest)
 //Template.instance().state.set("text", true)  if this is true then it was a green scan
 
 //console.log("this is the text " +Template.instance().state.get("text"))
+/*
+kanbancount-Template.instance().state.get("counter")
+
+*/
+
+
 if (Template.instance().state.get("text")===false)
 {
    Materialize.toast2(test2, 10000, 'light-blue lighten-2 z-depth-2');
