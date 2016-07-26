@@ -4,7 +4,7 @@
 
 Template.final.rendered =function(){
 
-Materialize.toast('Good job', 999000, 'light-blue lighten-2 cp z-depth-2')
+Materialize.toast('Good job', 999999000, 'light-blue lighten-2 cp z-depth-2')
 //Add code to save the person and partnumber of job to a database
 console.log("tech " + Session.get("tech")+ " partnumber " + Session.get("scanned")+ "mismatch scans "+Session.get("record")+"override" + Session.get("override"))
 
@@ -18,7 +18,16 @@ Template.final.events({
 
 $( ".cp" ).hide();
  
+Router.go('two');
+ 
 
+
+},
+'click .2': function(event, template){
+
+$( ".cp" ).hide();
+ 
+Router.go('one');
  
 
 
@@ -64,7 +73,7 @@ console.log("this is the pieces per bag " + piecesPerBag)
 	output= output.concat(" pieces per bag")
  	}
 
-     Materialize.toast(output, 999000, 'light-blue lighten-2 cp z-depth-2')
+     Materialize.toast(output, 999999000, 'light-blue lighten-2 cp z-depth-2 toasttextbig')
  
   },
   bagsperbox: function () {
@@ -91,7 +100,7 @@ var bagsPerBox= boxes/Session.get("piecesPerBag")
 	output= output.concat(" bags per box")
  	}
      
-     Materialize.toast(output, 999000, 'light-blue lighten-2 cp z-depth-2')
+     Materialize.toast(output, 999999000, 'light-blue lighten-2 cp z-depth-2 toasttextbig')
   }
   
 });

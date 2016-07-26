@@ -5,8 +5,12 @@
   "dependencies": {
     "classnames": "^2.2.5",
     "history": "^3.0.0",
+    "ibm_db": "0.0.14",
+    "java": "^0.7.2",
+    "jt400": "^0.1.1",
     "meteor-node-stubs": "^0.2.3",
     "mongo-xlsx": "^1.0.12",
+    "node-jt400": "^1.0.1",
     "odbc": "1.2.1",
     "react": "^15.1.0",
     "react-addons": "^0.9.1-deprecated",

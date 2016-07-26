@@ -480,7 +480,7 @@ else
 }
     //Template.instance().state.set("kanbancheck",true)
    
-    setTimeout(test, 15000);
+    setTimeout(test, 20000);
  
       Template.instance().state.set("kanbanshow", true)
     
@@ -616,7 +616,7 @@ colorshow=true
 Template.instance().state.set("color", colorLocation)
 
 
-var colortest='<div class="mytextnew"> <img class="img-responsive z-depth-2 " height="100px" width="100px" src="colors/'
+var colortest='<div class="mytextnew"> <img class="img-responsive z-depth-2 " height="150px" width="150px" src="colors/'
 colortest=colortest.concat(suffix)
 colortest=colortest.concat(".jpg\"")
 colortest=colortest.concat(" /> </div>")
@@ -639,15 +639,15 @@ kanbancount-Template.instance().state.get("counter")
 
 if (Template.instance().state.get("text")===false)
 {
-   Materialize.toast2(test2, 10000, 'light-blue lighten-2 z-depth-2');
+   Materialize.toast2(test2, 10000, 'light-blue lighten-2 z-depth-2 toasttextbig');
     Materialize.toast2($toastContent, 10000, '');
 }
  else if (Template.instance().state.get("text")===true)
 {
 
-   Materialize.toast2(test2, 999000, 'light-blue lighten-2 cp z-depth-2');
+   Materialize.toast2(test2, 999999000, 'light-blue lighten-2 cp z-depth-2 toasttextbig');
  
-    Materialize.toast2($toastContent, 999000, 'cp');
+    Materialize.toast2($toastContent, 999999000, 'cp');
 }
 
 

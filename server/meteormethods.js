@@ -653,10 +653,19 @@ return text
       //
 
       try{
+        console.log("this is the upc" + upc)
+        console.log("this is the typeof upc" + typeof upc)
       upc=upc.trim()
+      console.log("this is the upc trimmed" + upc)
+      
         upc= upc.substr(6);
+      console.log("this is the typeof upc" + typeof upc)
       console.log("this is the truncated upc "+ upc)
+       console.log("this is the truncated upc "+ upc.length)
+       if (upc.length>0)
+       {
       upc=Number(upc)
+      console.log("this is the upc converted to a number " + upc)
     // I should return the object as oppose to just the description
     //
      
@@ -664,6 +673,7 @@ return text
      console.log("this is the color "+ color)
      console.log("this is the typeof color "+typeof color)
         return Colors.find({Suffix:upc}).fetch().pop()
+ }
 
 }catch(err)
 {

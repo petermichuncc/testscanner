@@ -46,6 +46,8 @@
 
 
 <template name="final">
+  
+      
 {{piecesperbag}}
  {{bagsperbox}}
 <body class="green">
@@ -53,10 +55,16 @@
 <div id="repairlog_container" class="center" >
 <img src="logo.jpg " class="z-depth-3"><br><br>
             <div id="centered_box"  class="z-depth-5 center">
+             <div class="center">
  Start production
- <form action="{{pathFor 'two'}}">
+	<br>		
 <button class="btn btn-default 1 #78909c blue-grey lighten-1 z-depth-2 " type="submit">Start a new job</button>
-</form>
+<br>
+<button class="btn btn-default 2 blue z-depth-2 " type="submit">New technician</button>
+</div>
+
+
+
 </div>
 </div>
 

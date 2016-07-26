@@ -92,3 +92,42 @@ db.open(cn, function (err) {
   });
 });
 */
+/*
+var Database = require('jt400');
+var database = new Database();
+console.log("this is dir name " + __dirname)
+var config = {
+  libpath:'/public/jt400.jar',
+  drivername: 'com.ibm.as400.access.AS400JDBCDriver',
+  url: 'jdbc:as400://10.87.15.251/GCOVE;user=CDATWATER;password=BabyGirl43'
+};
+
+database.initialize(config);
+
+// SELECT statements must be run with execute()
+database.execute('SELECT * FROM foo');
+
+database.on('execute', function(error, results) {
+  if (error) {
+    console.log(error);
+  }
+  else {
+    console.log(results);
+  }
+});
+
+//INSERT and UPDATE statements must be run with executeUpdate()
+database.executeUpdate('INSERT INTO foo (bar) VALUES ("bar")');
+
+database.on('executeUpdate', function(error, rowCount) {
+  if (error) {
+    console.log(error);
+  }
+  else {
+    console.log(rowCount);
+  }
+});
+
+*/
+
+var pool = require('node-jt400').pool({host: '10.87.15.251', user: 'CDATWATER', password: 'BabyGirl43'});
