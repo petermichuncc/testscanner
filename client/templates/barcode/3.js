@@ -309,6 +309,10 @@ Template.three.helpers({
   }
   console.log("this is scan2 " + scan2)
   console.log("this is typeof compare " + typeof ReactiveMethod.call('compare', scan2,Session.get("scanned")))
+//This function is comparing the job order partnumber to the partnumber of the scanned item
+// A more efficient thing to do would be to just check if the scanned item
+//partnumber is within the job order?
+
 if (typeof ReactiveMethod.call('compare', scan2,Session.get("scanned"))==="string" )
 {
 
