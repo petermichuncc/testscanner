@@ -3,14 +3,43 @@
 <template name="table">
 
 
-<body>
-<!--{{> reactiveTable collection=dataentries class="center bordered "}}-->
-{{#each dataentries}}
 
-{{name}}
-{{/each}}  
-</body>
 
+ <div id="tabletest"  class="z-depth-5 center">
+          
+
+
+
+<table class="no-spacing center" cellspacing="0" cellpadding = "0">
+  <tr>
+    <th>Name</th>
+    <th>Date</th>
+    <th>status</th>
+    <th>Dep.</th>
+    <th>Workcenter</th>
+    <th>Shift</th>
+    <th>Planned</th>
+    <th>Actual</th>
+    <th>Prod.</th>
+  </tr>
+  {{#each dataentries}}
+  <tr>
+    <td>{{name}}</td>
+    <td>{{date}}</td>
+    <td>{{employeestatus}}</td>
+    <td>{{department}}</td>
+    <td>{{workcenter}}</td>
+    <td>{{shift}}</td>
+    <td>{{planned}}</td>
+    <td>{{actual}}</td>
+    <td>{{productivity}}</td>
+  </tr>
+  {{/each}}
+</table>
+
+
+</div>
+ 
 </template>
 
 

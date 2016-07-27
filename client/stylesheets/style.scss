@@ -153,6 +153,68 @@ margin: 0;
    font-size: 250%; 
     
 }
+table{
+ 
+}
+table td {
+ /* Style just to show the table cell boundaries */
+}
+
+
+table.no-spacing {
+  border-spacing:0; /* Removes the cell spacing via CSS */
+  border-collapse: collapse;  /* Optional - if you don't want to have double border where cells touch */
+ 
+   
+}
+#table_container{
+  clear:both;
+    position: fixed; 
+    bottom:0%;   
+    width    : 50vw;
+    height   : 20vh;
+    left     : 50%;
+    top      : 50%;
+    margin-left : -25vw; /* half of the width  */
+     /* half of the height */
+    border: 1px solid black;
+}
+#table_box{
+    background: #ffffff;
+    position: fixed;
+
+bottom: 0;
+     width    : 60vw;
+  
+   
+    /*good color is #9e9e9e*/
+    /*good color is #9e9e9e*/
+    /*box-shadow: 5px 5px 15px #888888;*/
+     /*box-shadow: 5px 5px 15px #888888;*/
+    color: black;
+    font-size:75%;
+
+}
+#tabletest{
+    background: #ffffff;
+   /* position: fixed;*/
+
+
+     /*width    : 60vw;*/
+  
+ 
+    font-size:75%;
+
+}
+#dataentry_container{
+    position : absolute;    
+    width    : 1000px;
+    height   : 400px;
+    left     : 50%;
+    top      : 50%;
+    margin-left : -500px; /* half of the width  */
+    margin-top  : -200px; /* half of the height */
+}
 #repairlog_container{
     position : absolute;    
     width    : 700px;
@@ -179,7 +241,8 @@ margin: 0;
     /*box-shadow: 5px 5px 15px #888888;*/
     color: black;
     font-size:125%;
-       
+       width    : 700px;
+   margin: 0 auto;
 }
 .mytext {
     margin: 0 auto; 
