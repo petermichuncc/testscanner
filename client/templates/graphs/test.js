@@ -33,7 +33,7 @@ Template.testgraph.events({
 			Session.set('barChartSortModifier',{});
 		}
 	},
-	'click rect':function(event, template){
+	'mouseover rect':function(event, template){
 		//alert('you clicked a bar for document with _id=' + $(event.currentTarget).data("id"));
 		var id=$(event.currentTarget).data("id")
 		
