@@ -25,7 +25,8 @@ Meteor.methods({
      shift:shift,
      planned:planned,
      actual:actual,
-     productivity: productivity
+     productivity: productivity,
+     timestamp: moment().format("YYYY-MM-DD HH:mm:ss.SSS")
     });
 
   },

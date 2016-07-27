@@ -304,8 +304,9 @@ console.log("this is the count " + count + "This is the session " + Session.get(
 var productivity=Number(actual)/Number(planned)
 var productivity=productivity * Number(100)
 var productivity=productivity.toFixed(2);
+console.log("this is the productivity to fixed 2 " + productivity )
 productivity=Number(productivity)
-
+console.log("this is the productivity converted to number" + productivity )
 Meteor.call('datasInsert',name,date,status,department,workcenter,shift,planned,actual,productivity )
 
 var word=myFunction()
