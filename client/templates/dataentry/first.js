@@ -389,7 +389,7 @@ Session.set("count",count)
 'click .4': function(event, template){
  //Router.go('one')
 
- count=2
+ count=1
 Session.set("count",count)
 
 },
