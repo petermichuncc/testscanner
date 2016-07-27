@@ -302,8 +302,9 @@ console.log("this is the count " + count + "This is the session " + Session.get(
   console.log("name date planned actual status shift department workcenter " +name+ " "+ date+" "+ planned+" "+ actual+" "+ status+" "+ shift+" "+  department +" "+ workcenter )
 //Here I will insert the data into dataentries
 var productivity=Number(actual)/Number(planned)
-var productivity=productivity.toFixed(3);
 var productivity=productivity * Number(100)
+var productivity=productivity.toFixed(2);
+productivity=Number(productivity)
 
 Meteor.call('datasInsert',name,date,status,department,workcenter,shift,planned,actual,productivity )
 
