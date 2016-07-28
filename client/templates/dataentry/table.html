@@ -22,6 +22,18 @@
     <th>Actual</th>
     <th>Prod.</th>
   </tr>
+  <!-- Load session variables here -->
+   <tr>
+    <td>{{$.Session.get 'name'}}</td>
+    <td>{{$.Session.get 'date'}}</td>
+    <td>{{$.Session.get 'status'}}</td>
+    <td>{{$.Session.get 'department'}}</td>
+    <td>{{$.Session.get 'workcenter'}}</td>
+    <td>{{$.Session.get 'shift'}}</td>
+    <td>{{$.Session.get 'planned'}}</td>
+    <td>{{$.Session.get 'actual'}}</td>
+    <td>{{$.Session.get 'productivity'}}</td>
+  </tr>
   {{#each dataentries}}
   <tr>
     <td>{{name}}</td>

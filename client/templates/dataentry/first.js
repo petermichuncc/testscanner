@@ -1,6 +1,14 @@
 import React from 'react';
 import { createContainer } from 'meteor/react-meteor-data';
-
+  Session.set("name", null)
+  Session.set("date", null)
+  Session.set("status", null)
+  Session.set("department", null)
+  Session.set("workcenter", null)
+  Session.set("shift", null)
+  Session.set("planned", null)
+  Session.set("actual", null)
+  Session.set("productivity", null)
 function myFunction() {
     var x = Math.floor((Math.random() * 5) + 1);
 
@@ -251,6 +259,7 @@ if (count===1)
 else if (count===2)
 {
   date=$( "#date" ).val()
+  Session.set("date", date)
   value=$( "#date" ).val()
   date=moment(date).format("YYYY-MM-DD")
   $('#date').val('');
@@ -261,6 +270,7 @@ else if (count===7)
 {
 
   planned=$( "#name" ).val()
+  Session.set("planned", planned)
    value=$( "#name" ).val()
   $('#name').val('');
   $("#name").focus();
@@ -268,6 +278,7 @@ else if (count===7)
 else if (count===8)
 {
   actual=$( "#name" ).val()
+  Session.set("actual", actual)
   value=$( "#name" ).val()
   $('#name').val('');
   $("#name").focus();
@@ -307,6 +318,7 @@ var productivity=productivity.toFixed(2);
 console.log("this is the productivity to fixed 2 " + productivity )
 productivity=Number(productivity)
 console.log("this is the productivity converted to number" + productivity )
+Session.set("productivity", productivity)
 Meteor.call('datasInsert',name,date,status,department,workcenter,shift,planned,actual,productivity )
 
 var word=myFunction()
@@ -332,7 +344,7 @@ if (count===3)
   value=$( "#s1" ).val()
 
   status=$( "#s1" ).val()
-  
+  Session.set("status", status)
  }
 if (count===4)
 {
@@ -345,11 +357,13 @@ Session.set("department", test)
 else if (count===5)
 {
     workcenter=$( "#s1" ).val()
+    Session.set("workcenter",workcenter)
     value=$( "#s1" ).val()
  }
  else if (count===6)
 {
 shift=$( "#s1" ).val()
+  Session.set("shift", shift)
   value=$( "#s1" ).val()
  }
 
