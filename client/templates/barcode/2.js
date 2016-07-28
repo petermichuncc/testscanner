@@ -4,6 +4,9 @@ var scan1=0
 var scan=0
 var run=true
 var go=null
+Session.setPersistent("scan",0)
+    Session.set("kanbancount",0)
+//initialize or setup all of the time stamps here 
 
 //Add reactive dictionary variable for the pasted content
    Template.two.created = function () {
@@ -11,14 +14,7 @@ var go=null
  
 //Session.set("kanbancount", 0)
     this.state = new ReactiveDict();
-    Session.setPersistent("scan",0)
-    Session.set("kanbancount",0)
-//initialize or setup all of the time stamps here 
-this.state.set('check', false);
-this.state.set('section1', false);
-this.state.set('section2', false);
-this.state.set('scan1', 0);
-
+    
 }  
     Template.two.rendered = function () {
 /*
@@ -27,6 +23,13 @@ $('#initials').on('blur',function(){
    if (this.value.length < 4) $(this).focus();
 });
 */
+Session.setPersistent("scan",0)
+    Session.set("kanbancount",0)
+//initialize or setup all of the time stamps here 
+this.state.set('check', false);
+this.state.set('section1', false);
+this.state.set('section2', false);
+this.state.set('scan1', 0);
 
       
 $("#initials").focus();

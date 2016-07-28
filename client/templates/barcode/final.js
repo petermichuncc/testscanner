@@ -17,7 +17,7 @@ Template.final.events({
 'click .1': function(event, template){
 
 $( ".cp" ).hide();
- 
+ var count=0
 Router.go('two');
  
 

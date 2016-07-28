@@ -34,6 +34,8 @@ console.log("You Select Client Row " + actual);
 console.log("You Select Client Row " + productivity);
 
 var count=Dataentries.find({name:name,date,date,employeestatus:employeestatus, department:department, workcenter:workcenter, shift:shift, planned:planned, actual:actual,productivity:productivity}).count()
+
+
 console.log("this is the count "+ count)
 //
         

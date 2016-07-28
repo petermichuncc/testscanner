@@ -243,7 +243,6 @@ Template.three.helpers({
      var scan2=ReactiveMethod.call('desc', Session.get("scan2"))
   }
   return scan2
-
 */
 
   },
@@ -371,7 +370,12 @@ $('#test1').mouseup(function() { this.blur() })
     Materialize.toast('Match', 4000,'light-blue lighten-2 z-depth-2')
     //count shouldn't go up after the bag and box are scanned and
     //the scanned item was ekanban
-    count=count+1
+    console.log("This is the count in green before incr " + count)
+    console.log("this is the react var count " + Template.instance().state.get("counter"))
+    count=Template.instance().state.get("counter")
+    console.log("count after set equal to counter " + count)
+    count = count+1
+  console.log("this is the count after incr " + count)
 
       if (Template.instance().state.get("kanban")===true)
     {
@@ -467,10 +471,8 @@ else
       
       /*
         if TC==2 then "Please scan the ekanban"
-
         if TC>2 && KC-TC>=0 then "Please scan the next ekanban"
     
-
       */
       
    
@@ -637,7 +639,6 @@ console.log("this is the colortest "+ colortest)
 //console.log("this is the text " +Template.instance().state.get("text"))
 /*
 kanbancount-Template.instance().state.get("counter")
-
 */
 
 
@@ -715,6 +716,9 @@ x().then(function(done) {
 });
 
 
+
+
+
  Template.three.events({
  'click .1': function(event, template){
  Router.go('two')
@@ -748,4 +752,12 @@ console.log("this is the input "+ Session.get("input"))
 
 
 
+/*
+console.log("This is the count in green before incr " + count)
+    console.log("this is the react var count " + Template.instance().state.get("counter"))
+    count=Template.instance().state.get("counter")
+    console.log("count after set equal to counter " + count)
+    count = count+1
+  console.log("this is the count after incr " + count)
 
+*/
