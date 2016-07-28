@@ -1,70 +1,105 @@
 
 Meteor.subscribe('dataentries');
 
+Template.testgraphnew.topGenresChart = function() {
 
-Template.testgraphnew.events({
-	'click #add':function(){
-		Bars.insert({
-			value:Math.floor(Math.random() * 25)
-		});
-	},
-	'click #remove':function(){
-		var toRemove = Random.choice(Bars.find().fetch());
-		Bars.remove({_id:toRemove._id});
-	},
-	'click #randomize':function(){
-		//loop through bars
-		Bars.find({}).forEach(function(bar){
-			//update the value of the bar
-			Bars.update({_id:bar._id},{$set:{value:Math.floor(Math.random() * 25)}});
-		});
-	},
-	'click #toggleSort':function(){
-		if(Session.equals('barChartSort', 'none')){
-			Session.set('barChartSort','asc');
-			Session.set('barChartSortModifier',{sort:{productivity:1}});
-		}else if(Session.equals('barChartSort', 'asc')){
-			Session.set('barChartSort','desc');
-			Session.set('barChartSortModifier',{sort:{productivity:-1}});
-		}else{
-			Session.set('barChartSort','none');
-			Session.set('barChartSortModifier',{});
-		}
-	},
-	'mouseover rect':function(event, template){
-		//alert('you clicked a bar for document with _id=' + $(event.currentTarget).data("id"));
-		var id=$(event.currentTarget).data("id")
-		
-		alert('you clicked a bar for document with productivity ' + Dataentries.find({_id:id}).fetch().pop().productivity);
+	//Here I need to have a server side fxn that  I call the returns
+	//the average for permanent and another for temp
 
-	}
-});
+var temp=ReactiveMethod.call('tempaverage')
+var permanent=ReactiveMethod.call('permanentaverage')
+if (typeof permanent=="number")
+{
+	var datatest=[
+                ['Temp',  temp],
+                ['Permanent',       permanent]
+              
+               
+            ]
+    return {
+        chart: {
+            renderTo: 'container',
+            type: 'column',
+            options3d: {
+                enabled: true,
+                alpha: 5,
+                beta: 15,
+                depth: 70,
+                viewDistance: 20
+            },
+            style: {
+                    color: 'black',
+                    fontSize:'25px'
+                }
+        },
+        title: {
+            text: 'Temp vs Permanent'
+        },
+         xAxis: {
+            categories: ['Temporary', 'Permanent'],
+            labels: {
+                style: {
+                    color: 'black',
+                    fontSize:'25px'
+                }
+            }
+        },
+        yAxis: {
+            title: {
+                text: 'Productivity'
+            },
+            labels: {
+                style: {
+                    color: 'black',
+                    fontSize:'25px'
+                }
+            },
+            stackLabels: {
+                enabled: true,
+                align: 'center'
+            }
+        },
+        plotOptions: {
+            column: {
+                depth: 25
+            },
+         /*series: {
+                dataLabels: {
+                    align: 'center',
+                    enabled: true,
+                    rotation: 0,
+                    x: 2,
+                    y: -10
+                }
+            }*/
+        },
+        series: [{
+            data: datatest
+        }]
+
+
+
+
+    };
+function showValues() {
+        $('#alpha-value').html(chart.options.chart.options3d.alpha);
+        $('#beta-value').html(chart.options.chart.options3d.beta);
+        $('#depth-value').html(chart.options.chart.options3d.depth);
+    }
+        showValues();
+    }
+};
+
 
 
 Template.testgraphnew.rendered = function(){
-	$(function () {
-    $('#container').highcharts({
-        data: {
-            table: 'datatable'
-        },
-        chart: {
-            type: 'column'
-        },
-        title: {
-            text: 'Data extracted from a HTML table in the page'
-        },
-        yAxis: {
-            allowDecimals: false,
-            title: {
-                text: 'Units'
-            }
-        },
-        tooltip: {
-            formatter: function () {
-                return '<b>' + this.series.name + '</b><br/>' +
-                    this.point.y + ' ' + this.point.name.toLowerCase();
-            }
-        }
-    });
-});
+	 
+
+
 };
+
+Template.first.helpers({
+    tempaverage: function () {
+//ReactiveMethod.call('tempaverage')
+}
+})

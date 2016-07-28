@@ -761,7 +761,63 @@ return desc
 }
 
 
-        },       
+        },
+ tempaverage: function () {
+       //So this function will take in an ekanban upc or item id
+       //It will then find the suffix of the item id and then find the associated
+       //color from the colors collection.    
+      try{
+
+       var count=Dataentries.find({employeestatus:"temp"}).count()
+       console.log("this is the temp count " + count)
+       var total=0;
+       for (var i=1;i<=count;i++)
+       {
+          //sum the productivity
+          var productivity=Dataentries.find({employeestatus:"temp"},{sort: {productivity: -1}, limit: i}).fetch().pop().productivity
+          
+          var total=total +productivity
+
+       }
+
+ var average=total/count
+ console.log("this is the average "+ average)
+ return average
+}catch(err)
+{
+  console.log("this is the error " + err)
+}
+
+
+        },  
+permanentaverage: function () {
+       //So this function will take in an ekanban upc or item id
+       //It will then find the suffix of the item id and then find the associated
+       //color from the colors collection.    
+      try{
+
+       var count=Dataentries.find({employeestatus:"permanent"}).count()
+       console.log("this is the permanent temp count " + count)
+       var total=0;
+       for (var i=1;i<=count;i++)
+       {
+          //sum the productivity
+          var productivity=Dataentries.find({employeestatus:"permanent"},{sort: {productivity: -1}, limit: i}).fetch().pop().productivity
+          
+          var total=total +productivity
+
+       }
+
+ var average=total/count
+ console.log("this is the average permanent "+ average)
+ return average
+}catch(err)
+{
+  console.log("this is the error " + err)
+}
+
+
+        },                      
   getServerTime: function () {
             var _time = moment().format("YYYY-MM-DD HH:mm:ss.SSS")
             //console.log(_time);
