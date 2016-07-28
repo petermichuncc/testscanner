@@ -223,6 +223,7 @@ else
 
 
 
+
  Template.first.events({
     // events go here
 
@@ -259,9 +260,10 @@ if (count===1)
 else if (count===2)
 {
   date=$( "#date" ).val()
-  Session.set("date", date)
+  
   value=$( "#date" ).val()
   date=moment(date).format("YYYY-MM-DD")
+  Session.set("date", date)
   $('#date').val('');
   $("#date").focus();
   $("#name").focus();
@@ -403,7 +405,15 @@ Session.set("count",count)
 },
 'click .4': function(event, template){
  //Router.go('one')
-
+Session.set("name", null)
+  Session.set("date", null)
+  Session.set("status", null)
+  Session.set("department", null)
+  Session.set("workcenter", null)
+  Session.set("shift", null)
+  Session.set("planned", null)
+  Session.set("actual", null)
+  Session.set("productivity", null)
  count=1
 Session.set("count",count)
 

@@ -10,7 +10,7 @@
 
 
 
-<table class="no-spacing center" cellspacing="0" cellpadding = "0">
+<table class="no-spacing center" id="htmlTable" cellspacing="0" cellpadding = "0">
   <tr>
     <th>Name</th>
     <th>Date</th>
@@ -23,7 +23,7 @@
     <th>Prod.</th>
   </tr>
   <!-- Load session variables here -->
-   <tr>
+   <tr class="bgtest">
     <td>{{$.Session.get 'name'}}</td>
     <td>{{$.Session.get 'date'}}</td>
     <td>{{$.Session.get 'status'}}</td>
@@ -35,8 +35,8 @@
     <td>{{$.Session.get 'productivity'}}</td>
   </tr>
   {{#each dataentries}}
-  <tr>
-    <td>{{name}}</td>
+  <tr class="userRow" value="test">
+    <td >{{name}}</td>
     <td>{{date}}</td>
     <td>{{employeestatus}}</td>
     <td>{{department}}</td>
