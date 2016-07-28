@@ -22,9 +22,9 @@ if (typeof permanent=="number")
             type: 'column',
             options3d: {
                 enabled: true,
-                alpha: 5,
-                beta: 15,
-                depth: 70,
+                alpha: 0,
+                beta: 45,
+                depth: 100,
                 viewDistance: 20
             },
             style: {
