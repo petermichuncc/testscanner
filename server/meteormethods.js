@@ -817,7 +817,24 @@ permanentaverage: function () {
 }
 
 
-        },                      
+        },
+        rowremoval: function (id) {
+       //So this function will take in an ekanban upc or item id
+       //It will then find the suffix of the item id and then find the associated
+       //color from the colors collection.    
+      try{
+        console.log("this is the id "+id)
+        console.log("amount of db entries " + Dataentries.find({_id:id}).count())
+       Dataentries.remove({_id: id});
+
+}catch(err)
+{
+  console.log("this is the error " + err)
+}
+
+
+        },
+
   getServerTime: function () {
             var _time = moment().format("YYYY-MM-DD HH:mm:ss.SSS")
             //console.log(_time);

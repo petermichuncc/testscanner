@@ -23,6 +23,7 @@ var shift=this.shift
 var planned=this.planned
 var actual=this.actual
 var productivity=this.productivity
+var id=this._id
 console.log("You Select Client Row " + name);
      console.log("You Select Client Row " + date);
  console.log("You Select Client Row " + employeestatus);
@@ -32,8 +33,11 @@ console.log("You Select Client Row " + shift);
 console.log("You Select Client Row " + planned);
 console.log("You Select Client Row " + actual);
 console.log("You Select Client Row " + productivity);
+console.log("You Select Client Row " + id);
+//trigger a removal of this database entry when it is clicked
 
-var count=Dataentries.find({name:name,date,date,employeestatus:employeestatus, department:department, workcenter:workcenter, shift:shift, planned:planned, actual:actual,productivity:productivity}).count()
+Meteor.call('alertremoval', name,date,productivity)
+
 
 
 console.log("this is the count "+ count)

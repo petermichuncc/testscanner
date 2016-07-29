@@ -10,7 +10,7 @@ import { createContainer } from 'meteor/react-meteor-data';
   Session.set("actual", null)
   Session.set("productivity", null)
 function myFunction() {
-    var x = Math.floor((Math.random() * 5) + 1);
+    var x = Math.floor((Math.random() * 11) + 1);
 
 if (x==1)
 {
@@ -32,7 +32,30 @@ else if (x==5)
 {
   return 'Keep it up'
 }
-
+else if (x==6)
+{
+  return 'Good going'
+}
+else if (x==7)
+{
+  return 'Good work'
+}
+else if (x==8)
+{
+  return 'Bravo'
+}
+else if (x==9)
+{
+  return 'Compliments'
+}
+else if (x==10)
+{
+  return 'Well done'
+}
+else if (x==11)
+{
+  return 'Perfect'
+}
 }
 
 function myFunctionColor() {

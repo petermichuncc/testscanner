@@ -5243,7 +5243,7 @@ button.btn-floating {
 a.waves-effect .waves-ripple {
   z-index: -1;
 }
-
+/*
 .modal {
   display: none;
   position: fixed;
@@ -5258,13 +5258,15 @@ a.waves-effect .waves-ripple {
   border-radius: 2px;
   will-change: top, opacity;
 }
-
+*/
+/*
 @media only screen and (max-width: 992px) {
   .modal {
     width: 80%;
   }
 }
-
+*/
+/*
 .modal h1, .modal h2, .modal h3, .modal h4 {
   margin-top: 0;
 }
@@ -5284,6 +5286,8 @@ a.waves-effect .waves-ripple {
   height: 56px;
   width: 100%;
 }
+*/
+/*
 .modal-body {
   width: 50%;
     margin: 0 auto; 
@@ -5291,11 +5295,14 @@ a.waves-effect .waves-ripple {
  
   
 }
+*/
+/*
 .modal .modal-footer .btn, .modal .modal-footer .btn-large, .modal .modal-footer .btn-flat {
   float: right;
   margin: 6px 0;
 }
-
+*/
+/*
 .lean-overlay {
   position: fixed;
   z-index: 999;
@@ -5309,7 +5316,8 @@ a.waves-effect .waves-ripple {
   display: none;
   will-change: opacity;
 }
-
+*/
+/*
 .modal.modal-fixed-footer {
   padding: 0;
   height: 70%;
@@ -5328,7 +5336,8 @@ a.waves-effect .waves-ripple {
   position: absolute;
   bottom: 0;
 }
-
+*/
+/*
 .modal.bottom-sheet {
   top: auto;
   bottom: -100%;
@@ -5338,7 +5347,7 @@ a.waves-effect .waves-ripple {
   border-radius: 0;
   will-change: bottom, opacity;
 }
-
+*/
 .collapsible {
   border-top: 1px solid #ddd;
   border-right: 1px solid #ddd;

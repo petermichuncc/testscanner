@@ -1,6 +1,11 @@
 
 //---------------------------------------------
 tr.bgtest { background-color: #e0e0e0; }
+.hide{
+
+visibility: hidden
+
+}
 a {
    
     text-decoration: none;
@@ -209,11 +214,11 @@ bottom: 0;
 }
 #dataentry_container{
     position : absolute;    
-    width    : 1000px;
+    width    : 1200px;
     height   : 400px;
     left     : 50%;
     top      : 50%;
-    margin-left : -500px; /* half of the width  */
+    margin-left : -600px; /* half of the width  */
     margin-top  : -200px; /* half of the height */
 }
 #repairlog_container{
