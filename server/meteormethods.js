@@ -781,6 +781,7 @@ return desc
        }
 
  var average=total/count
+
  console.log("this is the average "+ average)
  return average
 }catch(err)

@@ -212,6 +212,33 @@ bottom: 0;
     font-size:75%;
 
 }
+.testimage
+{
+  margin: 0 auto;
+  display: flex;
+    align-items: center;
+}
+#graph_container{
+    position : absolute;    
+    width    : 1200px;
+    height   : 400px;
+    left     : 50%;
+    top      : 50%;
+    margin-left : -600px; /* half of the width  */
+    margin-top  : -200px; /* half of the height */
+    display: flex;
+    align-items: center;
+}
+#centered_box_graph{
+    background: #ffffff ;
+    padding: 2%;
+    /*box-shadow: 5px 5px 15px #888888;*/
+    color: black;
+    font-size:125%;
+       width    : 1000px;
+margin: 0 auto;
+   //margin: 0 auto;
+}
 #dataentry_container{
     position : absolute;    
     width    : 1200px;
@@ -250,6 +277,7 @@ bottom: 0;
        width    : 700px;
    margin: 0 auto;
 }
+
 .mytext {
     margin: 0 auto; 
     width: 20vw;
