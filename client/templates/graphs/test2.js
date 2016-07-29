@@ -9,7 +9,7 @@ Template.testgraphnew.topGenresChart = function() {
 var temp=ReactiveMethod.call('tempaverage')
 var permanent=ReactiveMethod.call('permanentaverage')
 if (typeof permanent=="number")
-{
+{Session.set("loading",0)
 	var datatest=[
                 ['Temp',  temp],
                 ['Permanent',       permanent]
@@ -23,9 +23,9 @@ if (typeof permanent=="number")
             options3d: {
                 enabled: true,
                 alpha: 0,
-                beta: 45,
-                depth: 100,
-                viewDistance: 20
+                beta: 25,
+                depth: 32,
+                viewDistance: 40
             },
             style: {
                     color: 'black',
@@ -87,6 +87,10 @@ function showValues() {
         $('#depth-value').html(chart.options.chart.options3d.depth);
     }
         showValues();
+    }
+    else
+    {
+        Session.set("loading",1)
     }
 };
 
