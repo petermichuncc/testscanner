@@ -63,7 +63,7 @@ if (typeof permanent=="number")
             column: {
                 depth: 25
             },
-         /*series: {
+         series: {
                 dataLabels: {
                     align: 'center',
                     enabled: true,
@@ -71,7 +71,7 @@ if (typeof permanent=="number")
                     x: 2,
                     y: -10
                 }
-            }*/
+            }
         },
         series: [{
             data: datatest
@@ -81,12 +81,14 @@ if (typeof permanent=="number")
 
 
     };
+
 function showValues() {
         $('#alpha-value').html(chart.options.chart.options3d.alpha);
         $('#beta-value').html(chart.options.chart.options3d.beta);
         $('#depth-value').html(chart.options.chart.options3d.depth);
     }
         showValues();
+        
     }
     else
     {

@@ -495,13 +495,26 @@ else
     }
     else if (Template.instance().state.get("counter")>2 && kanbancount-Template.instance().state.get("counter")>=0)
     {
+        function test()
+  {
+         if (Session.get("kanbanquestion")===false)
+{
+    
+ Session.set("kanbanquestion", true)
+}
+}
+    //Template.instance().state.set("kanbancheck",true)
+   
+    setTimeout(test, 20000);
+ 
+      Template.instance().state.set("kanbanshow", true)
       return "Please scan the next ekanban ticket part number"
 
     }
     else if (kanbancount-Template.instance().state.get("counter")<0)
 
     {
-      //test
+      Session.set("kanbanquestion", false)
       Router.go('final');
     }
     

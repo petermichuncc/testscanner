@@ -358,16 +358,26 @@ Do a regex and look for the word POLYBAG in the
 desc field
 
 */
-      if (Orders.find({ itemid: { $regex: /^33/i },ordernumber:upc1, desc:{ $regex: /POLYBAG/i }}).count()>=1)
+      if (Orders.find({ itemid: { $regex: /^33/i },ordernumber:upc1, desc:{ $regex: /POLY/i }}).count()>=1)
       {console.log("test 2")
         
-       bag= Orders.find({ itemid: { $regex: /^33/i },ordernumber:upc1, desc:{ $regex: /POLYBAG/i }}).fetch().pop()
+       bag= Orders.find({ itemid: { $regex: /^33/i },ordernumber:upc1, desc:{ $regex: /POLY/i }}).fetch().pop()
         
       }
-     if (Orders.find({ itemid: { $regex: /^33/i },ordernumber:upc, desc:{ $regex: /POLYBAG/i }}).count()>=1)
+      else if (Orders.find({ itemid: { $regex: /^33/i },ordernumber:upc1, desc:{ $regex: /BAG/i }}).count()>=1)
+      {console.log("test 2")
+        
+       bag= Orders.find({ itemid: { $regex: /^33/i },ordernumber:upc1, desc:{ $regex: /BAG/i }}).fetch().pop()
+        
+      }
+     if (Orders.find({ itemid: { $regex: /^33/i },ordernumber:upc, desc:{ $regex: /POLY/i }}).count()>=1)
     { console.log("test 4")
-            bag= Orders.find({ itemid: { $regex: /^33/i },ordernumber:upc, desc:{ $regex: /POLYBAG/i }}).fetch().pop()
-    }   
+            bag= Orders.find({ itemid: { $regex: /^33/i },ordernumber:upc, desc:{ $regex: /POLY/i }}).fetch().pop()
+    }
+     else if (Orders.find({ itemid: { $regex: /^33/i },ordernumber:upc, desc:{ $regex: /BAG/i }}).count()>=1)
+    { console.log("test 4")
+            bag= Orders.find({ itemid: { $regex: /^33/i },ordernumber:upc, desc:{ $regex: /BAG/i }}).fetch().pop()
+    }    
    //Here I need to look in the upc database and retrieve the description for the 
    //associated partnumber
    console.log("this is the bag "+ bag)
@@ -781,7 +791,8 @@ return desc
        }
 
  var average=total/count
-
+ average=average.toFixed(2)
+ average=Number(average)
  console.log("this is the average "+ average)
  return average
 }catch(err)
@@ -810,6 +821,8 @@ permanentaverage: function () {
        }
 
  var average=total/count
+ average=average.toFixed(2)
+ average=Number(average)
  console.log("this is the average permanent "+ average)
  return average
 }catch(err)

@@ -1,3 +1,5 @@
+Session.set("idtest",null)
+	Meteor.subscribe('dataentries');
 Template.table.helpers({
     dataentries: function(){
     	Meteor.subscribe('dataentries');
@@ -10,7 +12,16 @@ Template.table.helpers({
     }      
                                                              
 })
+if (Meteor.isClient) {
 
+Template.registerHelper('idtest',function(input){
+  return Session.get("idtest")
+});
+
+
+
+
+}
 Template.table.events({
     'click .userRow':function(e, t){
        
@@ -34,13 +45,14 @@ console.log("You Select Client Row " + planned);
 console.log("You Select Client Row " + actual);
 console.log("You Select Client Row " + productivity);
 console.log("You Select Client Row " + id);
+Session.set("idtest",id)
 //trigger a removal of this database entry when it is clicked
 
-Meteor.call('alertremoval', name,date,productivity)
+Meteor.call('alertremoval', name,date,productivity,id)
 
 
 
-console.log("this is the count "+ count)
+
 //
         
       

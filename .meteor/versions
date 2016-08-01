@@ -65,6 +65,7 @@ jquery@1.11.9
 krstffr:spreadsheet-to-mongodb@1.0.5
 launch-screen@1.0.12
 lbee:moment-helpers@0.2.0
+less@2.6.4
 livedata@1.0.18
 localstorage@1.0.11
 logging@1.0.14
@@ -87,6 +88,7 @@ modules-runtime@0.6.5
 momentjs:moment@2.13.1
 mongo@1.1.9_1
 mongo-id@1.0.5
+mpowaga:string-template@0.1.0
 mrt:csv-to-collection@0.2.0
 mrt:jquery-ui@1.9.2
 mrt:jquery-ui-bootstrap@1.8.16
@@ -140,3 +142,4 @@ underscore@1.0.9
 url@1.0.10
 webapp@1.2.10
 webapp-hashing@1.0.9
+yogiben:autoform-modals@0.3.8
