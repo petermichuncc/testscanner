@@ -298,25 +298,25 @@ db.products.find( { sku: { $regex: /^ABC/i } } )  finds items that start with AB
 console.log("test start")
 
        
-      if (Orders.find({ itemid: { $regex: /^32/i },ordernumber:upc1}).count()>=1)
+      if (Kanbans.find({ itemid: { $regex: /^32/i },ordernumber:upc1}).count()>=1)
       {console.log("test 1")
         
-       box= Orders.find({ itemid: { $regex: /^32/i },ordernumber:upc1}).fetch().pop()
+       box= Kanbans.find({ itemid: { $regex: /^32/i },ordernumber:upc1}).fetch().pop()
       
       }
-      else if (Orders.find({ itemid: { $regex: /^31/i },ordernumber:upc1}).count()>=1)
+      else if (Kanbans.find({ itemid: { $regex: /^31/i },ordernumber:upc1}).count()>=1)
       {console.log("test 2")
         
-       box= Orders.find({ itemid: { $regex: /^31/i },ordernumber:upc1}).fetch().pop()
+       box= Kanbans.find({ itemid: { $regex: /^31/i },ordernumber:upc1}).fetch().pop()
         
       }
-    else if (Orders.find({ itemid: { $regex: /^32/i },ordernumber:upc}).count()>=1)
+    else if (Kanbans.find({ itemid: { $regex: /^32/i },ordernumber:upc}).count()>=1)
     { console.log("test 3")
-            box= Orders.find({ itemid: { $regex: /^32/i },ordernumber:upc}).fetch().pop()
+            box= Kanbans.find({ itemid: { $regex: /^32/i },ordernumber:upc}).fetch().pop()
      }
-    else if (Orders.find({ itemid: { $regex: /^31/i },ordernumber:upc}).count()>=1)
+    else if (Kanbans.find({ itemid: { $regex: /^31/i },ordernumber:upc}).count()>=1)
     { console.log("test 4")
-            box= Orders.find({ itemid: { $regex: /^31/i },ordernumber:upc}).fetch().pop()
+            box= Kanbans.find({ itemid: { $regex: /^31/i },ordernumber:upc}).fetch().pop()
     }   
    //Here I need to look in the upc database and retrieve the description for the 
    //associated partnumber
@@ -358,25 +358,26 @@ Do a regex and look for the word POLYBAG in the
 desc field
 
 */
-      if (Orders.find({ itemid: { $regex: /^33/i },ordernumber:upc1, desc:{ $regex: /POLY/i }}).count()>=1)
+//I need to go through the kanbans db
+      if (Kanbans.find({ itemid: { $regex: /^33/i },ordernumber:upc1, desc:{ $regex: /POLY/i }}).count()>=1)
       {console.log("test 2")
         
-       bag= Orders.find({ itemid: { $regex: /^33/i },ordernumber:upc1, desc:{ $regex: /POLY/i }}).fetch().pop()
+       bag= Kanbans.find({ itemid: { $regex: /^33/i },ordernumber:upc1, desc:{ $regex: /POLY/i }}).fetch().pop()
         
       }
       else if (Orders.find({ itemid: { $regex: /^33/i },ordernumber:upc1, desc:{ $regex: /BAG/i }}).count()>=1)
       {console.log("test 2")
         
-       bag= Orders.find({ itemid: { $regex: /^33/i },ordernumber:upc1, desc:{ $regex: /BAG/i }}).fetch().pop()
+       bag= Kanbans.find({ itemid: { $regex: /^33/i },ordernumber:upc1, desc:{ $regex: /BAG/i }}).fetch().pop()
         
       }
-     if (Orders.find({ itemid: { $regex: /^33/i },ordernumber:upc, desc:{ $regex: /POLY/i }}).count()>=1)
+     if (Kanbans.find({ itemid: { $regex: /^33/i },ordernumber:upc, desc:{ $regex: /POLY/i }}).count()>=1)
     { console.log("test 4")
-            bag= Orders.find({ itemid: { $regex: /^33/i },ordernumber:upc, desc:{ $regex: /POLY/i }}).fetch().pop()
+            bag= Kanbans.find({ itemid: { $regex: /^33/i },ordernumber:upc, desc:{ $regex: /POLY/i }}).fetch().pop()
     }
-     else if (Orders.find({ itemid: { $regex: /^33/i },ordernumber:upc, desc:{ $regex: /BAG/i }}).count()>=1)
+     else if (Kanbans.find({ itemid: { $regex: /^33/i },ordernumber:upc, desc:{ $regex: /BAG/i }}).count()>=1)
     { console.log("test 4")
-            bag= Orders.find({ itemid: { $regex: /^33/i },ordernumber:upc, desc:{ $regex: /BAG/i }}).fetch().pop()
+            bag= Kanbans.find({ itemid: { $regex: /^33/i },ordernumber:upc, desc:{ $regex: /BAG/i }}).fetch().pop()
     }    
    //Here I need to look in the upc database and retrieve the description for the 
    //associated partnumber
@@ -619,24 +620,40 @@ return text
      
 
       //order.push()  this will add an item to the array
-
-            if (Kanbans.find({ordernumber:upc1}).count()>=1)
-      {
-        var count=Kanbans.find({ordernumber:upc1}).count()
-        
-        
+      
+            if (Kanbans.find({ordernumber:upc1,itemid: { $regex: /^8/i }}).count()>=1 )
+      { 
        
-       //order.push(Orders.find({ordernumber:upc1}))
-        
-      }
-    else if (Kanbans.find({ordernumber:upc}).count()>=1)
-    { 
-      var count=Kanbans.find({ordernumber:upc}).count()
+       
+        var count=Kanbans.find({ordernumber:upc1,itemid: { $regex: /^8/i }}).count()
+     
 
+      if (Kanbans.find({ordernumber:upc1,itemid: { $regex: /^9/i }}).count()>=1)
+      {
+        var count2=Kanbans.find({ordernumber:upc1,itemid: { $regex: /^9/i }}).count()
+        
+        count=count+count2
+              
+      }
+            
+            
+      }
+    else if (Kanbans.find({ordernumber:upc,itemid: { $regex: /^8/i }}).count()>=1)
+    {  
+      var count=Kanbans.find({ordernumber:upc,itemid: { $regex: /^8/i }}).count()
+    if (Kanbans.find({ordernumber:upc,itemid: { $regex: /^9/i }}).count()>=1)
+    {  
+      var count2=Kanbans.find({ordernumber:upc,itemid: { $regex: /^9/i }}).count()
+    count=count+count2
 
           // order.push(Orders.find({ordernumber:upc}))
 
       }  
+
+          // order.push(Orders.find({ordernumber:upc}))
+
+      }  
+     
      
    
      
