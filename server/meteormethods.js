@@ -789,6 +789,62 @@ return desc
 
 
         },
+ datacount: function () {
+       //So this function will take in an ekanban upc or item id
+       //It will then find the suffix of the item id and then find the associated
+       //color from the colors collection.    
+      try{
+//{timestamp: {$gte: timestamp}
+        var start=moment().format("YYYY-MM-DD 06:00:00.000")
+       var count=Dataentries.find({timestamp: {$gte: start}}).count()
+       console.log("this is the count of data entries today " + count)
+      
+      return count
+
+}catch(err)
+{
+  console.log("this is the error " + err)
+}
+
+
+        },         
+ average: function () {
+       //So this function will take in an ekanban upc or item id
+       //It will then find the suffix of the item id and then find the associated
+       //color from the colors collection.    
+      try{
+
+       var count=Dataentries.find({employeestatus:"temp"}).count()
+       console.log("this is the temp count " + count)
+       var totaltemp=0;
+       var totalpermanent=0;
+       for (var i=1;i<=count;i++)
+       {
+          //sum the productivity
+         
+            if (Dataentries.find({employeestatus:"temp"},{sort: {productivity: -1}, limit: i}).count()>0)
+            {
+              console.log("test data")
+        var tempproductivity=Dataentries.find({employeestatus:"temp"},{sort: {productivity: -1}, limit: i}).fetch().pop().productivity
+          
+          var totaltemp=totaltemp +tempproductivity
+
+          }
+          
+      
+
+       }
+
+console.log("this is the temp total" + totaltemp)
+console.log("this is the productivity total" + totalpermanent)
+
+}catch(err)
+{
+  console.log("this is the error " + err)
+}
+
+
+        },        
  tempaverage: function () {
        //So this function will take in an ekanban upc or item id
        //It will then find the suffix of the item id and then find the associated

@@ -240,8 +240,14 @@ else
 
 
     return Datacenters.find({department:department})
+  },
+ datacount: function()
+  {
+    //I will grab a session variable that has the 
+    var datacount=ReactiveMethod.call('datacount')
+    Session.set("datacount",datacount)
+   console.log("this is the data count now "+ datacount)
   }
-  
 });
 
 
@@ -422,7 +428,14 @@ else
 'click .3': function(event, template){
  //Router.go('one')
  var color=myFunctionColor()
- Materialize.toast('Have a good day', 4000, color)
+ //Say how many entries have been outputted here.
+ var datacount=  Session.get("datacount")
+ console.log("this is the datacount  in finished" + datacount)
+ var datacount=datacount.toString()
+var amount="You entered ".concat(datacount)
+var amount=amount.concat(" entries today")
+ Materialize.toast(amount, 8000, color)
+ Materialize.toast('Have a good day', 8000, color)
 count=0
 Session.set("count",count)
 },
