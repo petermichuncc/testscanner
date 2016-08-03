@@ -3,8 +3,23 @@
 
 
 Template.final.rendered =function(){
+  /*
+MDSnackbars.init();
+var options = {
+    text: 'message',        // change snackbar's text/html
+    toast: false,           // change snackbar's style (true = rounded corners)
+    align: 'left',          // align 'left' or 'right'
+    fullWidth: false,       // snackbar takes all screen width (overrides align and toast style, also remove default 2px rounded corners)
+    bottom: 100,            // position from bottom (default to 20px or 0 if fullWidth is true)
+    timeout: 0,          // delay before the snackbar disappears (if 0, the snackbar is permanently showed until MDSnackbars.hide() is called or the snackbar clicked)
+    html: false ,           // allows HTML insertion
+    clickToClose: true,     // enable/disable the click to close behavior
+    animation: 'fade'       // change the animation type ('fade' or 'slideup', default to 'fade')
+};
+MDSnackbars.show(options)
+*/
+Materialize.toast('<span class="toasttextbig center spantest"> Good job </span>', 999999000, 'light-blue lighten-2 cp z-depth-2')
 
-Materialize.toast('Good job', 999999000, 'light-blue lighten-2 cp z-depth-2')
 //Add code to save the person and partnumber of job to a database
 console.log("tech " + Session.get("tech")+ " partnumber " + Session.get("scanned")+ "mismatch scans "+Session.get("record")+"override" + Session.get("override"))
 
