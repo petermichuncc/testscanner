@@ -599,11 +599,19 @@ Session.set("colorshow", true)
     //This checks if it is a raw material that was
  var object= ReactiveMethod.call('color', Session.get("scan2"))
  color=object.Description
+var span1='<span class="toasttextbig center spantest">'
+color=span1.concat(color)
+var span2='</span>'
+color=color.concat(span2)
+
+ console.log("this is the color "+ color)
  //put this color into a reactive var and send it to spacebar
  Template.instance().state.set("colorDescription", color)
- var test2="The scanned color is "
-    test2=test2.concat(color)
+ var test2=color
    
+   /*var colortest=' <button class="btn btn-default 6 #78909c blue z-depth-5 " id="test1" onclick="myFunction()" >Acknowledge</button>'
+  var $toastContent = $(colortest);*/
+
    // create a div that holds the text of test 2
  /*var  colorText='<div class="mytextnew"> '
 colorText=colorText.concat(test2)

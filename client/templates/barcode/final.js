@@ -72,8 +72,9 @@ console.log("this is the pieces per bag " + piecesPerBag)
  {
 	output= output.concat(" pieces per bag")
  	}
-
-     Materialize.toast(output, 999999000, 'light-blue lighten-2 cp z-depth-2 toasttextbig')
+    //make a new toast to increase the size of text or put it inside of a 
+    //span element
+     Materialize.toast(output, 999999000, 'light-blue lighten-2 cp z-depth-2')
  
   },
   bagsperbox: function () {

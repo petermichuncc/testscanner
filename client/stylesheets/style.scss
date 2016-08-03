@@ -21,7 +21,7 @@ font-size:150%;
 }
 .toasttextbig
 {
-font-size:500%;
+font-size:200%;
 
 }
 .datetext
@@ -123,23 +123,27 @@ margin: 0;
     max-width: 86%;
   }
 }
-
-.colortest
+.spantest
 {
+  margin:0 auto;
+  text-align: center;
+}
+.colortest
+{ 
  border-radius: 2px;
   top: 0;
   width: auto;
   clear: both;
   margin-top: 10px;
   position: relative;
-  max-width: 100%;
+  width: 100%;
   height: auto;
   min-height: 48px;
   line-height: 1.4em;
   word-break: break-all;
  float: right;
   padding: 10px 25px;
-  font-size: 1.3rem;
+  font-size: 1.6rem;
   font-weight: 300;
   color: #fff;
   display: -webkit-flex;
