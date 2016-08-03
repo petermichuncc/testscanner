@@ -74,6 +74,10 @@ console.log("this is the pieces per bag " + piecesPerBag)
  	}
     //make a new toast to increase the size of text or put it inside of a 
     //span element
+    var span1='<span class="toasttextbig center spantest">'
+output=span1.concat(output)
+var span2='</span>'
+output=output.concat(span2)
      Materialize.toast(output, 999999000, 'light-blue lighten-2 cp z-depth-2')
  
   },
@@ -90,9 +94,20 @@ var boxes= Number(1000)/(Number(1000)*boxusage)
 console.log("this is the boxes " + boxes)
 
 var bagsPerBox= boxes/Session.get("piecesPerBag")
+//convert to string
+
+
+/*
+var span1='<span class="toasttextbig center spantest">'
+color=span1.concat(color)
+var span2='</span>'
+color=color.concat(span2)
+*/
+//put the bagsper box inside a span
+
      console.log("this is the bags per box " + bagsPerBox)
      var output=bagsPerBox.toString()
-     if (bagsPerBox===1)
+     if (bagsPerBox==1)
       {
      output= output.concat(" bag per box")
  }
@@ -100,7 +115,11 @@ var bagsPerBox= boxes/Session.get("piecesPerBag")
  {
 	output= output.concat(" bags per box")
  	}
-     
+    
+var span1='<span class="toasttextbig center spantest">'
+output=span1.concat(output)
+var span2='</span>'
+output=output.concat(span2)
      Materialize.toast(output, 999999000, 'light-blue lighten-2 cp z-depth-2 toasttextbig')
   }
   
