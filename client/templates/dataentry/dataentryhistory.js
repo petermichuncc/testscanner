@@ -12,9 +12,10 @@ Template.history.helpers({
       console.log("count dataentries "+ Dataentries.find().count())
      //create a meteor method that returns Dataentries.find() 
      
-     return Dataentries.find({})
+
+      var start=moment().format("YYYY-MM-DD 05:00:00.000")
    
-      //return Dataentries.find({})
+      return Dataentries.find({timestamp: {$gte: start}})
 
     }      
                                                              

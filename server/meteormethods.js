@@ -789,6 +789,15 @@ return desc
 
 
         },
+  datahistory: function () {
+   var start=moment().format("YYYY-MM-DD 05:00:00.000")
+       var count=Dataentries.find({timestamp: {$gte: start}})
+       console.log("test")
+ return count
+
+
+
+  },      
  datacount: function () {
        //So this function will take in an ekanban upc or item id
        //It will then find the suffix of the item id and then find the associated
