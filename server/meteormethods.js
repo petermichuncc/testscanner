@@ -814,30 +814,38 @@ return desc
        //color from the colors collection.    
       try{
 
-       var count=Dataentries.find({employeestatus:"temp"}).count()
-       console.log("this is the temp count " + count)
+      var tempcount=Dataentries.find({employeestatus:"temp"}).count()
+      var permanentcount=Dataentries.find({employeestatus:"permanent"}).count() 
+      console.log("this is the perm " + permanentcount+ " temp count "+tempcount)
        var totaltemp=0;
        var totalpermanent=0;
-       for (var i=1;i<=count;i++)
-       {
-          //sum the productivity
-         
-            if (Dataentries.find({employeestatus:"temp"},{sort: {productivity: -1}, limit: i}).count()>0)
-            {
-              console.log("test data")
-        var tempproductivity=Dataentries.find({employeestatus:"temp"},{sort: {productivity: -1}, limit: i}).fetch().pop().productivity
-          
-          var totaltemp=totaltemp +tempproductivity
+       
+      var total = 0;
 
-          }
-          
-      
+Dataentries.find({employeestatus:"temp"}).map(function(doc) {
+  totaltemp += doc.productivity;
+});
+Dataentries.find({employeestatus:"permanent"}).map(function(doc) {
+  totalpermanent += doc.productivity;
+});
 
-       }
+var tempavg=totaltemp/tempcount
+tempavg=tempavg.toFixed(2)
+tempavg=Number(tempavg)
+var permanentavg=totalpermanent/permanentcount
+permanentavg=permanentavg.toFixed(2)
+permanentavg=Number(permanentavg)
+//console.log("this is the temp total in base average" + totaltemp)
+console.log("This is the total using map "+ totaltemp)
+console.log("This is the total using map "+ totalpermanent)
+console.log("this is the tempavg "+tempavg + " permavg " +permanentavg)
+var avgarray=[]
+avgarray.push(tempavg)
+avgarray.push(permanentavg)
 
-console.log("this is the temp total" + totaltemp)
-console.log("this is the productivity total" + totalpermanent)
-
+console.log("this is the array length "+ avgarray.length)
+console.log("this is array position 1 " + avgarray[0])
+return avgarray
 }catch(err)
 {
   console.log("this is the error " + err)

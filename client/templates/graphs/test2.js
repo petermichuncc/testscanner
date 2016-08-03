@@ -5,9 +5,11 @@ Template.testgraphnew.topGenresChart = function() {
 
 	//Here I need to have a server side fxn that  I call the returns
 	//the average for permanent and another for temp
-//var both=ReactiveMethod.call('average')
-var temp=ReactiveMethod.call('tempaverage')
-var permanent=ReactiveMethod.call('permanentaverage')
+var both=ReactiveMethod.call('average')
+var temp=both[0]
+var permanent=both[1]
+//var temp=ReactiveMethod.call('tempaverage')
+//var permanent=ReactiveMethod.call('permanentaverage')
 if (typeof permanent=="number")
 {Session.set("loading",0)
 	var datatest=[
