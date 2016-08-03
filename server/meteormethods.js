@@ -795,7 +795,7 @@ return desc
        //color from the colors collection.    
       try{
 //{timestamp: {$gte: timestamp}
-        var start=moment().format("YYYY-MM-DD 06:00:00.000")
+        var start=moment().format("YYYY-MM-DD 05:00:00.000")
        var count=Dataentries.find({timestamp: {$gte: start}}).count()
        console.log("this is the count of data entries today " + count)
       

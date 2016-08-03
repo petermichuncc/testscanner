@@ -9,6 +9,7 @@ import { createContainer } from 'meteor/react-meteor-data';
   Session.set("planned", null)
   Session.set("actual", null)
   Session.set("productivity", null)
+  Session.set("datacount", null)
 function myFunction() {
     var x = Math.floor((Math.random() * 11) + 1);
 
@@ -436,8 +437,11 @@ var amount="You entered ".concat(datacount)
 var amount=amount.concat(" entries today")
  Materialize.toast(amount, 8000, color)
  Materialize.toast('Have a good day', 8000, color)
+ if (typeof datacount==number)
+ {
 count=0
 Session.set("count",count)
+}
 },
 'click .4': function(event, template){
  //Router.go('one')
