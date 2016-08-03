@@ -476,4 +476,9 @@ else
 
 
 },
+'click .10': function(event, template){
+ Router.go('history')
+
+
+}
 })
