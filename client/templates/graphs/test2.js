@@ -3,7 +3,7 @@ Meteor.subscribe('dataentries');
 
 Template.testgraphnew.topGenresChart = function() {
 
-	//Here I need to have a server side fxn that  I call the returns
+	//Here I need to have a server side fxn that  I call that returns
 	//the average for permanent and another for temp
 var both=ReactiveMethod.call('average')
 var temp=both[0]
@@ -38,7 +38,7 @@ if (typeof permanent=="number")
             text: 'Temp vs Permanent'
         },
          xAxis: {
-            categories: ['Temporary', 'Permanent'],
+            categories: ['Temp', 'Permanent'],
             labels: {
                 style: {
                     color: 'black',
@@ -51,6 +51,9 @@ if (typeof permanent=="number")
                 text: 'Productivity'
             },
             labels: {
+                 formatter: function () {
+                    return this.value + '%';
+                },
                 style: {
                     color: 'black',
                     fontSize:'25px'
@@ -58,7 +61,10 @@ if (typeof permanent=="number")
             },
             stackLabels: {
                 enabled: true,
-                align: 'center'
+                align: 'center',
+                formatter: function () {
+                    return this.y + '%';
+                }
             }
         },
         plotOptions: {
@@ -71,8 +77,15 @@ if (typeof permanent=="number")
                     enabled: true,
                     rotation: 0,
                     x: 2,
-                    y: -10
+                    y: -10,
+                    formatter: function () {
+                       
+                            return this.y + '%';
+                       // return Highcharts.numberFormat(this.y,1);
+                   
                 }
+                },
+
             }
         },
         series: [{
