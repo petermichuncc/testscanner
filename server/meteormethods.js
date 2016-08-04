@@ -817,33 +817,46 @@ return desc
 
 
         },         
- average: function () {
+ average: function (department) {
        //So this function will take in an ekanban upc or item id
        //It will then find the suffix of the item id and then find the associated
        //color from the colors collection.    
       try{
-
-      var tempcount=Dataentries.find({employeestatus:"temp"}).count()
-      var permanentcount=Dataentries.find({employeestatus:"permanent"}).count() 
+        console.log("this is the department "+ department)
+      var tempcount=Dataentries.find({employeestatus:"temp", department:department}).count()
+      var permanentcount=Dataentries.find({employeestatus:"permanent", department:department}).count() 
       console.log("this is the perm " + permanentcount+ " temp count "+tempcount)
        var totaltemp=0;
        var totalpermanent=0;
        
       var total = 0;
 
-Dataentries.find({employeestatus:"temp"}).map(function(doc) {
+Dataentries.find({employeestatus:"temp", department:department}).map(function(doc) {
   totaltemp += doc.productivity;
 });
-Dataentries.find({employeestatus:"permanent"}).map(function(doc) {
+Dataentries.find({employeestatus:"permanent", department:department}).map(function(doc) {
   totalpermanent += doc.productivity;
 });
-
+if(totaltemp!=0 &&tempcount!=0)
+{
 var tempavg=totaltemp/tempcount
 tempavg=tempavg.toFixed(2)
 tempavg=Number(tempavg)
+}
+else
+{
+  tempavg=Number(0)
+}
+if(totalpermanent!=0 &&permanentcount!=0)
+{
 var permanentavg=totalpermanent/permanentcount
 permanentavg=permanentavg.toFixed(2)
 permanentavg=Number(permanentavg)
+}
+else
+{
+  permanentavg=Number(0)
+}
 //console.log("this is the temp total in base average" + totaltemp)
 console.log("This is the total using map "+ totaltemp)
 console.log("This is the total using map "+ totalpermanent)
@@ -862,19 +875,19 @@ return avgarray
 
 
         },        
- tempaverage: function () {
+ tempaverage: function (department) {
        //So this function will take in an ekanban upc or item id
        //It will then find the suffix of the item id and then find the associated
        //color from the colors collection.    
       try{
 
-       var count=Dataentries.find({employeestatus:"temp"}).count()
+       var count=Dataentries.find({employeestatus:"temp",department:department}).count()
        console.log("this is the temp count " + count)
        var total=0;
        for (var i=1;i<=count;i++)
        {
           //sum the productivity
-          var productivity=Dataentries.find({employeestatus:"temp"},{sort: {productivity: -1}, limit: i}).fetch().pop().productivity
+          var productivity=Dataentries.find({employeestatus:"temp",department:department},{sort: {productivity: -1}, limit: i}).fetch().pop().productivity
           
           var total=total +productivity
 

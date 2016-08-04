@@ -225,11 +225,11 @@ bottom: 0;
 #graph_container{
     position : absolute;    
     width    : 1200px;
-    height   : 400px;
+    height   : 375px;
     left     : 50%;
     top      : 50%;
     margin-left : -600px; /* half of the width  */
-    margin-top  : -200px; /* half of the height */
+    margin-top  : -150px; /* half of the height */
     display: flex;
     align-items: center;
 }

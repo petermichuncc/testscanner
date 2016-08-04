@@ -1,9 +1,11 @@
 <template name="testgraphnew">
 <script src="/http://code.highcharts.com/highcharts-3d.js"></script>
 <div id="container"></div>
-{{tempaverage}}
+<!--Show when this occured-->
+{{timeframe}}
 
 {{> highchartsHelper chartId="test" chartWidth="100%" charHeight="100%" chartObject=topGenresChart}}
+
 {{#if $.Session.equals 'loading' 1}}
 	 <div class="preloader-wrapper big active">
     <div class="spinner-layer spinner-blue-only">
@@ -16,6 +18,7 @@
       </div>
     </div>
   </div>
+
 {{/if}}
 
 	<script>

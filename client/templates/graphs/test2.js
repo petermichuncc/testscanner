@@ -1,11 +1,13 @@
 
 Meteor.subscribe('dataentries');
-
+ Meteor.subscribe('datacenters');
 Template.testgraphnew.topGenresChart = function() {
 
 	//Here I need to have a server side fxn that  I call that returns
 	//the average for permanent and another for temp
-var both=ReactiveMethod.call('average')
+
+    
+var both=ReactiveMethod.call('average',Session.get("department"))
 var temp=both[0]
 var permanent=both[1]
 //var temp=ReactiveMethod.call('tempaverage')
@@ -67,6 +69,10 @@ if (typeof permanent=="number")
                 }
             }
         },
+        tooltip: {
+            pointFormat: '{series.name}: <b>{this.y}</b> %',
+            shared: true
+        },
         plotOptions: {
             column: {
                 depth: 25
@@ -120,7 +126,26 @@ Template.testgraphnew.rendered = function(){
 };
 
 Template.first.helpers({
-    tempaverage: function () {
-//ReactiveMethod.call('tempaverage')
-}
+    timeframe: function () {
+/*
+So here I need to show the user the time frame this is going on
+I need to grab the earliest entry timestamp so the first one
+and the last entry time stamp
+
+*/
+/*
+I'll need to contact a meteor method
+
+*/
+
+
+},
+workcenters: function()
+  {
+    //I will grab a session variable that has the 
+    var department =Session.get("department")
+    console.log("this is the department "+ department)
+    return Datacenters.find({department:department})
+
+  }
 })

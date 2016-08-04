@@ -1,9 +1,8 @@
-import React from 'react';
-import { createContainer } from 'meteor/react-meteor-data';
+
   Session.set("name", null)
   Session.set("date", null)
   Session.set("status", null)
-  Session.set("department", null)
+  Session.set("department1", null)
   Session.set("workcenter", null)
   Session.set("shift", null)
   Session.set("planned", null)
@@ -236,7 +235,7 @@ else
   workcenters: function()
   {
     //I will grab a session variable that has the 
-    var department =Session.get("department")
+    var department =Session.get("department1")
     console.log("this is the department "+ department)
 
 
@@ -382,7 +381,7 @@ if (count===4)
 {
   var test = $( "#s1" ).val()
   value=$( "#s1" ).val()
-Session.set("department", test)
+Session.set("department1", test)
   department=$( "#s1" ).val()
   
  }
@@ -448,7 +447,7 @@ Session.set("count",count)
 Session.set("name", null)
   Session.set("date", null)
   Session.set("status", null)
-  Session.set("department", null)
+  Session.set("department1", null)
   Session.set("workcenter", null)
   Session.set("shift", null)
   Session.set("planned", null)
