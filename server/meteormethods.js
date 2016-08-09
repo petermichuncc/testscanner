@@ -401,11 +401,11 @@ desc field
       upc=upc.trim()
     
 if (Kanbans.find({ordernumber:upc1}).count()>=1)
-      {
+      { console.log("test 1 count")
         count=Kanbans.find({ordernumber:upc1}).count()
        }
   if (Kanbans.find({ordernumber:upc}).count()>=1)
-    {
+    {   console.log("test 2 count")
       count=Kanbans.find({ordernumber:upc}).count()
     }  
 
