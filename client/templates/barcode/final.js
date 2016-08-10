@@ -7,6 +7,16 @@ Template.final.rendered =function(){
 
 console.log("test")
 
+  var x = document.getElementById("snackbar")
+  if (x.className != "show")
+{
+    x.className = "show";
+    //setTimeout(function(){ x.className = x.className.replace("show", ""); }, 999999000);
+}
+  
+    
+ 
+
  /*
 MDSnackbars.init();
 var options = {
@@ -50,7 +60,17 @@ Router.go('one');
  
 
 
+},
+'click .3': function(event, template){
+
+  
+ 
+
+ 
+
+
 }
+
 });
 
 
@@ -146,7 +166,10 @@ partnumber: function()
 //create a reactive method that I call here that returns the current partnumber
 //or use a previously created partnumber
 
-
+ var x = document.getElementById("snackbar")
+    x.className = "show";
+    setTimeout(function(){ x.className = x.className.replace("show", ""); }, 999999000);
+ 
 
 }
   
