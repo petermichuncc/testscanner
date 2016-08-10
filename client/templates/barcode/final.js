@@ -3,7 +3,11 @@
 
 
 Template.final.rendered =function(){
-  /*
+ 
+
+console.log("test")
+
+ /*
 MDSnackbars.init();
 var options = {
     text: 'message',        // change snackbar's text/html
@@ -136,6 +140,14 @@ output=span1.concat(output)
 var span2='</span>'
 output=output.concat(span2)
      Materialize.toast(output, 999999000, 'light-blue lighten-2 cp z-depth-2 toasttextbig')
-  }
+  },
+partnumber: function()
+{
+//create a reactive method that I call here that returns the current partnumber
+//or use a previously created partnumber
+
+
+
+}
   
 });
