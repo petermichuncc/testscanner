@@ -8,9 +8,10 @@ Template.final.rendered =function(){
 console.log("test")
 
   var x = document.getElementById("snackbar")
-  if (x.className != "show")
+  console.log("This is the class name " + x.className)
+  if (x.className != "show cp z-depth-2" && typeof Session.get("scannedPartnumber")=="string")
 {
-    x.className = "show";
+    x.className = "show cp z-depth-2";
     //setTimeout(function(){ x.className = x.className.replace("show", ""); }, 999999000);
 }
   
@@ -94,6 +95,9 @@ Then I will create a toast that will show this data.
 //So I need to take 1000 and divide it by the usage rate x 1000
 console.log("this is scan " + Session.get("scan"))
 var bag = ReactiveMethod.call('bags', Session.get("scan"))
+console.log("this is the type of bag " + typeof bag)
+if (typeof bag!="boolean")
+{
 var bagusage=bag.usagerate
 console.log("this is bag usagerate"+ bagusage)
 
@@ -118,12 +122,14 @@ output=span1.concat(output)
 var span2='</span>'
 output=output.concat(span2)
      Materialize.toast(output, 999999000, 'light-blue lighten-2 cp z-depth-2')
- 
+ }
   },
   bagsperbox: function () {
 
 
 var box = ReactiveMethod.call('boxes', Session.get("scan"))
+if (typeof box!="boolean")
+{
 var boxusage=box.usagerate
 console.log("this is box usage "+ boxusage)
 
@@ -160,16 +166,18 @@ output=span1.concat(output)
 var span2='</span>'
 output=output.concat(span2)
      Materialize.toast(output, 999999000, 'light-blue lighten-2 cp z-depth-2 toasttextbig')
+  
+  }
+
   },
 partnumber: function()
 {
 //create a reactive method that I call here that returns the current partnumber
 //or use a previously created partnumber
-
- var x = document.getElementById("snackbar")
-    x.className = "show";
-    setTimeout(function(){ x.className = x.className.replace("show", ""); }, 999999000);
- 
+if (typeof Session.get("scannedPartnumber")=="string")
+{
+return Session.get("scannedPartnumber")
+}
 
 }
   
