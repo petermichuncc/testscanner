@@ -481,5 +481,10 @@ else
  Router.go('history')
 
 
+},
+'click .11': function(event, template){
+ Router.go('datasearch')
+
+
 }
 })

@@ -19,8 +19,8 @@ Template.datasearch.helpers({
      //
      //Session.set("name", "Yolanda McDougald" )
       var start=moment().format("YYYY-MM-DD 05:00:00.000")
-   
-      return Dataentries.find({name:Session.get("name")})
+    var name="yolanda"
+      return Dataentries.find({ name: {$regex: Session.get("name"), $options: 'i'} })
 
     }      
                                                              
