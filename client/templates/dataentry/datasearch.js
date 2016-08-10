@@ -62,7 +62,10 @@ Meteor.call('alertremoval', name,date,productivity,id)
     },
  'input #name': function (event, template) {
   console.log("This is the entered name " + event.currentTarget.value)
+  if (event.currentTarget.value.length>0)
+  {
     Session.set("name", event.currentTarget.value);
+  }
   }
 
 });
