@@ -758,6 +758,10 @@ $( ".ch" ).hide();
   $( ".modal-dialog" ).hide();
  Session.set("descshow",false)
 },
+'click .4': function(event, template){
+ Router.go('one')
+
+},
 'click .6': function(event, template){
 
 $( ".ch" ).hide();

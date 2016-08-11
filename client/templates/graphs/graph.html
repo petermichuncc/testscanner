@@ -8,6 +8,10 @@
 
      <div class="center">
 {{>testgraphnew}}
+
+<!--So here I will need to choose which select boxes to show -->
+<!--                                   -->
+ {{#if $.Session.equals 'count' 0}}
 <div class="form-group mytext">
     
     <select id="s1" class="form-control drop" required>
@@ -24,7 +28,78 @@
     </select>
 
 </div>
- <button class="btn btn-default 2 z-depth-3 whitetext" id="test" type="submit">Select</button>  
+ <button class="btn btn-default 2 z-depth-3 whitetext" id="test" type="submit">Select</button> <br> 
+
+ <button class="btn btn-default 3 z-depth-3 whitetext" id="test" type="submit">Next</button> <br> 
+   {{/if}} 
+    {{#if $.Session.equals 'count' 1}}
+
+<div class="form-group mytext">
+    
+    <select id="s1" class="form-control drop" required>
+      <option value="operator">operator</option>
+       <option value="workcenter">workcenter</option>
+       
+    </select>
+
+</div>
+
+<button class="btn btn-default 2 z-depth-3 whitetext" id="test" type="submit">Select</button> <br> 
+ <button class="btn btn-default 1 z-depth-3 whitetext" id="test" type="submit">Previous</button> 
+
+      {{/if}} 
+
+ {{#if $.Session.equals 'count' 2}}
+
+ {{#if $.Session.equals 'choice' "operator"}}
+<!-- Here I need to get the operators name-->
+
+
+<button class="btn btn-default 2 z-depth-3 whitetext" id="test" type="submit">Select</button> <br> 
+ <button class="btn btn-default 1 z-depth-3 whitetext" id="test" type="submit">Previous</button> 
+{{/if}}
+ {{#if $.Session.equals 'choice' "workcenter"}}
+
+<div class="form-group mytext">
+    
+    <select id="s1" class="form-control drop" required>
+      <option value="operator">Productivity by shift</option>
+       <option value="workcenter">Productivity by operator</option>
+       <option value="workcenter">Comparison of workcenters</option>
+    </select>
+
+</div>
+
+<button class="btn btn-default 2 z-depth-3 whitetext" id="test" type="submit">Select</button> <br> 
+ <button class="btn btn-default 1 z-depth-3 whitetext" id="test" type="submit">Previous</button> 
+{{/if}}  
+      {{/if}} 
+ {{#if $.Session.equals 'count' 3}}
+
+ {{#if $.Session.equals 'choice' "operator"}}
+
+<div class="form-group mytext">
+    
+    <select id="s1" class="form-control drop" required>
+      <option value="operator">workcenter</option>
+       <option value="workcenter">workcenter avg</option>
+       <option value="workcenter">Productivity avg by workcenter</option>
+    </select>
+
+</div>
+
+<button class="btn btn-default 2 z-depth-3 whitetext" id="test" type="submit">Select</button> <br> 
+ <button class="btn btn-default 1 z-depth-3 whitetext" id="test" type="submit">Previous</button> 
+{{/if}}
+ {{#if $.Session.equals 'choice' "workcenter"}}
+
+
+
+<button class="btn btn-default 2 z-depth-3 whitetext" id="test" type="submit">Select</button> <br> 
+ <button class="btn btn-default 1 z-depth-3 whitetext" id="test" type="submit">Previous</button> 
+{{/if}}  
+      {{/if}} 
+
 </div>
 </div>
 </div>

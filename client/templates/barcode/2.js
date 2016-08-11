@@ -142,7 +142,7 @@ Router.go('three')
 
 return go
 
-  },
+  }
    
 
 });
@@ -156,6 +156,10 @@ Template.two.events({
  console.log("this is a test")   
  console.log("this is scan " + Session.get("scan"))
  run=true
+
+},
+'click .4': function(event, template){
+ Router.go('one')
 
 }
 })
