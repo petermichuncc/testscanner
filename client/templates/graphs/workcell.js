@@ -1,24 +1,32 @@
 
 Meteor.subscribe('dataentries');
  Meteor.subscribe('datacenters');
-Template.testgraphnew.topGenresChart = function() {
+Template.testgraphworkcell.topGenresChart = function() {
 
-	//Here I need to have a server side fxn that  I call that returns
-	//the average for permanent and another for temp
+    //Here I need to have a server side fxn that  I call that returns
+    //the average for permanent and another for temp
 
     console.log("This is the graph name " + Session.get("graphname"))
+    console.log("this is the workcenter name " + Session.get("workcenterName"))
 //based on the count I need to determine which data set to ship over to this graph
 //
-var both=ReactiveMethod.call('average',Session.get("department"))
-var temp=both[0]
-var permanent=both[1]
-//var temp=ReactiveMethod.call('tempaverage')
-//var permanent=ReactiveMethod.call('permanentaverage')
-if (typeof permanent=="number")
+/*
+Basically I will 
+
+*/
+
+var both=ReactiveMethod.call('averageworkcenter',Session.get("workcenterName"))
+var shift1=both[0]
+var shift2=both[1]
+var shift3=both[2]
+
+
+if (typeof shift1=="number"||typeof shift2=="number"||typeof shift3=="number")
 {Session.set("loading",0)
-	var datatest=[
-                ['Temp',  temp],
-                ['Permanent',       permanent]
+    var datatest=[
+                ['Shift1',  shift1],
+                ['Shift2',   shift2],
+                ['Shift3',   shift3]
               
                
             ]
@@ -39,10 +47,10 @@ if (typeof permanent=="number")
                 }
         },
         title: {
-            text: Session.get("graphname")
+            text: "Workcenter shift comparison"
         },
          xAxis: {
-            categories: ['Temp', 'Permanent'],
+            categories: ['Shift 1', 'Shift 2','Shift 3'],
             labels: {
                 style: {
                     color: 'black',
@@ -121,13 +129,13 @@ function showValues() {
 
 
 
-Template.testgraphnew.rendered = function(){
-	 
+Template.testgraphworkcell.rendered = function(){
+     
 
 
 };
 
-Template.first.helpers({
+Template.testgraphworkcell.helpers({
     timeframe: function () {
 /*
 So here I need to show the user the time frame this is going on

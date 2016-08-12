@@ -1,15 +1,15 @@
 StandardLegends = new Mongo.Collection(null);
- Meteor.subscribe('entries');
+ Meteor.subscribe('Datacenters');
 Template.search2.helpers({
   settings: function() {
     return {
       position: Session.get("position"),
-      limit: 10,
+      limit: 1,
       rules: [
         {
           // token: '',
-          collection: Entries,
-          field: 'partnumber',
+          collection: Datacenters,
+          field: 'workcenter',
           matchAll: true,
           template: Template.standardLegends
         }
@@ -17,7 +17,7 @@ Template.search2.helpers({
     };
   },
   legends: function() {
-    return Entries.find();
+    return Datacenters.find();
   }
 });
 

@@ -1,10 +1,11 @@
 <template name="search2">
    
-        {{> inputAutocomplete settings=settings id="partnumber" class="form-control" autocomplete="off" name="partnumber" placeholder="Enter partnumber" }}
+        {{> inputAutocomplete settings=settings id="workcenter" class="form-control" autocomplete="off" name="partnumber" placeholder="Please enter the workcenter" }}
  
 
     </template>
 
 <template name="standardLegends">
- <span class="textblack">  {{partnumber}}</span>
+ <span class="textblack">  {{workcenter}}: {{description}}</span>
 </template>
+

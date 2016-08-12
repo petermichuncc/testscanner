@@ -4,6 +4,8 @@ Meteor.subscribe('dataentries');
  var count=0;
 Session.set("count",0)
 Session.set("department", "datacom")
+Session.set("graphname", "Temp vs Permanent")
+
 Template.graph.rendered = function(){
 	 
 
@@ -42,6 +44,7 @@ Session.set("count",count)
 'click .2': function(event, template){
   if (Session.get("count")==0)
   {
+  	Session.set("graphname", "Temp vs Permanent")
   var test = $( "#s1" ).val()
   value=$( "#s1" ).val()
   console.log("this is the department value " + value)
@@ -58,11 +61,42 @@ else if (Session.get("count")==1)
 Session.set("choice", test)
 console.log("this is the choice session " + Session.get("choice"))
 count=count+1;
-  
- 
 Session.set("count",count)
 }
+else if (Session.get("count")==2 && Session.get("choice")=="operator")
+{
+//Here I need to grab the name of the operator and use this to calculate average productivity by
+//shift
+name=$( "#name" ).val()
+  value=$( "#name" ).val()
+  console.log("THis is the input in if statement " +$( "#name" ).val())
+  Session.set("operator",name)
+count=count+1;
+Session.set("count",count)
 
+  //$('#name').val('');
+  //$("#name").focus();
+
+
+}
+else if (Session.get("count")==2 && Session.get("choice")=="workcenter")
+{
+//Here I need to grab the name of the operator and use this to calculate average productivity by
+//shift
+var test = $( "#workcenter" ).val()
+  value=$( "#workcenter" ).val()
+  console.log("this is the department value " + value)
+  //put the work center name into this session variable
+
+Session.set("workcenterName", test)
+
+
+
+  //$('#name').val('');
+  //$("#name").focus();
+
+
+}
 /*
 Here I need to determine what to do with the s1 value based on the count
 

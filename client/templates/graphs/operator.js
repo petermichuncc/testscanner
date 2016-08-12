@@ -1,14 +1,18 @@
 
 Meteor.subscribe('dataentries');
  Meteor.subscribe('datacenters');
-Template.testgraphnew.topGenresChart = function() {
+Template.testgraphoperator.topGenresChart = function() {
 
-	//Here I need to have a server side fxn that  I call that returns
-	//the average for permanent and another for temp
+    //Here I need to have a server side fxn that  I call that returns
+    //the average for permanent and another for temp
 
     console.log("This is the graph name " + Session.get("graphname"))
 //based on the count I need to determine which data set to ship over to this graph
 //
+/*
+Basically I will 
+
+*/
 var both=ReactiveMethod.call('average',Session.get("department"))
 var temp=both[0]
 var permanent=both[1]
@@ -16,9 +20,9 @@ var permanent=both[1]
 //var permanent=ReactiveMethod.call('permanentaverage')
 if (typeof permanent=="number")
 {Session.set("loading",0)
-	var datatest=[
-                ['Temp',  temp],
-                ['Permanent',       permanent]
+    var datatest=[
+                ['Shift1',  temp],
+                ['Shift2',       permanent]
               
                
             ]
@@ -121,13 +125,13 @@ function showValues() {
 
 
 
-Template.testgraphnew.rendered = function(){
-	 
+Template.testgraphoperator.rendered = function(){
+     
 
 
 };
 
-Template.first.helpers({
+Template.testgraphoperator.helpers({
     timeframe: function () {
 /*
 So here I need to show the user the time frame this is going on

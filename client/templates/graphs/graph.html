@@ -7,7 +7,11 @@
             <div id="centered_box_graph"  class="z-depth-5 center ">
 
      <div class="center">
+      {{#if $.Session.equals 'count' 0}}
 {{>testgraphnew}}
+{{/if}}
+
+
 
 <!--So here I will need to choose which select boxes to show -->
 <!--                                   -->
@@ -28,14 +32,14 @@
     </select>
 
 </div>
- <button class="btn btn-default 2 z-depth-3 whitetext" id="test" type="submit">Select</button> <br> 
+ <button class="btn btn-default 2 z-depth-3 whitetext" id="test" type="submit">Select</button> 
 
- <button class="btn btn-default 3 z-depth-3 whitetext" id="test" type="submit">Next</button> <br> 
+ <button class="btn btn-default 3 z-depth-3 whitetext" id="test" type="submit">Next Graph</button> 
    {{/if}} 
     {{#if $.Session.equals 'count' 1}}
 
 <div class="form-group mytext">
-    
+     <label for="" class=""><span class=""> Please select a option</span></label>
     <select id="s1" class="form-control drop" required>
       <option value="operator">operator</option>
        <option value="workcenter">workcenter</option>
@@ -43,43 +47,46 @@
     </select>
 
 </div>
-
-<button class="btn btn-default 2 z-depth-3 whitetext" id="test" type="submit">Select</button> <br> 
  <button class="btn btn-default 1 z-depth-3 whitetext" id="test" type="submit">Previous</button> 
+<button class="btn btn-default 2 z-depth-3 whitetext" id="test" type="submit">Select</button> 
+
 
       {{/if}} 
 
- {{#if $.Session.equals 'count' 2}}
+
 
  {{#if $.Session.equals 'choice' "operator"}}
-<!-- Here I need to get the operators name-->
+  {{#if $.Session.equals 'count' 2}}
+<!-- Here I need to get the operators name
+I take in their name and then later do a regex search through mongodb
+for 
 
 
-<button class="btn btn-default 2 z-depth-3 whitetext" id="test" type="submit">Select</button> <br> 
+-->
+ <div class="mytext ">
+            
+            <div class="input-field col ">
+                <input id="name" type="text" class="validate required" autofocus autocomplete="off" required/>
+                <label for="" class=""><span class=""> Please enter the operator's name</span></label>
+            </div>
+        </div>
+
+<script>
+
+ 
+
+$('#name').focus();
+ </script>
  <button class="btn btn-default 1 z-depth-3 whitetext" id="test" type="submit">Previous</button> 
+<button class="btn btn-default 2 z-depth-3 whitetext" id="test" type="submit">Select</button>
+
 {{/if}}
- {{#if $.Session.equals 'choice' "workcenter"}}
-
-<div class="form-group mytext">
-    
-    <select id="s1" class="form-control drop" required>
-      <option value="operator">Productivity by shift</option>
-       <option value="workcenter">Productivity by operator</option>
-       <option value="workcenter">Comparison of workcenters</option>
-    </select>
-
-</div>
-
-<button class="btn btn-default 2 z-depth-3 whitetext" id="test" type="submit">Select</button> <br> 
- <button class="btn btn-default 1 z-depth-3 whitetext" id="test" type="submit">Previous</button> 
-{{/if}}  
-      {{/if}} 
  {{#if $.Session.equals 'count' 3}}
 
- {{#if $.Session.equals 'choice' "operator"}}
+
 
 <div class="form-group mytext">
-    
+    <label for="" class=""><span class=""> Please select a option</span></label>
     <select id="s1" class="form-control drop" required>
       <option value="operator">workcenter</option>
        <option value="workcenter">workcenter avg</option>
@@ -87,18 +94,35 @@
     </select>
 
 </div>
-
-<button class="btn btn-default 2 z-depth-3 whitetext" id="test" type="submit">Select</button> <br> 
- <button class="btn btn-default 1 z-depth-3 whitetext" id="test" type="submit">Previous</button> 
+ <button class="btn btn-default 1 z-depth-3 whitetext" id="test" type="submit">Previous</button>
+<button class="btn btn-default 2 z-depth-3 whitetext" id="test" type="submit">Select</button>  
+ 
 {{/if}}
+  {{/if}} 
  {{#if $.Session.equals 'choice' "workcenter"}}
+ 
 
-
-
-<button class="btn btn-default 2 z-depth-3 whitetext" id="test" type="submit">Select</button> <br> 
+ {{#if $.Session.equals 'count' 2}}
+ {{>testgraphworkcell}}
+<div class="form-group mytext">
+    {{>search2}}
+    
+</div>
  <button class="btn btn-default 1 z-depth-3 whitetext" id="test" type="submit">Previous</button> 
+<button class="btn btn-default 2 z-depth-3 whitetext" id="test" type="submit">Select</button>  
+
 {{/if}}  
-      {{/if}} 
+ {{#if $.Session.equals 'count' 3}}
+
+ <button class="btn btn-default 1 z-depth-3 whitetext" id="test" type="submit">Previous</button> 
+ 
+
+{{/if}}  
+    {{/if}} 
+
+
+
+
 
 </div>
 </div>
