@@ -3,7 +3,7 @@ StandardLegends = new Mongo.Collection(null);
 Template.search2.helpers({
   settings: function() {
     return {
-      position: Session.get("position"),
+      position: "top",
       limit: 1,
       rules: [
         {

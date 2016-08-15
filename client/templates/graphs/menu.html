@@ -1,4 +1,4 @@
-<template name="graph">
+<template name="menu">
 
 <img src="logo.jpg " class="z-depth-3 center testimage"><br><br>
 
@@ -7,14 +7,6 @@
             <div id="centered_box_graph"  class="z-depth-5 center ">
 
      <div class="center">
-        {{#if $.Session.equals 'count' -1}}
- <br>
-        <button class="btn btn-default 4 light-blue z-depth-3 links">Permanent vs Temp </button><br><br>
-        <button class="btn btn-default 5 light-blue z-depth-3 links">Operator or Workcenter </button><br><br>
-        
-        
-{{/if}}
-
       {{#if $.Session.equals 'count' 0}}
 {{>testgraphnew}}
 {{/if}}
@@ -42,7 +34,7 @@
 </div>
  <button class="btn btn-default 2 z-depth-3 whitetext" id="test" type="submit">Select</button> 
 
- <button class="btn btn-default 1 z-depth-3 whitetext" id="test" type="submit">Graph Selection</button> 
+ <button class="btn btn-default 3 z-depth-3 whitetext" id="test" type="submit">Next Graph</button> 
    {{/if}} 
     {{#if $.Session.equals 'count' 1}}
 
@@ -55,7 +47,7 @@
     </select>
 
 </div>
- <button class="btn btn-default 1 z-depth-3 whitetext" id="test" type="submit">Permanent vs Temp</button> 
+ <button class="btn btn-default 1 z-depth-3 whitetext" id="test" type="submit">Previous</button> 
 <button class="btn btn-default 2 z-depth-3 whitetext" id="test" type="submit">Select</button> 
 
 

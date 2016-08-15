@@ -1,26 +1,19 @@
 
-Meteor.subscribe('dataentries');
- Meteor.subscribe('datacenters');
- var count=-1;
-Session.set("count",-1)
-Session.set("department", "datacom")
-Session.set("choice", null)
-Session.set("graphname", "Temp vs Permanent")
 
-Template.graph.rendered = function(){
+Template.menu.rendered = function(){
 	 
 
 
 };
 
-Template.graph.helpers({
+Template.menu.helpers({
     tempaverage: function () {
 //ReactiveMethod.call('tempaverage')
 }
 
 })
 
-Template.graph.events({
+Template.menu.events({
     // events go here
 
 "submit .workcenterSelection": function(event){
@@ -32,12 +25,9 @@ console.log("this is the count "+count)
 return false;
 },
 'click .1': function(event, template){
-  if (Session.get("count")>-1)
-  {
-  count=count-1;
-  }
+  
  
-Session.set("count",count)
+
  
 
 
@@ -108,24 +98,6 @@ Here I need to determine what to do with the s1 value based on the count
 'click .3': function(event, template){
   
 count=count+1;
-  
- 
-Session.set("count",count)
-
-
-},
-'click .4': function(event, template){
-  
-count=count+1;
- 
- 
-Session.set("count",count)
-
-
-},
-'click .5': function(event, template){
-  
-count=count+2;
   
  
 Session.set("count",count)
