@@ -4,7 +4,7 @@ Template.search2.helpers({
   settings: function() {
     return {
       position: "top",
-      limit: 1,
+      limit: 3,
       rules: [
         {
           // token: '',

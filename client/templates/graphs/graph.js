@@ -2,7 +2,7 @@
 Meteor.subscribe('dataentries');
  Meteor.subscribe('datacenters');
  var count=-1;
-Session.set("count",-1)
+Session.set("countnew",-1)
 Session.set("department", "datacom")
 Session.set("choice", null)
 Session.set("graphname", "Temp vs Permanent")
@@ -32,18 +32,18 @@ console.log("this is the count "+count)
 return false;
 },
 'click .1': function(event, template){
-  if (Session.get("count")>-1)
+  if (Session.get("countnew")>-1)
   {
   count=count-1;
   }
  
-Session.set("count",count)
+Session.set("countnew",count)
  
 
 
 },
 'click .2': function(event, template){
-  if (Session.get("count")==0)
+  if (Session.get("countnew")==0)
   {
   	Session.set("graphname", "Temp vs Permanent")
   var test = $( "#s1" ).val()
@@ -53,7 +53,7 @@ Session.set("department", test)
   department=$( "#s1" ).val()
 
 }
-else if (Session.get("count")==1)
+else if (Session.get("countnew")==1)
 {
 
  var test = $( "#s1" ).val()
@@ -62,9 +62,9 @@ else if (Session.get("count")==1)
 Session.set("choice", test)
 console.log("this is the choice session " + Session.get("choice"))
 count=count+1;
-Session.set("count",count)
+Session.set("countnew",count)
 }
-else if (Session.get("count")==2 && Session.get("choice")=="operator")
+else if (Session.get("countnew")==2 && Session.get("choice")=="operator")
 {
 //Here I need to grab the name of the operator and use this to calculate average productivity by
 //shift
@@ -73,14 +73,14 @@ name=$( "#name" ).val()
   console.log("THis is the input in if statement " +$( "#name" ).val())
   Session.set("operator",name)
 count=count+1;
-Session.set("count",count)
+Session.set("countnew",count)
 
   //$('#name').val('');
   //$("#name").focus();
 
 
 }
-else if (Session.get("count")==2 && Session.get("choice")=="workcenter")
+else if (Session.get("countnew")==2 && Session.get("choice")=="workcenter")
 {
 //Here I need to grab the name of the operator and use this to calculate average productivity by
 //shift
@@ -110,7 +110,7 @@ Here I need to determine what to do with the s1 value based on the count
 count=count+1;
   
  
-Session.set("count",count)
+Session.set("countnew",count)
 
 
 },
@@ -119,8 +119,8 @@ Session.set("count",count)
 count=count+1;
  
  
-Session.set("count",count)
-
+Session.set("countnew",count)
+console.log("this is the session count " + Session.get("countnew"))
 
 },
 'click .5': function(event, template){
@@ -128,7 +128,7 @@ Session.set("count",count)
 count=count+2;
   
  
-Session.set("count",count)
+Session.set("countnew",count)
 
 
 }

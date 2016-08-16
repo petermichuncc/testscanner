@@ -613,7 +613,7 @@ return text
     //and search for items with the itemid of the
     //items ids in the orders database
     //  {sort: {itemid: -1}, limit: 1}
-     
+     var count=0
       var upc1=Number(upc)
       var upc=upc.trim()
       //I need to return the partnumber
@@ -626,7 +626,7 @@ return text
        
        
         var count=Kanbans.find({ordernumber:upc1,itemid: { $regex: /^8/i }}).count()
-     
+      }
 
       if (Kanbans.find({ordernumber:upc1,itemid: { $regex: /^9/i }}).count()>=1)
       {
@@ -637,10 +637,12 @@ return text
       }
             
             
-      }
-    else if (Kanbans.find({ordernumber:upc,itemid: { $regex: /^8/i }}).count()>=1)
+     
+    if (Kanbans.find({ordernumber:upc,itemid: { $regex: /^8/i }}).count()>=1)
     {  
       var count=Kanbans.find({ordernumber:upc,itemid: { $regex: /^8/i }}).count()
+      } 
+    
     if (Kanbans.find({ordernumber:upc,itemid: { $regex: /^9/i }}).count()>=1)
     {  
       var count2=Kanbans.find({ordernumber:upc,itemid: { $regex: /^9/i }}).count()
@@ -652,7 +654,7 @@ return text
 
           // order.push(Orders.find({ordernumber:upc}))
 
-      }  
+       
      
      
    
