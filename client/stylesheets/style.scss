@@ -281,7 +281,8 @@ bottom: 0;
   margin: 0 auto;
   display: flex;
     align-items: center;
-    top:20vh;
+  
+    top:10vh;
 }
 #graph_container{
     position : absolute;    
@@ -290,9 +291,8 @@ bottom: 0;
     left     : 50%;
     top      : 50%;
     margin-left : -600px; /* half of the width  */
-    margin-top  : -150px; /* half of the height */
-    display: flex;
-    align-items: center;
+    margin-top  : -180px; /* half of the height */
+
 }
 #centered_box_graph{
     background: #ffffff ;

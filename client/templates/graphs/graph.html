@@ -1,18 +1,28 @@
 <template name="graph">
 
 
- 
-<img src="logo.jpg " class="z-depth-3 center testimage"><br><br>
 
-<div id="graph_container" class="center " >
+
+
+
+
+
+<!--  TEST -->
+
+ <img src="logo.jpg " class="z-depth-3 testimage2 center"><br><br>
+
+
+
+
+
 
             <div id="centered_box_graph"  class="z-depth-5 center ">
 
      <div class="center">
         {{#if $.Session.equals 'countnew' -1}}
  <br>
-        <button class="btn btn-default 4 light-blue z-depth-3 links">Permanent vs Temp </button><br><br>
-        <button class="btn btn-default 5 light-blue z-depth-3 links">Operator or Workcenter </button><br><br>
+        <button class="waves-effect waves-light btn btn-default 4 light-blue z-depth-3 links">Permanent vs Temp </button><br><br>
+        <button class="waves-effect waves-light btn btn-default 5 light-blue z-depth-3 links">Operator or Workcenter </button><br><br>
         
         
 {{/if}}
@@ -108,6 +118,23 @@ $('#name').focus();
 <button class="btn btn-default 2 light-blue z-depth-3 whitetext" id="test" type="submit">Select</button>  
  
 {{/if}}
+
+{{#if $.Session.equals 'countnew' 4}}
+<!-- Here I will have a drop down that only shows the work centers associated with this operator-->
+<!-- Session variable for their choice -->
+{{#if $.Session.equals 'workcenterchoice' "workcenter"}}
+
+
+{{/if}}
+
+
+ <button class="btn btn-default 1 light-blue z-depth-3 whitetext" id="test" type="submit">Previous</button>
+<button class="btn btn-default 2 light-blue z-depth-3 whitetext" id="test" type="submit">Select</button>  
+ 
+{{/if}}
+
+
+
   {{/if}} 
  {{#if $.Session.equals 'choice' "workcenter"}}
  
@@ -136,6 +163,6 @@ $('#name').focus();
 
 </div>
 </div>
-</div>
+
 
 </template>

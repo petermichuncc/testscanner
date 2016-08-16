@@ -130,4 +130,39 @@ database.on('executeUpdate', function(error, rowCount) {
 
 */
 
-var pool = require('node-jt400').pool({host: '10.87.15.251', user: 'CDATWATER', password: 'BabyGirl43'});
+//var pool = require('node-jt400').pool({host: '10.87.15.251', user: 'CDATWATER', password: 'BabyGirl43'});
+
+
+
+
+
+
+
+
+
+/*
+console.log("test")
+var db = require("odbc")()
+  , cn = "DRIVER={Client Access ODBC Driver (32-bit)};SERVERNAME=10.87.15.251;PORT=23;UID=CDATWATER;PWD=BabyGirl42;DATABASE=GCOVE"
+  ;
+ 
+db.open(cn, function (err) {
+  if (err) {
+    return console.log(err);
+  }
+ 
+  //we now have an open connection to the database 
+  //so lets get some data 
+  db.query("select top 10 * from customers", function (err, rows, moreResultSets) {
+    if (err) {
+      return console.log(err);
+    }
+    
+    console.log(rows);
+ 
+    //if moreResultSets is truthy, then this callback function will be called 
+    //again with the next set of rows. 
+  });
+});
+
+*/
