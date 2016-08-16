@@ -1,10 +1,50 @@
 
 
 <template name="table">
+<!--
+{{> autoformModals}}
+{{#afModal classes="btn" collection="Dataentries" operation="update" doc="cftA8cZ8ntZBJoMvS"}}
+  Update post
+{{/afModal}}
+{{#afModal class="btn btn-danger" collection="Dataentries" operation="remove" doc="cftA8cZ8ntZBJoMvS"}}
+  Delete post
+{{/afModal}}
+
+ -->
+  <!-- Trigger the modal with a button -->
+  <!--<button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Open Modal</button>-->
+
+  <!-- Modal -->
+  <!--
+<div class="container">
+  <h2>Activate Modal with JavaScript</h2>
+ 
+  <button type="button" class="btn btn-info btn-lg" id="myBtn">Open Modal</button>
 
 
+  <div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog">
+    
+   
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Modal Header</h4>
+        </div>
+        <div class="modal-body">
+          <p>Some text in the modal.</p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+  
+</div>
 
-
+-->
  <div id="tabletest"  class="z-depth-5 center">
           
 
@@ -27,7 +67,7 @@
     <td>{{$.Session.get 'name'}}</td>
     <td>{{$.Session.get 'date'}}</td>
     <td>{{$.Session.get 'status'}}</td>
-    <td>{{$.Session.get 'department1'}}</td>
+    <td>{{$.Session.get 'department'}}</td>
     <td>{{$.Session.get 'workcenter'}}</td>
     <td>{{$.Session.get 'shift'}}</td>
     <td>{{$.Session.get 'planned'}}</td>

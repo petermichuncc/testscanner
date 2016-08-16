@@ -3,7 +3,7 @@ Meteor.subscribe('dataentries');
  Meteor.subscribe('datacenters');
  var count=-1;
 Session.set("countnew",-1)
-Session.set("department", "datacom")
+Session.set("department1", "datacom")
 Session.set("choice", null)
 Session.set("graphname", "Temp vs Permanent")
 
@@ -49,7 +49,7 @@ Session.set("countnew",count)
   var test = $( "#s1" ).val()
   value=$( "#s1" ).val()
   console.log("this is the department value " + value)
-Session.set("department", test)
+Session.set("department1", test)
   department=$( "#s1" ).val()
 
 }

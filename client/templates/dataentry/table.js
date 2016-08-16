@@ -1,5 +1,16 @@
 Session.set("idtest",null)
 	Meteor.subscribe('dataentries');
+
+
+  Template.table.rendered = function () {
+
+$("#myBtn").click(function(){
+        $("#myModal").modal();
+    });
+
+
+}
+
 Template.table.helpers({
     dataentries: function(){
     	Meteor.subscribe('dataentries');
