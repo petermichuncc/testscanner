@@ -167,6 +167,29 @@ var span2='</span>'
 output=output.concat(span2)
      Materialize.toast(output, 999999000, 'light-blue lighten-2 cp z-depth-2 toasttextbig')
   
+/*
+I need to output text with the Session.get("kanbancount") on it
+
+*/
+var output2=Session.get("kanbancount")
+
+if (output2<2)
+{
+  output2=output2.toString()
+output2= output2.concat(" plastic part")
+  }
+  else if (output2>=2)
+  {output2=output2.toString()
+    output2= output2.concat(" plastic parts")
+  }
+
+
+    
+var span1='<span class="toasttextbig center spantest">'
+output2=span1.concat(output2)
+var span2='</span>'
+output2=output2.concat(span2)
+  Materialize.toast(output2, 999999000, 'light-blue lighten-2 cp z-depth-2 toasttextbig')
   }
 
   },
