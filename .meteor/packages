@@ -27,7 +27,6 @@ mobile-experience
 mongo
 blaze-html-templates
 session
-jquery
 tracker
 logging
 reload
@@ -70,3 +69,4 @@ meteorhacks:aggregate
 255kb:md-snackbars
 rwatts:autoform-modals-materialize
 aldeed:simple-schema
+jquery

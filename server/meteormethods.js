@@ -910,6 +910,99 @@ return avgarray
 
 
         },
+averageallworkcenter: function (workcenter) {
+       //So this function will take in an ekanban upc or item id
+       //It will then find the suffix of the item id and then find the associated
+       //color from the colors collection.    
+      try{
+
+        //This should take in a work center
+        console.log("this is the workcenter "+ workcenter)
+      /*  var string="/"
+        string=string.concat(workcenter)
+        string=string.concat("/")*/
+    
+        //count the amount of entries for each shift basically 
+        //I must do a regex for the workcenter
+      var shift1count=Dataentries.find({workcenter: { $regex: workcenter },shift:"shift 1"}).count()
+      var shift2count=Dataentries.find({workcenter: { $regex: workcenter },shift:"shift 2"}).count()
+      var shift3count=Dataentries.find({workcenter: { $regex: workcenter },shift:"shift 3"}).count()
+
+      console.log("this is the shift 1 count " + shift1count)
+    console.log("this is the shift 2 count " + shift2count)
+    console.log("this is the shift 3 count " + shift3count)
+
+    
+
+    
+       var totalshift1=0;
+        var totalshift2=0;
+         var totalshift3=0;
+
+       //var totalpermanent=0;
+       
+      var total = 0;
+
+Dataentries.find({workcenter: { $regex: workcenter },shift:"shift 1"}).map(function(doc) {
+  totalshift1 += doc.productivity;
+});
+Dataentries.find({workcenter: { $regex: workcenter },shift:"shift 2"}).map(function(doc) {
+  totalshift2 += doc.productivity;
+});
+
+console.log("this is the total shift 1 "+ totalshift1)
+if(totalshift1!=0 &&shift1count!=0)
+{
+var shift1avg=totalshift1/shift1count
+shift1avg=shift1avg.toFixed(2)
+shift1avg=Number(shift1avg)
+}
+else
+{
+  shift1avg=Number(0)
+}
+console.log("this is the shift1 avg " + shift1avg)
+if(totalshift2!=0 &&shift2count!=0)
+{
+var shift2avg=totalshift2/shift2count
+shift2avg=shift2avg.toFixed(2)
+shift2avg=Number(shift2avg)
+}
+else
+{
+  shift2avg=Number(0)
+}
+if(totalshift3!=0 &&shift3count!=0)
+{
+var shift3avg=totalshift3/shift3count
+shift3avg=shift3avg.toFixed(2)
+shift3avg=Number(shift3avg)
+}
+else
+{
+  shift3avg=Number(0)
+}
+
+//console.log("this is the temp total in base average" + totaltemp)
+
+var avgarray=[]
+avgarray.push(shift1avg)
+avgarray.push(shift2avg)
+avgarray.push(shift3avg)
+
+console.log("this is the array length "+ avgarray.length)
+console.log("this is array position 1 " + avgarray[0])
+return avgarray
+
+}catch(err)
+{
+  console.log("this is the error " + err)
+}
+
+
+        },
+
+
 average: function (department) {
        //So this function will take in an ekanban upc or item id
        //It will then find the suffix of the item id and then find the associated

@@ -284,10 +284,21 @@ bottom: 0;
   
     top:10vh;
 }
+
+.outerdiv
+{
+
+}
+#floater {
+    float: left;
+    height: 50%;
+    width: 100%;
+    margin-bottom: -50px;
+}
 #graph_container{
-    position : absolute;    
+    
     width    : 1200px;
-    height   : 350px;
+    height   : 360px;
     left     : 50%;
     top      : 50%;
     margin-left : -600px; /* half of the width  */
@@ -295,23 +306,25 @@ bottom: 0;
 
 }
 #centered_box_graph{
+  position : relative;   
     background: #ffffff ;
-    padding: 2%;
+    padding: 1%;
     /*box-shadow: 5px 5px 15px #888888;*/
     color: black;
     font-size:125%;
        width    : 1000px;
 margin: 0 auto;
+
    //margin: 0 auto;
 }
 #dataentry_container{
     position : absolute;    
     width    : 1200px;
-    height   : 400px;
+    height   : 380px;
     left     : 50%;
     top      : 50%;
     margin-left : -600px; /* half of the width  */
-    margin-top  : -200px; /* half of the height */
+    margin-top  : -190px; /* half of the height */
 }
 #repairlog_container{
     position : absolute;    
