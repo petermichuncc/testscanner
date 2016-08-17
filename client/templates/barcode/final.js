@@ -33,6 +33,7 @@ var options = {
 };
 MDSnackbars.show(options)
 */
+
 Materialize.toast('<span class="toasttextbig center spantest"> Good job </span>', 999999000, 'light-blue lighten-2 cp z-depth-2')
 
 //Add code to save the person and partnumber of job to a database
@@ -171,6 +172,7 @@ output=output.concat(span2)
 I need to output text with the Session.get("kanbancount") on it
 
 */
+/*
 var output2=Session.get("kanbancount")
 
 if (output2<2)
@@ -190,6 +192,7 @@ output2=span1.concat(output2)
 var span2='</span>'
 output2=output2.concat(span2)
   Materialize.toast(output2, 999999000, 'light-blue lighten-2 cp z-depth-2 toasttextbig')
+  */
   }
 
   },

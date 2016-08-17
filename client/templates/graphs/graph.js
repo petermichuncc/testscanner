@@ -82,6 +82,19 @@ Session.set("countnew",count)
 }
 else if (Session.get("countnew")==2 && Session.get("choice")=="workcenter")
 {
+//Here I'll be selecting the option to see a comparison of 
+var test = $( "#s1" ).val()
+  value=$( "#s1" ).val()
+ 
+Session.set("workcenterchoice", test)
+console.log("this is the choice session " + Session.get("workcenterchoice"))
+count=count+1;
+Session.set("countnew",count)
+
+
+}
+else if (Session.get("countnew")==3 && Session.get("choice")=="workcenter")
+{
 //Here I need to grab the name of the operator and use this to calculate average productivity by
 //shift
 var test = $( "#workcenter" ).val()

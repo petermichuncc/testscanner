@@ -4,7 +4,7 @@ import { render } from 'react-dom';
 import injectTapEventPlugin from 'react-tap-event-plugin';
 
 import App2 from '../imports/ui/button.jsx';
- injectTapEventPlugin();
+ //injectTapEventPlugin();
      Template.button.created = function () {
 
 

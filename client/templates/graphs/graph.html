@@ -138,8 +138,24 @@ $('#name').focus();
   {{/if}} 
  {{#if $.Session.equals 'choice' "workcenter"}}
  
-
  {{#if $.Session.equals 'countnew' 2}}
+ <!-- Here the user needs to select if they want to look at a shift of a specific work center or
+ if they want to compare the average of all work centers-->
+<div class="form-group mytext">
+    <label for="" class=""><span class=""> Please select a option</span></label>
+    <select id="s1" class="form-control drop" required>
+      <option value="shift">Workcenter by shift</option>
+       <option value="all">Compare all workcenters</option>
+       
+    </select>
+
+</div>
+ <button class="btn btn-default 1 light-blue z-depth-3 whitetext" id="test" type="submit">Previous</button> 
+<button class="btn btn-default 2 light-blue z-depth-3 whitetext" id="test" type="submit">Select</button>  
+
+{{/if}}  
+ {{#if $.Session.equals 'workcenterchoice' "shift"}}
+ {{#if $.Session.equals 'countnew' 3}}
  {{>testgraphworkcell}}
 <div class="form-group mytext">
     {{>search2}}
@@ -149,11 +165,14 @@ $('#name').focus();
 <button class="btn btn-default 2 light-blue z-depth-3 whitetext" id="test" type="submit">Select</button>  
 
 {{/if}}  
+{{/if}}
+ {{#if $.Session.equals 'workcenterchoice' "all"}}
  {{#if $.Session.equals 'countnew' 3}}
 
- <button class="btn btn-default 1 light-blue z-depth-3 whitetext" id="test" type="submit">Previous</button> 
- 
 
+
+ 
+{{/if}}  
 {{/if}}  
     {{/if}} 
 

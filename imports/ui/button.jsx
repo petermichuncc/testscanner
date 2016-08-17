@@ -98,29 +98,22 @@ const style = {
     
  <MuiThemeProvider >
  
-      <div id="repairlog_container" className="center">
+
         <header>
-         <PagePic/>
-    <div id="centered_box"  className="z-depth-5 center">
+        
+
     
-           <form className="new-task" onSubmit={this.handleSubmit.bind(this)} >
-            <input
-              type="text"
-              id="initialstest"
-              ref="textInput"
-              placeholder="Type to add new tasks"
-            />
+         
             <RaisedButton
             label="ok" primary={true} 
             secondary={true}
             onTouchTap={this.handleTouchTap}
           />
-          </form>
-           </div>
+         
         </header>
  
         
-      </div>
+
       
          </MuiThemeProvider>
     );
