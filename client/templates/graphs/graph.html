@@ -1,6 +1,6 @@
 <template name="graph">
 
-
+<link type="text/css" rel="stylesheet" href="css/bootstrap-material-design.css" />
 
 
 
@@ -29,13 +29,13 @@
 
       {{#if $.Session.equals 'countnew' 0}}
 {{>testgraphnew}}
-{{/if}}
+
 
 
 
 <!--So here I will need to choose which select boxes to show -->
 <!--                                   -->
- {{#if $.Session.equals 'countnew' 0}}
+
 <div class="form-group mytext">
     
     <select id="s1" class="form-control drop" required>
@@ -52,9 +52,9 @@
     </select>
 
 </div>
- <button class="btn btn-default 2 light-blue z-depth-3 whitetext" id="test" type="submit">Select</button> 
+ <button class="btn btn-default 2 light-blue z-depth-3 whitetext" id="test" type="submit">Select</button> <br>
 
- <button class="btn btn-default 1 light-blue z-depth-3 whitetext" id="test" type="submit">Graph Selection</button> 
+ <button class="btn btn-default 1 light-blue z-depth-3 whitetext" id="test" type="submit">Graph Select Menu</button> 
    {{/if}} 
     {{#if $.Session.equals 'countnew' 1}}
 
@@ -77,12 +77,7 @@
 
  {{#if $.Session.equals 'choice' "operator"}}
   {{#if $.Session.equals 'countnew' 2}}
-<!-- Here I need to get the operators name
-I take in their name and then later do a regex search through mongodb
-for 
 
-
--->
  <div class="mytext ">
             
             <div class="input-field col ">
@@ -102,14 +97,14 @@ $('#name').focus();
 
 {{/if}}
  {{#if $.Session.equals 'countnew' 3}}
-
+<!-- I need to grab the choice and use it to determine which graphs to show -->
 
 
 <div class="form-group mytext">
     <label for="" class=""><span class=""> Please select a option</span></label>
     <select id="s1" class="form-control drop" required>
-      <option value="operator">workcenter</option>
-       <option value="workcenter">workcenter avg</option>
+      <option value="single">View average for workcenter</option>
+       <option value="all">View average for all workcenters</option>
        <option value="workcenter">Productivity avg by workcenter</option>
     </select>
 
@@ -122,10 +117,23 @@ $('#name').focus();
 {{#if $.Session.equals 'countnew' 4}}
 <!-- Here I will have a drop down that only shows the work centers associated with this operator-->
 <!-- Session variable for their choice -->
-{{#if $.Session.equals 'workcenterchoice' "workcenter"}}
+{{#if $.Session.equals 'operatorchoice' "single"}}
+
+<!-- show a single work cell that is chosen by the user -->
+<!-- Here show a input box asking for workcell-->
 
 
-{{/if}}
+
+
+
+<div class="form-group mytext">
+    {{>search2}}
+    
+</div>
+
+
+
+
 
 
  <button class="btn btn-default 1 light-blue z-depth-3 whitetext" id="test" type="submit">Previous</button>
@@ -135,6 +143,7 @@ $('#name').focus();
 
 
 
+  {{/if}} 
   {{/if}} 
  {{#if $.Session.equals 'choice' "workcenter"}}
  
@@ -154,8 +163,9 @@ $('#name').focus();
 <button class="btn btn-default 2 light-blue z-depth-3 whitetext" id="test" type="submit">Select</button>  
 
 {{/if}}  
- {{#if $.Session.equals 'workcenterchoice' "shift"}}
  {{#if $.Session.equals 'countnew' 3}}
+ {{#if $.Session.equals 'workcenterchoice' "shift"}}
+
  {{>testgraphworkcell}}
 <div class="form-group mytext">
     {{>search2}}
@@ -164,10 +174,10 @@ $('#name').focus();
  <button class="btn btn-default 1 light-blue z-depth-3 whitetext" id="test" type="submit">Previous</button> 
 <button class="btn btn-default 2 light-blue z-depth-3 whitetext" id="test" type="submit">Select</button>  
 
-{{/if}}  
+  
 {{/if}}
  {{#if $.Session.equals 'workcenterchoice' "all"}}
- {{#if $.Session.equals 'countnew' 3}}
+
 
 
 

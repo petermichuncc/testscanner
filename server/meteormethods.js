@@ -918,12 +918,9 @@ averageallworkcenter: function (workcenter) {
 
         //This should take in a work center
         console.log("this is the workcenter "+ workcenter)
-      /*  var string="/"
-        string=string.concat(workcenter)
-        string=string.concat("/")*/
-    
-        //count the amount of entries for each shift basically 
-        //I must do a regex for the workcenter
+      /*
+
+      */
       var shift1count=Dataentries.find({workcenter: { $regex: workcenter },shift:"shift 1"}).count()
       var shift2count=Dataentries.find({workcenter: { $regex: workcenter },shift:"shift 2"}).count()
       var shift3count=Dataentries.find({workcenter: { $regex: workcenter },shift:"shift 3"}).count()

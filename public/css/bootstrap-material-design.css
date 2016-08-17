@@ -1546,7 +1546,7 @@ output {
 .input-sm select[multiple].input-sm {
   height: auto;
 }
-/*
+
 .form-group-sm .form-control {
   height: 24px;
   padding: 3px 0;
@@ -1658,6 +1658,7 @@ output {
 .label.label-danger {
   background-color: #f44336;
 }
+/*
 .form-control,
 .form-group .form-control {
   border: 0;
@@ -1679,6 +1680,7 @@ output {
           box-shadow: none;
   border-radius: 0;
 }
+
 .form-control::-moz-placeholder,
 .form-group .form-control::-moz-placeholder {
   color: #BDBDBD;
@@ -1710,12 +1712,12 @@ fieldset[disabled] .form-group .form-control {
   border-bottom: 1px dotted #D2D2D2;
 }
 .form-group {
-  position: relative;
+ 
 }
 .form-group.label-static label.control-label,
 .form-group.label-placeholder label.control-label,
 .form-group.label-floating label.control-label {
-  position: absolute;
+  
   pointer-events: none;
   -webkit-transition: 0.3s ease all;
        -o-transition: 0.3s ease all;
@@ -1728,7 +1730,7 @@ fieldset[disabled] .form-group .form-control {
   display: none;
 }
 .form-group .help-block {
-  position: absolute;
+
   display: none;
 }
 .form-group.is-focused .form-control {
@@ -1927,7 +1929,7 @@ label.control-label {
 }
 .form-group.label-floating input.form-control:-webkit-autofill ~ label.control-label label.control-label {
   top: -30px;
-  left: 0;
+ 
   font-size: 12px;
   line-height: 1.07142857;
 }
@@ -1990,7 +1992,7 @@ label.control-label {
 }
 .form-group.form-group-sm.label-floating input.form-control:-webkit-autofill ~ label.control-label label.control-label {
   top: -25px;
-  left: 0;
+  
   font-size: 9px;
   line-height: 1.125;
 }
@@ -2047,13 +2049,13 @@ label.control-label {
 .form-group.form-group-lg.label-floating.is-focused label.control-label,
 .form-group.form-group-lg.label-floating:not(.is-empty) label.control-label {
   top: -32px;
-  left: 0;
+  
   font-size: 14px;
   line-height: 0.99999998;
 }
 .form-group.form-group-lg.label-floating input.form-control:-webkit-autofill ~ label.control-label label.control-label {
   top: -32px;
-  left: 0;
+ 
   font-size: 14px;
   line-height: 0.99999998;
 }
@@ -2072,6 +2074,7 @@ select.form-control[multiple],
 .form-group.is-focused select.form-control[multiple] {
   height: 85px;
 }
+*/
 .input-group-btn .btn {
   margin: 0 0 7px 0;
 }
@@ -2090,7 +2093,7 @@ select.form-control[multiple],
 }
 .form-group input[type=file] {
   opacity: 0;
-  position: absolute;
+
   top: 0;
   right: 0;
   bottom: 0;
@@ -2099,7 +2102,7 @@ select.form-control[multiple],
   height: 100%;
   z-index: 100;
 }
-*/
+
 legend {
   border-bottom: 0;
 }
