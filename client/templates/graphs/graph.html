@@ -77,22 +77,11 @@
 
  {{#if $.Session.equals 'choice' "operator"}}
   {{#if $.Session.equals 'countnew' 2}}
-
- <div class="mytext ">
-            
-            <div class="input-field col ">
-                <input id="name" type="text" class="validate required" autofocus autocomplete="off" required/>
-                <label for="" class=""><span class=""> Please enter the operator's name</span></label>
-            </div>
-        </div>
-
-<script>
-
- 
-
-$('#name').focus();
- </script>
+<div class="form-group mytext">
+{{>opsearch}}
+</div>
  <button class="btn btn-default 1 light-blue z-depth-3 whitetext" id="test" type="submit">Previous</button> 
+
 <button class="btn btn-default 2 light-blue z-depth-3 whitetext" id="test" type="submit">Select</button>
 
 {{/if}}

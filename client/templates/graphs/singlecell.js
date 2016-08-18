@@ -11,14 +11,23 @@ Template.singlecell.topGenresChart = function() {
 //based on the count I need to determine which data set to ship over to this graph
 //
 /*
-Basically I will 
+Basically I will take in a persons name or department then send this info to
+the reactive method and return the average for the 
+
+*/
+/* basically do certain things based on the users choice
+ if the user chose work center then use then send the workcentername
+ if the user chose operator then send the operator name
+    */
+/*
+if(Session.get("operator"))
+
+else if()
 
 */
 
 var both=ReactiveMethod.call('averageworkcenter',Session.get("workcenterName"))
-var shift1=both[0]
-var shift2=both[1]
-var shift3=both[2]
+
 
 
 if (typeof shift1=="number"||typeof shift2=="number"||typeof shift3=="number")

@@ -14,8 +14,11 @@ $("#myBtn").click(function(){
 Template.table.helpers({
     dataentries: function(){
     	Meteor.subscribe('dataentries');
-      console.log("count dataentries "+ Dataentries.find().count())
+      console.log("test ")
+      console.log("This is the type of data "+ typeof Dataentries.find({},{sort: {timestamp: -1}, limit: 5}) )
      
+     var test =ReactiveMethod.call('dataTable')
+     console.log("this is the typeof data server test "+ typeof ReactiveMethod.call('dataTable'))
      return Dataentries.find({},{sort: {timestamp: -1}, limit: 5})
    
       //return Dataentries.find({})

@@ -818,7 +818,70 @@ return desc
 }
 
 
-        },         
+        },
+ averagesingleworkcenter: function (name,workcenter) {
+       //So this function will take in an ekanban upc or item id
+       //It will then find the suffix of the item id and then find the associated
+       //color from the colors collection.    
+      try{
+          
+        //This should take in a work center
+        console.log("this is the workcenter "+ workcenter)
+      /*  var string="/"
+        string=string.concat(workcenter)
+        string=string.concat("/")*/
+    
+        //count the amount of entries for each shift basically 
+        //I must do a regex for the workcenter
+      var count=Dataentries.find({workcenter: { $regex: workcenter },shift:"shift 1"}).count()
+      
+      console.log("this is the shift 1 count " + count)
+    
+
+    
+
+    
+       
+       
+
+       //var totalpermanent=0;
+       
+      var total = 0;
+
+Dataentries.find({workcenter: { $regex: workcenter }}).map(function(doc) {
+  total+= doc.productivity;
+});
+
+
+console.log("this is the total shift 1 "+ total)
+if(total!=0 &&count!=0)
+{
+var avg=total/count
+avg=avg.toFixed(2)
+avg=Number(avg)
+}
+else
+{
+  shift1avg=Number(0)
+}
+
+//console.log("this is the temp total in base average" + totaltemp)
+
+var avgarray=[]
+avgarray.push(avg)
+
+
+console.log("this is the array length "+ avgarray.length)
+console.log("this is array position 1 " + avgarray[0])
+return avgarray
+
+}catch(err)
+{
+  console.log("this is the error " + err)
+}
+
+
+        },                
  averageworkcenter: function (workcenter) {
        //So this function will take in an ekanban upc or item id
        //It will then find the suffix of the item id and then find the associated
@@ -1082,6 +1145,12 @@ return avgarray
             //console.log(_time);
             return _time;
         },
+     dataTable: function () {
+           console.log("this is the type of data server " + typeof Dataentries.find({},{sort: {timestamp: -1}, limit: 5}))
+        return Dataentries.find({},{sort: {timestamp: -1}, limit: 5})
+
+
+        }     
 
 
 });

@@ -96,7 +96,6 @@ mongo-livedata@1.0.12
 mpowaga:string-template@0.1.0
 mrt:csv-to-collection@0.2.0
 mrt:jquery-ui@1.9.2
-mrt:jquery-ui-bootstrap@1.8.16
 mrt:nprogress@0.2.0
 natestrauser:animate-css@3.5.1
 netanelgilad:excel@0.2.6

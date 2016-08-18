@@ -115,11 +115,29 @@ else if (Session.get("countnew")==3 && Session.get("choice")=="operator")
 {
 //Here I need to grab the name of the operator and use this to calculate average productivity by
 //shift
+var test = $( "#name" ).val()
+  value=$( "#name" ).val()
+ console.log("test")
+ console.log("test")
+ console.log("test")
+Session.set("operatorchoice", test)
+console.log("this is the workcenter choice session " + Session.get("operatorchoice"))
+console.log("this current count is "+3)
+count=count+1;
+Session.set("countnew",count)
+
+
+
+}
+else if (Session.get("countnew")==4 && Session.get("workcenterchoice")=="single")
+{
+//Here I need to grab the name of the operator and use this to calculate average productivity by
+//shift
 var test = $( "#s1" ).val()
   value=$( "#s1" ).val()
  
-Session.set("workcenterchoice", test)
-console.log("this is the choice session " + Session.get("operatorchoice"))
+Session.set("operatorchoice", test)
+console.log("this is the workcenter choice session " + Session.get("operatorchoice"))
 count=count+1;
 Session.set("countnew",count)
 

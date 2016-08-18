@@ -48,7 +48,6 @@ ecmascript
 dpankros:timer
 flyandi:reactive-countdown
 twbs:bootstrap
-mrt:jquery-ui-bootstrap
 matdutour:popup-confirm
 react-meteor-data
 react-template-helper
