@@ -67,7 +67,7 @@
     </select>
 
 </div>
- <button class="btn btn-default 1 light-blue z-depth-3 whitetext" id="test" type="submit">Permanent vs Temp</button> 
+ <button class="btn btn-default 1 light-blue z-depth-3 whitetext" id="test" type="submit">Permanent vs Temp</button> <br>
 <button class="btn btn-default 2 light-blue z-depth-3 whitetext" id="test" type="submit">Select</button> 
 
 
@@ -166,11 +166,64 @@
   
 {{/if}}
  {{#if $.Session.equals 'workcenterchoice' "all"}}
+  {{#if $.Session.equals 'graphnew' 0}}
+{{>allworkcell}}
+
+
+ <button class="btn btn-default 1 light-blue z-depth-3 whitetext" id="test" type="submit">Previous</button> 
+  
+<button class="btn btn-default 7 light-blue z-depth-3 whitetext" id="test" type="submit">Next Graph</button> 
+
+ {{/if}} 
+  {{#if $.Session.equals 'graphnew' 1}}
+
+{{>allworkcell2}}
 
 
 
+  <button class="btn btn-default 6 light-blue z-depth-3 whitetext" id="test" type="submit">Previous Graph</button> 
+<button class="btn btn-default 7 light-blue z-depth-3 whitetext" id="test" type="submit">Next Graph</button> 
 
- 
+
+
+  {{/if}}
+  {{#if $.Session.equals 'graphnew' 2}}
+
+{{>allworkcell3}}
+
+
+
+  <button class="btn btn-default 6 light-blue z-depth-3 whitetext" id="test" type="submit">Previous Graph</button> 
+<button class="btn btn-default 7 light-blue z-depth-3 whitetext" id="test" type="submit">Next Graph</button> 
+
+
+
+  {{/if}}
+  {{#if $.Session.equals 'graphnew' 3}}
+
+{{>allworkcell4}}
+
+
+
+  <button class="btn btn-default 6 light-blue z-depth-3 whitetext" id="test" type="submit">Previous Graph</button> 
+<button class="btn btn-default 7 light-blue z-depth-3 whitetext" id="test" type="submit">Next Graph</button> 
+
+
+
+  {{/if}}
+  {{#if $.Session.equals 'graphnew' 4}}
+
+{{>allworkcell5}}
+
+
+
+  <button class="btn btn-default 6 light-blue z-depth-3 whitetext" id="test" type="submit">Previous Graph</button> 
+<button class="btn btn-default 7 light-blue z-depth-3 whitetext" id="test" type="submit">Next Graph</button> 
+
+
+
+  {{/if}}
+
 {{/if}}  
 {{/if}}  
     {{/if}} 

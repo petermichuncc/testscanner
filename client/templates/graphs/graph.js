@@ -2,6 +2,8 @@
 Meteor.subscribe('dataentries');
  Meteor.subscribe('datacenters');
  var count=-1;
+ var graph=0;
+ Session.set("graphnew",0)
 Session.set("countnew",-1)
 Session.set("department1", "datacom")
 Session.set("choice", null)
@@ -177,6 +179,28 @@ count=count+2;
  
 Session.set("countnew",count)
 
+
+},
+'click .6': function(event, template){
+  if (graph>0)
+  {
+graph=graph-1;
+Session.set("graphnew",graph)
+  }
+ 
+
+
+
+},
+'click .7': function(event, template){
+  if (graph<4)
+  {
+graph=graph+1;
+  
+ 
+Session.set("graphnew",graph)
+
+}
 
 }
 

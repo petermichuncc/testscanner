@@ -1,7 +1,7 @@
 
 Meteor.subscribe('dataentries');
  Meteor.subscribe('datacenters');
-Template.allworkcell.topGenresChart = function() {
+Template.allworkcell5.topGenresChart = function() {
 
     //Here I need to have a server side fxn that  I call that returns
     //the average for permanent and another for temp
@@ -16,14 +16,11 @@ Basically I will
 */
 //I need to grab a average for every work center
 /*
-16-67
-,'1505','1506','1508','1511','1513',
-  '1514','1515','1516','1517','1518',"1519","1520","2043","2006","2018",
-  "2039","2060","2071","2091","2092","6020","6021","6105","6234","6304",
-  "6305","6308","6315","6316","6318","6319","6320","6341","6343","6345",
-  "6346","6355","6364","6370","3021","5101","5102","5103","5104","5105",
-  "5300","1","2","3","4","5","6","7","8","9",
-    "10","11","12","13","14","49"
+61-76
+
+  
+  ,
+  
 
 */
 var both=ReactiveMethod.call('averageallworkcenter')
@@ -109,22 +106,25 @@ console.log("this is typeof wc1 "+ typeof wc1)
 if (typeof wc1=="number")
 {Session.set("loading",0)
     var datatest=[
-                ['wc1',  wc1],
-                ['wc2',   wc2],
-                ['wc3',   wc3],
-              ['wc4',   wc4],
-              ['wc5',   wc5],
-              ['wc6',   wc6],
-              ['wc7',   wc7],
-              ['wc8',   wc8],
-              ['wc9',   wc9],
-              ['wc10',   wc10],
-              ['wc11',   wc11],
-              ['wc12',   wc12],
-              ['wc13',   wc13],
-              ['wc14',   wc14],
-              ['wc15',   wc15]
+                
               
+              
+              ['wc61',   wc61],
+              ['wc62',   wc62],
+              ['wc63',   wc63],
+              ['wc64',   wc64],
+              ['wc65',   wc65],
+              ['wc66',   wc66],
+              ['wc67',   wc67],
+              ['wc68',   wc68],
+              ['wc69',   wc69],
+              ['wc70',   wc70],
+              ['wc71',   wc71],
+              ['wc72',   wc72],
+              ['wc73',   wc73],
+              ['wc74',   wc74],
+              ['wc75',   wc75],
+              ['wc76',   wc76]
              
                
             ]
@@ -145,21 +145,21 @@ if (typeof wc1=="number")
                 }
         },
         title: {
-            text: "Averages for all workcenters Page 1"
+            text: "Averages for all workcenters Page 5"
         },
          xAxis: {
-            categories: ['1001','1020','1021','1029', '1012','1013','1058','1059','1095','1096',
-  '1097','1501','1502','1503','1504'],
+            categories: ["5300","1","2","3","4","5","6","7","8","9",
+    "10","11","12","13","14","49"],
             min: 0,
-            max:14,
+            max:15,
             labels: {
                 style: {
                     color: 'black',
-                    fontSize:'15px'
+                    fontSize:'25px'
                 }
             }
         },
-        scrollbar: {
+           scrollbar: {
             enabled: true
         },
         yAxis: {
@@ -231,6 +231,9 @@ function showValues() {
         Session.set("loading",1)
     }
 };
+
+
+
 
 
 

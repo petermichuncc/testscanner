@@ -1,11 +1,11 @@
-<template name="allworkcell">
+<template name="allworkcell3">
 <!--<script src="/http://code.highcharts.com/highcharts-3d.js"></script>-->
 
 <div id="container"></div>
 <!--Show when this occured-->
 {{timeframe}}
 
-{{> highchartsHelper chartId="test" chartWidth="90%" charHeight="90%" chartObject=topGenresChart}}
+{{> highchartsHelper chartId="test" chartWidth="100%" charHeight="100%" chartObject=topGenresChart}}
 
 {{#if $.Session.equals 'loading' 1}}
 	 <div class="preloader-wrapper big active">
