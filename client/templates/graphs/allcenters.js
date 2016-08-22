@@ -1,6 +1,7 @@
 
 Meteor.subscribe('dataentries');
  Meteor.subscribe('datacenters');
+ Session.set("department2","datacom")
 Template.allworkcell.topGenresChart = function() {
 
     //Here I need to have a server side fxn that  I call that returns
@@ -22,19 +23,25 @@ var temp=both[0]
 var permanent=both[1]
 */
 
-var datatest=ReactiveMethod.call('averageallworkcenter',"raceway")
+var datatest=ReactiveMethod.call('averageallworkcenter',Session.get("department2"))
  
 console.log("this is typeof dataset "+ typeof datatest)
-console.log("this is the type of dataset inner "+ typeof datatestinner)
+console.log("this is the data test length " + datatest.length)
 
-var test=[50,60]
-console.log("this is the test array " + typeof test)
+
 /*
 Dataset should be all the work centers associated with a particular department
 I'll need to make a reactive method that calls the server to find an array of arrays that
 holds all the work centers with a particular department.
 
 */
+
+var testarray=[]
+for (var i=0; i<datatest.length;i++)
+{
+    testarray[i]=datatest[i][0]
+    console.log("this is the test array "+ testarray[i])
+}
 
 
 if (0==0)
@@ -57,10 +64,10 @@ if (0==0)
                 }
         },
         title: {
-            text: "Averages for all workcenters Page 1"
+            text: "Averages for "+Session.get("department2")
         },
          xAxis: {
-           
+           categories: testarray,
             labels: {
                 style: {
                     color: 'black',
@@ -126,7 +133,8 @@ if (0==0)
 
 
     };
-
+chart.series[0].update({name:"Average productivity"}, false);
+chart.redraw();
 function showValues() {
         $('#alpha-value').html(chart.options.chart.options3d.alpha);
         $('#beta-value').html(chart.options.chart.options3d.beta);

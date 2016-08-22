@@ -95,16 +95,14 @@ Session.set("countnew",count)
 
 
 }
-else if (Session.get("countnew")==3 && Session.get("choice")=="workcenter")
+else if (Session.get("countnew")==3 && Session.get("workcenterchoice")=="all")
 {
 //Here I need to grab the name of the operator and use this to calculate average productivity by
 //shift
-var test = $( "#workcenter" ).val()
-  value=$( "#workcenter" ).val()
+  var test = $( "#s1" ).val()
+  value=$( "#s1" ).val()
   console.log("this is the department value " + value)
-  //put the work center name into this session variable
-
-Session.set("workcenterName", test)
+Session.set("department2", test)
 
 
 
