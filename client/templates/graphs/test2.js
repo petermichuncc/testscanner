@@ -12,6 +12,7 @@ Template.testgraphnew.topGenresChart = function() {
 var both=ReactiveMethod.call('average',Session.get("department1"))
 var temp=both[0]
 var permanent=both[1]
+
 //var temp=ReactiveMethod.call('tempaverage')
 //var permanent=ReactiveMethod.call('permanentaverage')
 if (typeof permanent=="number")
