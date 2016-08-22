@@ -2,24 +2,42 @@
 snack bar
 */
 
-
+.outer-div
+{
+    position: absolute;
+     bottom: 30px;
+     width: 100%;
+}
 
 
 
 #snackbar {
     visibility: hidden; /* Hidden by default. Visible on click */
     min-width: 250px; /* Set a default minimum width */
-    margin-left: -125px; /* Divide value of min-width by 2 */
+    //margin-left: -125px; /* Divide value of min-width by 2 */
     margin:0 auto;
-    background-color: #4fc3f7; /* Black background color */
+    background-color: #4fc3f7; 
     color: #fff; /* White text color */
     text-align: center; /* Centered text */
     border-radius: 2px; /* Rounded borders */
-    padding: 16px; /* Padding */
-    position: fixed; /* Sit on top of the screen */
+    padding: 10px; /* Padding */
+   //position: absolute; /* Sit on top of the screen */
     z-index: 1; /* Add a z-index if needed */
-    left: 34vw; /* Center the snackbar */
-    bottom: 30px; /* 30px from the bottom */
+    //left: 34vw; /* Center the snackbar */
+   
+     display: inline-block;
+     width: 50vw ;
+
+  //position: absolute;
+  margin-left: auto ;
+  margin-right: auto ;
+ min-height: 10vh;
+overflow: hidden;
+
+  //position:fixed;
+ // width: 75%;
+   //left: 38%;
+//margin-left: -37.5%;
 }
 
 /* Show the snackbar when clicking on a button (class added with JavaScript) */

@@ -15,17 +15,13 @@ Basically I will
 
 */
 //I need to grab a average for every work center
-/*
-16-67
-,'1505','1506','1508','1511','1513',
-  '1514','1515','1516','1517','1518',"1519","1520","2043","2006","2018",
-  "2039","2060","2071","2091","2092","6020","6021","6105","6234","6304",
-  "6305","6308","6315","6316","6318","6319","6320","6341","6343","6345",
-  "6346","6355","6364","6370","3021","5101","5102","5103","5104","5105",
-  "5300","1","2","3","4","5","6","7","8","9",
-    "10","11","12","13","14","49"
 
+/*
+var both=ReactiveMethod.call('average',Session.get("department1"))
+var temp=both[0]
+var permanent=both[1]
 */
+
 var both=ReactiveMethod.call('averageallworkcenter')
 
 var wc1=both[0]
@@ -104,6 +100,13 @@ var wc73=both[72]
 var wc74=both[73]
 var wc75=both[74]
 var wc76=both[75]
+
+/*
+Dataset should be all the work centers associated with a particular department
+I'll need to make a reactive method that calls the server to find an array of arrays that
+holds all the work centers with a particular department.
+
+*/
 
 console.log("this is typeof wc1 "+ typeof wc1)
 if (typeof wc1=="number")
