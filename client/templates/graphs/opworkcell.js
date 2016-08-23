@@ -64,7 +64,7 @@ if (0==0)
                 }
         },
         title: {
-            text: "Averages for "+Session.get("department2")
+            text: "Operator vs Permanent for "+Session.get("operator")
         },
          xAxis: {
            categories: testarray,

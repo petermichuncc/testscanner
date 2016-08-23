@@ -1123,8 +1123,23 @@ averagesingleworkcenter: function (workcenter,operator) {
 
   */
    
-
-
+var count=Dataentries.find({workcenter: { $regex: workcenter }, employeestatus: "permanent"}).count()
+    console.log("this is the operator " + operator)
+    console.log("this is the count "+ count)
+    Dataentries.find({workcenter: { $regex: workcenter }, employeestatus: "permanent"}).map(function(doc) {
+  total += doc.productivity;
+});
+    if(total>0&&count>0)
+    {
+    var avg=total/count
+    avg=avg.toFixed(2)
+    avg=Number(avg)
+  }
+  else
+  {
+    avg=0;
+  }
+ testarray.push([test,avg])
 
 
 
