@@ -1061,7 +1061,110 @@ return avgarray
 
 
         },
+averagesingleworkcenter: function (workcenter,operator) {
+       //So this function will take in an ekanban upc or item id
+       //It will then find the suffix of the item id and then find the associated
+       //color from the colors collection.    
+      try{
 
+        //This should take in a work center
+       
+      /*
+        Basically type all the work centers here
+
+      */
+   
+
+ var testarray=[]
+ 
+ var test=null
+ var testname=null
+    var total=0
+    test=workcenter
+    var testnew=test
+   
+    console.log('this is the test '+ test)
+    console.log("this is test length " + test.length)
+    for (var i=0;i<test.length;i++)
+    {
+    testnew = testnew.slice(0, -1);
+    console.log("this is trimmed test " + testnew)
+    if (Datacenters.find({workcenter: { $regex: testnew }}).count()>0)
+    {
+      var workcenter=Datacenters.findOne({workcenter: { $regex: testnew }}).workcenter
+      console.log("this is the workcenter " + workcenter)
+      break;
+    }
+    
+    }
+    var count=Dataentries.find({workcenter: { $regex: workcenter }, name: { $regex: operator }}).count()
+    console.log("this is the operator " + operator)
+    console.log("this is the count "+ count)
+    Dataentries.find({workcenter: { $regex: workcenter }, name: { $regex: operator }}).map(function(doc) {
+  total += doc.productivity;
+});
+    if(total>0&&count>0)
+    {
+    var avg=total/count
+    avg=avg.toFixed(2)
+    avg=Number(avg)
+  }
+  else
+  {
+    avg=0;
+  }
+    console.log("this is the total " + total)
+    console.log("this is the avg "+ avg)
+    testarray.push([test,avg])
+    console.log('this is the  array test'+ testarray[0][1])
+        
+    /*
+  So now I need to do the same thing but for all the permanent for this work center
+
+  */
+   
+
+
+
+
+
+
+
+
+
+return testarray
+
+  /*
+      var totalwc1=0
+   var wc1count=Dataentries.find({workcenter: { $regex: wc1 }}).count()
+      Dataentries.find({workcenter: { $regex: wc1 }}).map(function(doc) {
+  totalwc1 += doc.productivity;
+});
+if(totalwc1!=0 &&wc1count!=0)
+{
+var wc1avg=totalwc1/wc1count
+wc1avg=wc1avg.toFixed(2)
+wc1avg=Number(wc1avg)
+}
+else
+{
+  wc1avg=Number(0)
+}
+
+
+avgarray.push(wc76avg)
+
+return avgarray
+*/
+
+
+}catch(err)
+{
+  console.log("this is the error " + err)
+}
+
+
+        },
 
 average: function (department) {
        //So this function will take in an ekanban upc or item id

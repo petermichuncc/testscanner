@@ -92,9 +92,9 @@
 <div class="form-group mytext">
     <label for="" class=""><span class=""> Please select an option</span></label>
     <select id="s1" class="form-control drop" required>
-      <option value="single">View average for workcenter</option>
-       <option value="all">View average for all workcenters</option>
-       <option value="workcenter">Productivity avg by workcenter</option>
+         <option value="all">View average for all workcenters</option>
+       <option value="single">Productivity avg by workcenter</option>
+       <option value="workcenter">Productivity avg overall</option>
     </select>
 
 </div>
@@ -107,16 +107,15 @@
 <!-- Here I will have a drop down that only shows the work centers associated with this operator-->
 <!-- Session variable for their choice -->
 {{#if $.Session.equals 'operatorchoice' "single"}}
+<!--basically Here I will show a copy of the testgraphworkcell that takes into consideration the operator-->
 
-<!-- show a single work cell that is chosen by the user -->
-<!-- Here show a input box asking for workcell-->
-
+{{>opworkcell}}
 
 
 
 
 <div class="form-group mytext">
-    {{>search2}}
+    {{>searchoperator}}
     
 </div>
 
@@ -142,8 +141,8 @@
 <div class="form-group mytext">
     <label for="" class=""><span class=""> Please select an option</span></label>
     <select id="s1" class="form-control drop" required>
-      <option value="shift">Workcenter by shift</option>
-       <option value="all">Compare all workcenters</option>
+      <option value="shift">View Workcenter Shifts</option>
+       <option value="all">Compare All Workcenters</option>
        
     </select>
 

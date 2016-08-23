@@ -111,20 +111,48 @@ Session.set("department2", test)
 
 
 }
-else if (Session.get("countnew")==3 && Session.get("choice")=="operator")
+else if (Session.get("countnew")==3 && Session.get("workcenterchoice")=="shift")
 {
 //Here I need to grab the name of the operator and use this to calculate average productivity by
 //shift
-var test = $( "#name" ).val()
-  value=$( "#name" ).val()
- console.log("test")
+  var test = $( "#workcenter" ).val()
+  value=$( "#workcenter" ).val()
+  console.log("this is the workcenter value " + value)
+Session.set("workcenterName", test)
+
+
+
+  //$('#name').val('');
+  //$("#name").focus();
+
+
+}
+else if (Session.get("countnew")==3 && Session.get("choice")=="operator")
+{
+
+var test = $( "#s1" ).val()
+  value=$( "#s1" ).val()
+ console.log("test of option" + s1)
  console.log("test")
  console.log("test")
 Session.set("operatorchoice", test)
-console.log("this is the workcenter choice session " + Session.get("operatorchoice"))
+console.log("this is the operator choice session " + Session.get("operatorchoice"))
 console.log("this current count is "+3)
 count=count+1;
 Session.set("countnew",count)
+
+
+
+}
+else if (Session.get("countnew")==4 && Session.get("operatorchoice")=="single")
+{
+//Here I need to grab the name of the operator and use this to calculate average productivity by
+//shift
+ var test = $( "#workcenter" ).val()
+  value=$( "#workcenter" ).val()
+  console.log("this is the workcenter value " + value)
+Session.set("workcenterName", test)
+
 
 
 
@@ -133,11 +161,10 @@ else if (Session.get("countnew")==4 && Session.get("workcenterchoice")=="single"
 {
 //Here I need to grab the name of the operator and use this to calculate average productivity by
 //shift
-var test = $( "#s1" ).val()
-  value=$( "#s1" ).val()
- 
-Session.set("operatorchoice", test)
-console.log("this is the workcenter choice session " + Session.get("operatorchoice"))
+ var test = $( "#workcenter" ).val()
+  value=$( "#workcenter" ).val()
+  console.log("this is the workcenter value " + value)
+Session.set("workcenterName", test)
 count=count+1;
 Session.set("countnew",count)
 
