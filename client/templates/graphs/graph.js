@@ -1,10 +1,10 @@
 
 Meteor.subscribe('dataentries');
  Meteor.subscribe('datacenters');
- var count=-1;
+ var count=0;
  var graph=0;
  Session.set("graphnew",0)
-Session.set("countnew",-1)
+Session.set("countnew",0)
 Session.set("department1", "datacom")
 Session.set("choice", null)
 Session.set("graphname", "Temp vs Permanent")
@@ -38,7 +38,10 @@ return false;
   {
   count=count-1;
   }
- 
+ else if (Session.get("countnew")==-1)
+  {
+  count=count+2;
+  }
 Session.set("countnew",count)
  
 
@@ -47,14 +50,11 @@ Session.set("countnew",count)
 'click .2': function(event, template){
   if (Session.get("countnew")==0)
   {
-  	Session.set("graphname", "Temp vs Permanent")
-  var test = $( "#s1" ).val()
-  value=$( "#s1" ).val()
-  console.log("this is the department value " + value)
-Session.set("department1", test)
-  department=$( "#s1" ).val()
+ count=count+1;
+Session.set("countnew",count)
 
 }
+
 else if (Session.get("countnew")==1)
 {
 
@@ -63,8 +63,26 @@ else if (Session.get("countnew")==1)
  
 Session.set("choice", test)
 console.log("this is the choice session " + Session.get("choice"))
-count=count+1;
+if (test=="vs")
+{
+  count=count-2;
 Session.set("countnew",count)
+}
+else
+{
+   count=count+1;
+Session.set("countnew",count)
+}
+}
+else if (Session.get("countnew")==-1 &&Session.get("choice")=="vs" )
+  {
+    Session.set("graphname", "Temp vs Permanent")
+  var test = $( "#s1" ).val()
+  value=$( "#s1" ).val()
+  console.log("this is the department value " + value)
+Session.set("department1", test)
+  department=$( "#s1" ).val()
+
 }
 else if (Session.get("countnew")==2 && Session.get("choice")=="operator")
 {

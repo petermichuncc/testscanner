@@ -20,22 +20,7 @@
 
      <div class="center">
         {{#if $.Session.equals 'countnew' -1}}
- <br>
-        <button class="waves-effect waves-light btn btn-default 4 light-blue z-depth-3 links">Permanent vs Temp </button><br><br>
-        <button class="waves-effect waves-light btn btn-default 5 light-blue z-depth-3 links">Operator or Workcenter </button><br><br>
-        
-        
-{{/if}}
-
-      {{#if $.Session.equals 'countnew' 0}}
-{{>testgraphnew}}
-
-
-
-
-<!--So here I will need to choose which select boxes to show -->
-<!--                                   -->
-
+ {{>testgraphnew}}
 <div class="form-group mytext">
     
     <select id="s1" class="form-control drop" required>
@@ -54,20 +39,28 @@
 </div>
  <button class="btn btn-default 2 light-blue z-depth-3 whitetext" id="test" type="submit">Select</button> <br>
 
- <button class="btn btn-default 1 light-blue z-depth-3 whitetext" id="test" type="submit">Graph Select Menu</button> 
+ <button class="btn btn-default 1 light-blue z-depth-3 whitetext" id="test" type="submit">Graph Menu</button> 
+        
+{{/if}}
+
+      {{#if $.Session.equals 'countnew' 0}}
+
+
+
+ <button class="btn btn-default 2 light-blue z-depth-3 whitetext" id="test" type="submit">Graph Menu</button> 
    {{/if}} 
     {{#if $.Session.equals 'countnew' 1}}
 
 <div class="form-group mytext">
      <label for="" class=""><span class=""> Please select an option</span></label>
     <select id="s1" class="form-control drop" required>
-      <option value="operator">operator</option>
-       <option value="workcenter">workcenter</option>
-       
+      <option value="operator">Operator graphs</option>
+       <option value="workcenter">Workcenter graphs</option>
+        <option value="vs">Temp vs Permanent graph</option>
     </select>
 
 </div>
- <button class="btn btn-default 1 light-blue z-depth-3 whitetext" id="test" type="submit">Permanent vs Temp</button> <br>
+
 <button class="btn btn-default 2 light-blue z-depth-3 whitetext" id="test" type="submit">Select</button> 
 
 
@@ -93,8 +86,8 @@
     <label for="" class=""><span class=""> Please select an option</span></label>
     <select id="s1" class="form-control drop" required>
          <option value="all">View average for all workcenters</option>
-       <option value="single">Productivity avg by workcenter</option>
-       <option value="overall">Productivity avg overall</option>
+       <option value="single">Productivity average by workcenter</option>
+       <option value="overall">Average for all workcenters</option>
     </select>
 
 </div>
@@ -120,10 +113,6 @@
 </div>
 
 
-
-
-
-
  <button class="btn btn-default 1 light-blue z-depth-3 whitetext" id="test" type="submit">Previous</button>
 <button class="btn btn-default 2 light-blue z-depth-3 whitetext" id="test" type="submit">Select</button>  
  
@@ -133,22 +122,16 @@
 
 {{>opaverageworkcell}}
 
+ <button class="btn btn-default 1 light-blue z-depth-3 whitetext" id="test" type="submit">Previous</button>
+  
+{{/if}}
+{{#if $.Session.equals 'operatorchoice' "all"}}
+<!--basically Here I will show a copy of the testgraphworkcell that takes into consideration the operator-->
 
-
-
-<div class="form-group mytext">
-    {{>searchoperator}}
-    
-</div>
-
-
-
-
-
+{{>allopworkcell}}
 
  <button class="btn btn-default 1 light-blue z-depth-3 whitetext" id="test" type="submit">Previous</button>
-<button class="btn btn-default 2 light-blue z-depth-3 whitetext" id="test" type="submit">Select</button>  
- 
+  
 {{/if}}
 
 
