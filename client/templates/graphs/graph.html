@@ -94,7 +94,7 @@
     <select id="s1" class="form-control drop" required>
          <option value="all">View average for all workcenters</option>
        <option value="single">Productivity avg by workcenter</option>
-       <option value="workcenter">Productivity avg overall</option>
+       <option value="overall">Productivity avg overall</option>
     </select>
 
 </div>
@@ -128,7 +128,28 @@
 <button class="btn btn-default 2 light-blue z-depth-3 whitetext" id="test" type="submit">Select</button>  
  
 {{/if}}
+{{#if $.Session.equals 'operatorchoice' "overall"}}
+<!--basically Here I will show a copy of the testgraphworkcell that takes into consideration the operator-->
 
+{{>opaverageworkcell}}
+
+
+
+
+<div class="form-group mytext">
+    {{>searchoperator}}
+    
+</div>
+
+
+
+
+
+
+ <button class="btn btn-default 1 light-blue z-depth-3 whitetext" id="test" type="submit">Previous</button>
+<button class="btn btn-default 2 light-blue z-depth-3 whitetext" id="test" type="submit">Select</button>  
+ 
+{{/if}}
 
 
   {{/if}} 

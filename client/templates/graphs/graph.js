@@ -104,7 +104,8 @@ else if (Session.get("countnew")==3 && Session.get("workcenterchoice")=="all")
   console.log("this is the department value " + value)
 Session.set("department2", test)
 
-
+count=count+1;
+Session.set("countnew",count)
 
   //$('#name').val('');
   //$("#name").focus();

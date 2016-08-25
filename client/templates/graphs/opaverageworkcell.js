@@ -2,7 +2,7 @@
 Meteor.subscribe('dataentries');
  Meteor.subscribe('datacenters');
  Session.set("department2","datacom")
-Template.opworkcell.topGenresChart = function() {
+Template.opaverageworkcell.topGenresChart = function() {
 
     //Here I need to have a server side fxn that  I call that returns
     //the average for permanent and another for temp
@@ -23,7 +23,7 @@ var temp=both[0]
 var permanent=both[1]
 */
 
-var datatest=ReactiveMethod.call('averagesingleworkcenter',Session.get("workcenterName"),Session.get("operator"))
+var datatest=ReactiveMethod.call('averageopworkcenter',Session.get("operator"))
  
 console.log("this is typeof dataset "+ typeof datatest)
 console.log("this is the data test length " + datatest.length)
@@ -151,13 +151,13 @@ function showValues() {
 
 
 
-Template.opworkcell.rendered = function(){
+Template.opaverageworkcell.rendered = function(){
      
 
 
 };
 
-Template.opworkcell.helpers({
+Template.opaverageworkcell.helpers({
     timeframe: function () {
 /*
 So here I need to show the user the time frame this is going on

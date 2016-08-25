@@ -18,6 +18,9 @@ Template.searchoperator.helpers({
   },
   legends: function() {
     return Dataentries.find({name:Session.get("operatorchoice")});
+  },
+  dataentries: function() {
+    return Dataentries.find({name:Session.get("operatorchoice")});
   }
 });
 
