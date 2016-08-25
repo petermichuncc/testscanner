@@ -196,7 +196,7 @@ Here I need to determine what to do with the s1 value based on the count
 
 
 */
-
+console.log("this is the count " + Session.get("countnew"))
 },
 'click .3': function(event, template){
   

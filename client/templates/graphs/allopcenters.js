@@ -64,7 +64,7 @@ if (0==0)
                 }
         },
         title: {
-            text: "Averages for "+Session.get("department2")
+            text: "Workcenter averages for "+Session.get("operator")
         },
          xAxis: {
            categories: testarray,
@@ -125,7 +125,7 @@ if (0==0)
             }
         },
         series: [{
-            
+            color: '#3f51b5',
             data: datatest
         }]
 

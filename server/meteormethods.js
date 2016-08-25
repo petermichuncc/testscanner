@@ -1000,7 +1000,7 @@ return avgarray
 
 
         },
-averageallopworkcenter: function (operator) {
+averageallopworkcenters: function (operator) {
        //So this function will take in an ekanban upc or item id
        //It will then find the suffix of the item id and then find the associated
        //color from the colors collection.    
@@ -1012,37 +1012,35 @@ averageallopworkcenter: function (operator) {
         Basically type all the work centers here
 
       */
+console.log("in the average all op workcenter fxn")
   var testarray=[]
- 
- var test=null
+  
+
  var testname=null
     var total=0
     
-    var testnew=test
+
+    var test=Datacenters.find({}).count()
+  console.log("this is the number of datacenters "+ test)
+  var test=Number(test)
+ 
+   for (var i=0;i<76;i++)
+    {
+      console.log("this is i"+ i)
    
-  
-   /* for (var i=0;i<test.length;i++)
+    test=Datacenters.find({},{sort: {timestamp: 1}, limit: i}).fetch().pop().workcenter
+   test=test.toString()
+    console.log("this is the workcenter i am testing "+ test)
+
+    if (Dataentries.find({workcenter: { $regex: test }, name:operator}).count()>0)
     {
-    testnew = testnew.slice(0, -1);
-    console.log("this is trimmed test " + testnew)
-    if (Datacenters.find({workcenter: { $regex: testnew }}).count()>0)
-    {
-      var workcenter=Datacenters.findOne({workcenter: { $regex: testnew }}).workcenter
-      console.log("this is the workcenter " + workcenter)
-      break;
-    }
-    
-    }*/
-    /*
-      Basically I need to find all the workcenters for this operator so do a search t
+        
+      var workcenter=Dataentries.findOne({workcenter: { $regex: test },name:operator}).workcenter
+      console.log("this is the workcenter found " + workcenter)
 
-
-
-    */
-    var count=Dataentries.find({name: { $regex: operator }}).count()
-    console.log("this is the operator " + operator)
-    console.log("this is the count "+ count)
-    Dataentries.find({name: { $regex: operator }}).map(function(doc) {
+         var count=Dataentries.find({workcenter: { $regex: test },name:operator}).count()
+      
+    Dataentries.find({workcenter: { $regex: test },name:operator}).map(function(doc) {
   total += doc.productivity;
 });
     if(total>0&&count>0)
@@ -1058,33 +1056,17 @@ averageallopworkcenter: function (operator) {
     console.log("this is the total " + total)
     console.log("this is the avg "+ avg)
     testarray.push([test,avg])
-    console.log('this is the  array test'+ testarray[0][1])
-        
-    /*
-  So now I need to do the same thing but for all the permanent for this work center
-
-  */
-   /*
-var count=Dataentries.find({workcenter: { $regex: workcenter }, employeestatus: "permanent"}).count()
-    console.log("this is the operator " + operator)
-    console.log("this is the count "+ count)
-    Dataentries.find({workcenter: { $regex: workcenter }, employeestatus: "permanent"}).map(function(doc) {
-  total += doc.productivity;
-});
-    if(total>0&&count>0)
-    {
-    var avg=total/count
-    avg=avg.toFixed(2)
-    avg=Number(avg)
-  }
-  else
-  {
-    avg=0;
-  }
- testarray.push([test,avg])
-*/
 
 
+
+
+          }
+
+     
+    
+  
+    }
+   
 
 
 

@@ -125,7 +125,7 @@ if (0==0)
             }
         },
         series: [{
-            
+            color: '#3f51b5',
             data: datatest
         }]
 

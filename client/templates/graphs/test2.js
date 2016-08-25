@@ -98,6 +98,7 @@ if (typeof permanent=="number")
             }
         },
         series: [{
+            color: '#3f51b5',
             data: datatest
         }]
 
