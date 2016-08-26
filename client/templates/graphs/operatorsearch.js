@@ -4,7 +4,7 @@ Template.opsearch.helpers({
   settings: function() {
     return {
       position: "top",
-      limit: 3,
+      limit: 2,
       options: 'i',
       rules: [
         {

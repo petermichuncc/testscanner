@@ -1017,7 +1017,7 @@ console.log("in the average all op workcenter fxn")
   
 
  var testname=null
-    var total=0
+   
     
 
     var test=Datacenters.find({}).count()
@@ -1026,11 +1026,11 @@ console.log("in the average all op workcenter fxn")
  
    for (var i=0;i<76;i++)
     {
-      console.log("this is i"+ i)
+     var total=0
    
     test=Datacenters.find({},{sort: {timestamp: 1}, limit: i}).fetch().pop().workcenter
    test=test.toString()
-    console.log("this is the workcenter i am testing "+ test)
+   
 
     if (Dataentries.find({workcenter: { $regex: test }, name:operator}).count()>0)
     {
@@ -1053,6 +1053,8 @@ console.log("in the average all op workcenter fxn")
   {
     avg=0;
   }
+
+    console.log("this is the count "+ count)
     console.log("this is the total " + total)
     console.log("this is the avg "+ avg)
     testarray.push([test,avg])
