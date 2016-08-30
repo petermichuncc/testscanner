@@ -1013,34 +1013,28 @@ averageallopworkcenters: function (operator) {
 
       */
 console.log("in the average all op workcenter fxn")
-  var testarray=[]
   
 
- var testname=null
-   
+
+  var testarray=[]
+     var testname=null
     
 
-    var test=Datacenters.find({}).count()
-  console.log("this is the number of datacenters "+ test)
-  var test=Number(test)
+    var distinctEntries = _.uniq(Dataentries.find({name:operator}, {sort: {workcenter:1}, fields: {workcenter:true}}).fetch().map(function(x) {
+ return x.workcenter;
+ }), true);
+
+
+  console.log("this is the number of datacenters "+ distinctEntries.length)
+ console.log("this is datacenters slot one " + distinctEntries[0])
  
-   for (var i=0;i<76;i++)
+   for (var i=0;i<distinctEntries.length;i++)
     {
      var total=0
    
-    test=Datacenters.find({},{sort: {timestamp: 1}, limit: i}).fetch().pop().workcenter
-   test=test.toString()
-   
-
-    if (Dataentries.find({workcenter: { $regex: test }, name:operator}).count()>0)
-    {
-        
-      var workcenter=Dataentries.findOne({workcenter: { $regex: test },name:operator}).workcenter
-      console.log("this is the workcenter found " + workcenter)
-
-         var count=Dataentries.find({workcenter: { $regex: test },name:operator}).count()
-      
-    Dataentries.find({workcenter: { $regex: test },name:operator}).map(function(doc) {
+             var count=Dataentries.find({workcenter:distinctEntries[i] ,name:operator}).count()
+        console.log("this is the count " + count+ " this is the workcenter " + distinctEntries[i])
+    Dataentries.find({workcenter: distinctEntries[i],name:operator}).map(function(doc) {
   total += doc.productivity;
 });
     if(total>0&&count>0)
@@ -1054,10 +1048,7 @@ console.log("in the average all op workcenter fxn")
     avg=0;
   }
 
-    console.log("this is the count "+ count)
-    console.log("this is the total " + total)
-    console.log("this is the avg "+ avg)
-    testarray.push([test,avg])
+       testarray.push([distinctEntries[i],avg])
 
 
 
@@ -1065,15 +1056,15 @@ console.log("in the average all op workcenter fxn")
           }
 
      
-    
+    return testarray
   
-    }
+    
    
 
 
 
 
-return testarray
+
 
 
 }catch(err)
@@ -1095,39 +1086,26 @@ averagesingleworkcenter: function (workcenter,operator) {
         Basically type all the work centers here
 
       */
-   
+   console.log("this is the workcetner "+ workcenter)
 
- var testarray=[]
- 
- var test=null
- var testname=null
-    var total=0
-    test=workcenter
-    var testnew=test
-   
-    console.log('this is the test '+ test)
-    console.log("this is test length " + test.length)
-    for (var i=0;i<test.length;i++)
-    {
-    testnew = testnew.slice(0, -1);
-    console.log("this is trimmed test " + testnew)
-    if (Datacenters.find({workcenter: { $regex: testnew }}).count()>0)
-    {
-      var workcenter=Datacenters.findOne({workcenter: { $regex: testnew }}).workcenter
-      console.log("this is the workcenter " + workcenter)
-      break;
-    }
+  var testarray=[]
+     var testname=null
     
-    }
-    var count=Dataentries.find({workcenter: { $regex: workcenter }, name: { $regex: operator }}).count()
-    console.log("this is the operator " + operator)
-    console.log("this is the count "+ count)
-    Dataentries.find({workcenter: { $regex: workcenter }, name: { $regex: operator }}).map(function(doc) {
+var count1=0
+
+ 
+  
+     var total=0
+   
+           
+    Dataentries.find({workcenter: { $regex: workcenter },name:operator}).map(function(doc) {
+      count1+=1
   total += doc.productivity;
 });
-    if(total>0&&count>0)
+    console.log("this is the count "+ count1 ) 
+    if(total>0&&count1>0)
     {
-    var avg=total/count
+    var avg=total/count1
     avg=avg.toFixed(2)
     avg=Number(avg)
   }
@@ -1135,25 +1113,31 @@ averagesingleworkcenter: function (workcenter,operator) {
   {
     avg=0;
   }
-    console.log("this is the total " + total)
-    console.log("this is the avg "+ avg)
-    testarray.push([test,avg])
-    console.log('this is the  array test'+ testarray[0][1])
+
+       testarray.push([workcenter,avg])
+
+
+
+
+          
+
+
+  
         
     /*
   So now I need to do the same thing but for all the permanent for this work center
 
   */
-   
-var count=Dataentries.find({workcenter: { $regex: workcenter }, employeestatus: "permanent"}).count()
-    console.log("this is the operator " + operator)
-    console.log("this is the count "+ count)
+   var count2=0
+
     Dataentries.find({workcenter: { $regex: workcenter }, employeestatus: "permanent"}).map(function(doc) {
+   count2+=1
   total += doc.productivity;
 });
-    if(total>0&&count>0)
+    console.log("this is the count 2"+ count2)
+    if(total>0&&count2>0)
     {
-    var avg=total/count
+    var avg=total/count2
     avg=avg.toFixed(2)
     avg=Number(avg)
   }
@@ -1161,7 +1145,7 @@ var count=Dataentries.find({workcenter: { $regex: workcenter }, employeestatus: 
   {
     avg=0;
   }
- testarray.push([test,avg])
+ testarray.push([workcenter,avg])
 
 
 
@@ -1171,28 +1155,7 @@ var count=Dataentries.find({workcenter: { $regex: workcenter }, employeestatus: 
 
 return testarray
 
-  /*
-      var totalwc1=0
-   var wc1count=Dataentries.find({workcenter: { $regex: wc1 }}).count()
-      Dataentries.find({workcenter: { $regex: wc1 }}).map(function(doc) {
-  totalwc1 += doc.productivity;
-});
-if(totalwc1!=0 &&wc1count!=0)
-{
-var wc1avg=totalwc1/wc1count
-wc1avg=wc1avg.toFixed(2)
-wc1avg=Number(wc1avg)
-}
-else
-{
-  wc1avg=Number(0)
-}
 
-
-avgarray.push(wc76avg)
-
-return avgarray
-*/
 
 
 }catch(err)
@@ -1387,6 +1350,52 @@ return avgarray
      dataTable: function () {
            console.log("this is the type of data server " + typeof Dataentries.find({},{sort: {timestamp: -1}, limit: 5}))
         return Dataentries.find({},{sort: {timestamp: -1}, limit: 5})
+
+
+        },
+        partTable: function () {
+           
+           //   I need to use a for loop and go through every upc 
+
+var count=0
+//var depcount=Datacenters.find({department: { $regex: department }}).count()
+                Upcs.find({}).map(function(doc) {
+  count=count+1
+});
+console.log("this is the count "+ count)
+       /*         for (var i=0; i<depcount;i++)
+   {
+    var total=0
+    test=Datacenters.find({department: { $regex: department }},{sort: {timestamp: 1}, limit: i}).fetch().pop().workcenter
+    testname=test.toString()
+    console.log("This is the testname " + testname)
+    console.log('this is the test '+ test)
+    var count=Dataentries.find({workcenter: { $regex: test }}).count()
+    Dataentries.find({workcenter: { $regex: test }}).map(function(doc) {
+  total += doc.productivity;
+});
+    if(total>0&&count>0)
+    {
+    var avg=total/count
+    avg=avg.toFixed(2)
+    avg=Number(avg)
+  }
+  else
+  {
+    avg=0;
+  }
+    console.log("this is the total " + total)
+    console.log("this is the avg "+ avg)
+    testarray.push([testname,avg])
+    console.log('this is the  array test'+ testarray[0][1])
+    //console.log("this is the test dep "+ testarray[i] )
+    //Here I will need to determine the average
+   
+    
+   }
+ */ 
+         
+        //return Dataentries.find({},{sort: {timestamp: -1}, limit: 5})
 
 
         }     

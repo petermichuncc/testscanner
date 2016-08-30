@@ -1,12 +1,19 @@
 <template name="searchoperator">
-  
+ <!--
         {{> inputAutocomplete settings=settings id="workcenter" class="form-control" autocomplete="off" name="partnumber" placeholder="Please enter the workcenter" }}
+ 		-->
+ 	  
+ 
  	
- 	 <!--
- 	{{#each legends}}
- 		{{workcenter}}
- 	{{/each}}
- 	-->
+ <div class="form-group">
+  <label for="sel1">Select list:</label>
+  <select class="form-control" id="workcenter">
+  	{{#each dataentries}}
+   <option value={{this}}>{{this}}</option>
+    {{/each}}
+  </select>
+</div>
+ 
     </template>
  	
 
