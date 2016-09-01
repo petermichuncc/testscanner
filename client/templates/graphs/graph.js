@@ -42,6 +42,15 @@ return false;
   {
   count=count+2;
   }
+  else if (Session.get("countnew")==1)
+  {
+Session.set("choice", null)
+  }
+  else if (Session.get("countnew")==1)
+  {
+Session.set("choice", null)
+  }
+
 Session.set("countnew",count)
  
 

@@ -4,13 +4,13 @@ Template.search2.helpers({
   settings: function() {
     return {
       position: "top",
-      limit: 3,
+      limit: 12,
       rules: [
         {
           // token: '',
           collection: Datacenters,
           field: 'workcenter',
-          matchAll: true,
+          matchAll: false,
           template: Template.standardLegends
         }
       ]

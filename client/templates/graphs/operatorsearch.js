@@ -1,10 +1,11 @@
 StandardLegends = new Mongo.Collection(null);
  Meteor.subscribe('Dataentries');
+ console.log("test")
 Template.opsearch.helpers({
   settings: function() {
     return {
       position: "top",
-      limit: 2,
+      limit: 1,
       options: 'i',
       rules: [
         {
@@ -18,7 +19,11 @@ Template.opsearch.helpers({
     };
   },
   legends: function() {
-    return Dataentries.find();
+/*var distinctEntries = _.uniq(Dataentries.find({name:Session.get("operator")}, {sort: {name:1}, fields: {name:true}}).fetch().map(function(x) {
+ return x;
+ }), true);
+ return distinctEntries;*/
+   // return Dataentries.find();
   }
 });
 
