@@ -16,6 +16,8 @@ var text=""
     Session.set("counter", -2)
     Session.set("scan2",0)
 Session.set("scan",0)
+Session.set("bagtag",0)
+Session.set("boxtag",0)
  Session.setPersistent("scannedOrdernumber", null)
 //I need to record if a bag, box, and kanban ticket have been scanned
 //I need to send this into the 
@@ -163,7 +165,7 @@ Template.three.helpers({
   scan: function()
   {
 console.log("this is the counter "+ Session.get("counter"))
-if (Session.get("counter")>-2)
+if (Session.get("counter")>-2 && run===true)
 {
 console.log("counter >-2")
 
@@ -175,10 +177,11 @@ var $input=$("#initials")
    $input.on('keyup', function () {
 
     test=(this.value);
-  console.log("this is a test" + test)
-$("#initials").val()
-console.log(" test 1 " +$("#initials").val())
-test=$("#initials").val()
+  console.log("this is a test this.value" + test)
+
+
+
+
 clearTimeout(typingTimer);
   typingTimer = setTimeout(doneTyping, doneTypingInterval);
 
@@ -189,13 +192,25 @@ clearTimeout(typingTimer);
      function doneTyping () {
   //do something
   run=true
-  console.log("this is the temp session " + Session.get("temp"))
+console.log("this is finished test value "+ test)
 
-  if (test==Session.get("scan2")|| test==Session.get("temp")||test==Session.get("scan")||test==Session.get("bagtag")||test==Session.get("boxtag"))
+console.log("this is test length "+ test.length)
+if (test.length==0 &&test=="")
+{
+  test=Math.floor((Math.random() * 11) + 1);
+
+}
+console.log("this is test type "+ typeof test)
+console.log(" this is test initials" +test)
+console.log("this is scan2 "+Session.get("scan2") )
+console.log("this is scan "+Session.get("scan") )
+console.log("this is bagtag "+Session.get("bagtag") )
+console.log("this is boxtag "+Session.get("boxtag") )
+  if (test==Session.get("scan2")||test==Session.get("scan")||test==Session.get("bagtag")||test==Session.get("boxtag"))
   {
     //send an alert
     Materialize.toast('Please scan a new barcode', 3000,'blue')
-
+console.log("pleas scan a new barcode")
     $('#initials').val('');
     //clear the input box
   }
@@ -211,31 +226,9 @@ clearTimeout(typingTimer);
   }
   }
  
-  if (temp>0)
- {
-  temp=0
- }
 
-//Here I need to check if the test equals any of the other session variables
-//and also if any of the session variables will equal each other if the test is stored inside it?
-// ex: t1=30 t2=45 t3=0        test =45  then it will go into t3 if only check if test = session
-// I need to keep t3 from becoming 45
-// only store in t3 if t2 != test
- if ( temp==0 &&Session.get("temp")!=test)
-  {
-    Session.set("temp", test)
-     temp=temp+1;
-  }
+
   
-
-//if Session.get("kanbangtag")===true
-//At this point 
-
-
-
-
-
-
 
 }
 
