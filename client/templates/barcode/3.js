@@ -146,6 +146,22 @@ $('#initials').on('blur',function(){
    if (this.value.length < 4) $(this).focus();
 });
 */
+
+}
+
+
+Template.three.events({
+    // events go here
+'click .1': function(event, template){
+ Router.go('scan')
+ console.log("this is a test")   
+
+}
+})
+//var nowsync=TimeSync.serverTime(null, 300000);
+Template.three.helpers({
+  scan: function()
+  {
 console.log("this is the counter "+ Session.get("counter"))
 if (Session.get("counter")>-2)
 {
@@ -224,19 +240,9 @@ clearTimeout(typingTimer);
 }
 
 }//end of if statement checking the count
-}
 
 
-Template.three.events({
-    // events go here
-'click .1': function(event, template){
- Router.go('scan')
- console.log("this is a test")   
-
-}
-})
-//var nowsync=TimeSync.serverTime(null, 300000);
-Template.three.helpers({
+  },
   kanbancomponent: function()
   {
     Template.instance().state.set("check",false)
