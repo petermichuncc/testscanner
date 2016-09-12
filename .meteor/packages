@@ -52,7 +52,6 @@ matdutour:popup-confirm
 react-meteor-data
 react-template-helper
 iron:router
-bahattincinic:meteor-alertify
 tsega:bootstrap3-datetimepicker
 raix:handlebar-helpers
 pmteor:dropdown

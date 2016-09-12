@@ -12,7 +12,8 @@
 </head>
 
  {{kanbancomponent}}
- 
+
+
 <body class={{check}}>
  
 <div id="repairlog_container" class="center" >
@@ -59,15 +60,18 @@
 <img src="logo.jpg " class="z-depth-3"><br><br>
             <div id="centered_box"  class="z-depth-5">
           
-         
-         {{check}}
+          {{#if $.Session.equals 'counter' -1}}
+      {{kanbancomponent}}
+        {{check}}
+          {{/if}}
+       
         
         <!-- Change the text here-->
        <div class="center ">
         {{text}}   {{kanbanamount}}
      
 
-        <input type="initials" name="initials"  required class="form-control mytext"  id="initials" placeholder="UPC" data-disable-touch-keyboard autofocus autocomplete="off">
+        <input type="initials" name="initials"  required class="form-control mytext"  id="initials" placeholder="" data-disable-touch-keyboard autofocus autocomplete="off">
        
        </div>
           
@@ -78,8 +82,10 @@
      {{part}}
      
     {{desc}}
+{{#if $.Session.equals 'counter' -2}}
+  <input class="btn btn-default 8 #78909c blue-grey lighten-1 z-depth-2 " type="submit"><br>
 
-
+{{else}}
 {{#if kanbancheck}}
 <button class="btn btn-default 2  blue z-depth-2 " type="submit">Kanban Ticket Override</button>
 <br>
@@ -89,6 +95,8 @@
 <button class="btn btn-default #78909c 1 blue-grey lighten-1 z-depth-2 center" style="outline:none;-moz-outline:none" hidefocus="true" type="submit">Restart job</button>
 <br>
 <button class="btn btn-default 4 blue z-depth-2 " type="submit">New technician</button>
+
+{{/if}}
 </div>
 </div>
 

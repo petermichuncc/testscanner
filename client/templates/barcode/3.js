@@ -3,7 +3,7 @@ var good=null
 var bag=0
 var box=0
 var test=0
-var count=0
+var count=-2
 var temp=0
 var temp1=0
 var temp2=0
@@ -12,8 +12,11 @@ var run=true
 var record=0
 var go="green"
 var text=""
-
-
+  Session.set("kanbancount",0)
+    Session.set("counter", -2)
+    Session.set("scan2",0)
+Session.set("scan",0)
+ Session.setPersistent("scannedOrdernumber", null)
 //I need to record if a bag, box, and kanban ticket have been scanned
 //I need to send this into the 
 //Add reactive dictionary variable for the pasted content
@@ -94,7 +97,7 @@ Template.registerHelper('input',function(input){
 //initialize or setup all of the time stamps here 
 this.state.set('color', null);
 this.state.set('colorshow', 0);
-this.state.set('counter', 0);
+this.state.set('counter', -2);
 this.state.set('kanban', false);
 this.state.set('kanbancheck', false);
 this.state.set('barcode', 0);
@@ -117,7 +120,7 @@ this.state.set('partshoulddesc',null)
 Session.set('input',true)
 Session.setPersistent("record", 0)
 Session.setPersistent("override", 0)
-Session.set("scan2",0)
+
 Session.set("kanbancheck", false)
 Session.set("joborder",false)
 Session.set("temp", 0)
@@ -143,6 +146,11 @@ $('#initials').on('blur',function(){
    if (this.value.length < 4) $(this).focus();
 });
 */
+console.log("this is the counter "+ Session.get("counter"))
+if (Session.get("counter")>-2)
+{
+console.log("counter >-2")
+
 $("#initials").focus();
 test=0
 var typingTimer;                //timer identifier
@@ -177,8 +185,14 @@ clearTimeout(typingTimer);
   }
   else
   {
-   
+   if (Session.get("counter")<0)
+   {
+    Session.set("scan",test)
+   }
+   else
+   {
     Session.set("scan2",test)
+  }
   }
  
   if (temp>0)
@@ -209,6 +223,7 @@ clearTimeout(typingTimer);
 
 }
 
+}//end of if statement checking the count
 }
 
 
@@ -222,6 +237,82 @@ Template.three.events({
 })
 //var nowsync=TimeSync.serverTime(null, 300000);
 Template.three.helpers({
+  kanbancomponent: function()
+  {
+    Template.instance().state.set("check",false)
+    
+ if (typeof ReactiveMethod.call('kanbandb', Session.get("scan"))==="number")
+ {    
+  
+ 
+      var count=ReactiveMethod.call('kanbandb', Session.get("scan"))
+      console.log("this is the count "+ count)
+if (typeof count==="number")
+{
+Template.instance().state.set("check",true)
+  Session.setPersistent("kanbancount", count)
+}
+      
+
+
+ 
+  
+  }
+
+  },  
+ 
+  check: function()
+  {
+ console.log("this is scan " + Session.get("scan"))
+  console.log("this is the run " + run)
+if (typeof ReactiveMethod.call('orderdesc', Session.get("scan"))==="object"&& run===true&& Template.instance().state.get("check")===true)
+{
+   var object=ReactiveMethod.call('orderdesc', Session.get("scan"))
+   //I can return an object and grab the partnumber here too
+   var desc=object.desc
+   var partnumber=object.partnumber
+     var ordernumber=object.ordernumber
+  Session.setPersistent("scannedDesc", desc)
+  Session.setPersistent("scannedPartnumber", partnumber)
+    Session.setPersistent("scannedOrdernumber", Session.get("scan"))
+}
+if (typeof ReactiveMethod.call('order', Session.get("scan"))==="string"&& run===true && Template.instance().state.get("check")===true )
+ {      console.log("test a")    
+ $('#initials').val('');
+run=false
+     Materialize.toast('That was a correct job order', 8000,'light-blue accent-4 z-depth-2')
+     count=count+1
+    Template.instance().state.set("counter", count)
+      Session.set("counter", count)
+   Session.setPersistent("scanned",ReactiveMethod.call('order', Session.get("scan")))
+  
+ console.log("this is the desc "+ Session.get("scannedDesc") )
+ console.log("this is the order "+ Session.get("scannedOrdernumber") )
+  // scan1=Session.get("scan")
+
+      go="green"
+    //return "green"
+  }
+  else if(Session.get("scan")!=0 && run===true&& ReactiveMethod.call('order', Session.get("scan"))===false)
+  { console.log("test b")   
+    $('#initials').val('');
+  
+     
+   
+    Materialize.toast('That was not a correct job order', 8000,'orange darken-2 z-depth-2')
+     go="red"
+      run=false
+  }
+  else if (Session.get("scan")==0 && run==true )
+  {console.log("test c")   
+    go=null
+    run=false
+    $('#initials').val('');
+  }
+
+//return go
+
+  },
     part: function () {
     /* if (typeof ReactiveMethod.call('part', Session.get("scan2"))==="string" &&run===true)
  {
@@ -253,11 +344,12 @@ Template.three.helpers({
     //basically this will return a boolean for whether the background should turn green or not and go to the next page
     //put this comparison on the server side
     //
+
  Session.set("kanbantag", false)
 
       if (typeof ReactiveMethod.call('rawmaterial', Session.get("scan2"))==="string"&&run===true && Template.instance().state.get("counter")<2)
   {
-    //This checks if it is a raw material that was
+    //This checks if it is a raw material that was scanned
     Session.set("kanbantag", Session.get("scan2"))
      
   }
@@ -385,7 +477,7 @@ $('#test1').mouseup(function() { this.blur() })
 
 
     Template.instance().state.set("counter", count)
-
+      Session.set("counter", count)
  run=false
    
 
@@ -438,7 +530,20 @@ var kanbancount=Number(Session.get("kanbancount"))
 kanbancount=kanbancount+1
 
 console.log("this is the "+test )
+if( Template.instance().state.get("counter")==-2)
+   {
 
+    return "Please enter your initials"
+    //Session.set("scan",0)
+    
+  }  
+ if( Template.instance().state.get("counter")==-1)
+   {
+
+    return "Please scan the job order"
+    //Session.set("scan",0)
+    
+  }  
  if( Template.instance().state.get("counter")==0)
    {
 
@@ -770,6 +875,33 @@ $( ".ch" ).hide();
  
 
 console.log("this is the input "+ Session.get("input"))
+},
+'click .8': function(event, template){
+ //Router.go('one')
+
+  var test = $( "#initials" ).val()
+   Session.setPersistent("tech", test)
+ console.log("these are the initials " + test)
+ if (test.length==3)
+ { $('#initials').val('');
+  count=count+1
+    Template.instance().state.set("counter", count)
+      Session.set("counter", count)
+ 
+$("#initials").focus();
+
+}
+else
+{
+ Materialize.toast('Please enter 3 letter initials', 8000,'orange darken-2 z-depth-2')
+ $('#initials').val('');
+$("#initials").focus();
+}
+
+
+
+
+
 }
  });
 

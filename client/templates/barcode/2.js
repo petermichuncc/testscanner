@@ -27,8 +27,7 @@ Session.setPersistent("scan",0)
     Session.set("kanbancount",0)
 //initialize or setup all of the time stamps here 
 this.state.set('check', false);
-this.state.set('section1', false);
-this.state.set('section2', false);
+
 this.state.set('scan1', 0);
 
       
