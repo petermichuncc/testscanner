@@ -7,28 +7,27 @@ the color of the
 */
 
 
-Session.set("color", "white")
+var count=-3
 var colortest=true
 var good=null
 var bag=0
 var box=0
 var test=0
-var count=-3
-var temp=0
-var temp1=0
-var temp2=0
-var temp3=0
+
+
 var run=true
 var record=0
 var go="green"
 var text=""
   Session.set("kanbancount",0)
     Session.set("counter", -3)
+    Session.set("start",1)
+    Session.set("color", "white")
     Session.set("scan2",0)
 Session.set("scan",0)
 Session.set("bagtag",0)
 Session.set("boxtag",0)
-Session.set("start",1)
+
  Session.setPersistent("scannedOrdernumber", null)
 //I need to record if a bag, box, and kanban ticket have been scanned
 //I need to send this into the 
@@ -36,7 +35,7 @@ Session.set("start",1)
 if (Meteor.isClient) {
 
 Template.registerHelper('testnew',function(input){
-  return Template.instance().state.get("counter")
+  return  Session.get("counter")
 });
 
 Template.registerHelper('kanbancount',function(input){
@@ -91,10 +90,7 @@ Template.registerHelper('colorDescription',function(input){
 Template.registerHelper('test',function(input){
  
 });
-Template.registerHelper('input',function(input){
-  return Session.get("input")
 
-});
 
 
 
@@ -131,21 +127,20 @@ this.state.set('partshoulddesc',null)
 
 
 Session.set("scannedPartnumber",null)
-Session.set('input',true)
+
 Session.setPersistent("record", 0)
 Session.setPersistent("override", 0)
 
 Session.set("kanbancheck", false)
-Session.set("joborder",false)
-Session.set("temp", 0)
-Session.set("temp1", 0)
-Session.set("temp2", 0)
+
 Session.set("kanbantag", 0)
 Session.set("bagtag",0)
 Session.set("boxtag",0)
  Session.set("kanbanquestion", false)
  Session.set("descshow",false)
  Session.set("result", null)
+
+
 }  
 
 
@@ -188,22 +183,23 @@ Template.three.events({
 Template.three.helpers({
   scan: function()
   {
-console.log("this is the counter "+ Session.get("counter"))
-if (Session.get("counter")>-3 && run===true)
+console.log("this is the counter in scan "+ Session.get("counter"))
+console.log("this is the run in scan" + run)
+if (Session.get("counter")>-2 && run===true)
 {
-console.log("counter >-3")
+console.log("counter >-2")
 
 $("#initials").focus();
-test=0
+test=5
 var typingTimer;                //timer identifier
 var doneTypingInterval = 1000;
 var $input=$("#initials")
    $input.on('keyup', function () {
-
+runnew=true
     test=(this.value);
   console.log("this is a test this.value" + test)
 
-
+  
 
 
 clearTimeout(typingTimer);
@@ -212,10 +208,13 @@ clearTimeout(typingTimer);
   });
    $input.on('keydown', function () {
   clearTimeout(typingTimer);
+
 });
      function doneTyping () {
   //do something
   run=true
+
+   
 console.log("this is finished test value "+ test)
 
 console.log("this is test length "+ test.length)
@@ -230,22 +229,26 @@ console.log("this is scan2 "+Session.get("scan2") )
 console.log("this is scan "+Session.get("scan") )
 console.log("this is bagtag "+Session.get("bagtag") )
 console.log("this is boxtag "+Session.get("boxtag") )
-  if (test==Session.get("scan2")||test==Session.get("scan")||test==Session.get("bagtag")||test==Session.get("boxtag"))
+  if (test==Session.get("scan2")||test==Session.get("scan")&&runnew==true)
   {
     //send an alert
     Materialize.toast('Please scan a new barcode', 3000,'blue')
-console.log("pleas scan a new barcode")
-    $('#initials').val('');
+    runnew=false
+console.log("please scan a new barcode")
+   setTimeout(erase, 1000);
     //clear the input box
   }
-  else
+  else if (test!=5||test!=Session.get("scan2")||test!=Session.get("scan")&&runnew==true)
   {
    if (Session.get("counter")<0)
    {
+    runnew=false
     Session.set("scan",test)
+
    }
    else
    {
+    runnew=false
     Session.set("scan2",test)
   }
   }
@@ -255,6 +258,13 @@ console.log("pleas scan a new barcode")
   
 
 }
+//call function to erase
+function erase() {
+   $('#initials').val('');
+}
+
+
+
 
 }//end of if statement checking the count
 
@@ -305,7 +315,7 @@ if (typeof ReactiveMethod.call('order', Session.get("scan"))==="string"&& run===
 run=false
      Materialize.toast('That was a correct job order', 8000,'light-blue accent-4 z-depth-2')
      count=count+1
-    Template.instance().state.set("counter", count)
+   
       Session.set("counter", count)
    Session.setPersistent("scanned",ReactiveMethod.call('order', Session.get("scan")))
   
@@ -316,20 +326,20 @@ run=false
       Session.set("color", "green")
     //return "green"
   }
-  else if(Session.get("scan")!=0 && run===true&& ReactiveMethod.call('order', Session.get("scan"))===false)
+  else if(Session.get("scan")!=0 && run===true&& ReactiveMethod.call('order', Session.get("scan"))===false && $( "#initials" ).val()!='')
   { console.log("test b")   
     $('#initials').val('');
   
      
    
-    Materialize.toast('That was not a correct job order', 8000,'orange darken-2 z-depth-2')
+    Materialize.toast('That job order is not in the system', 8000,'orange darken-2 z-depth-2')
      Session.set("color", "red")
       run=false
   }
   else if (Session.get("scan")==0 && run==true )
   {console.log("test c")   
-    go=null
-    run=false
+   
+    //run=false
     $('#initials').val('');
   }
 
@@ -367,10 +377,13 @@ run=false
     //basically this will return a boolean for whether the background should turn green or not and go to the next page
     //put this comparison on the server side
     //
-
+Template.instance().state.set('partscan', null);
+    
+    Template.instance().state.set('partshould',null)
+    Template.instance().state.set('partshoulddesc',null)
  Session.set("kanbantag", false)
 
-      if (typeof ReactiveMethod.call('rawmaterial', Session.get("scan2"))==="string"&&run===true && Template.instance().state.get("counter")<2)
+      if (typeof ReactiveMethod.call('rawmaterial', Session.get("scan2"))==="string"&&run===true &&  Session.get("counter")<2)
   {
     //This checks if it is a raw material that was scanned
     Session.set("kanbantag", Session.get("scan2"))
@@ -399,7 +412,7 @@ run=false
      var scan2desc=scan2.desc
      scan2=scan2.partnumber
   }
-  else if (typeof ReactiveMethod.call('rawmaterial', Session.get("scan2"),Session.get("scannedOrdernumber"))==="string"&&run===true && Template.instance().state.get("counter")>=2)
+  else if (typeof ReactiveMethod.call('rawmaterial', Session.get("scan2"),Session.get("scannedOrdernumber"))==="string"&&run===true &&  Session.get("counter")>=2)
   {
     //This checks if it is a raw material that was
     Template.instance().state.set("kanban", true)
@@ -486,8 +499,8 @@ $('#test1').mouseup(function() { this.blur() })
     //count shouldn't go up after the bag and box are scanned and
     //the scanned item was ekanban
     console.log("This is the count in green before incr " + count)
-    console.log("this is the react var count " + Template.instance().state.get("counter"))
-    count=Template.instance().state.get("counter")
+    console.log("this is the react var count " +  Session.get("counter"))
+    count= Session.get("counter")
     console.log("count after set equal to counter " + count)
     count = count+1
   console.log("this is the count after incr " + count)
@@ -499,7 +512,7 @@ $('#test1').mouseup(function() { this.blur() })
     
 
 
-    Template.instance().state.set("counter", count)
+    
       Session.set("counter", count)
  run=false
    
@@ -553,29 +566,29 @@ var kanbancount=Number(Session.get("kanbancount"))
 kanbancount=kanbancount+1
 
 console.log("this is the "+test )
-if( Template.instance().state.get("counter")==-2)
+if(  Session.get("counter")==-2)
    {
 
     return "Please enter your initials"
     //Session.set("scan",0)
     
   }  
- if( Template.instance().state.get("counter")==-1)
+ if(  Session.get("counter")==-1)
    {
 
     return "Please scan the job order"
     //Session.set("scan",0)
     
   }  
- if( Template.instance().state.get("counter")==0)
+ if(  Session.get("counter")==0)
    {
 
     return "Please scan the printed bag or box label"
     //Session.set("scan",0)
-    
+   
   }      
     
-    else if (Template.instance().state.get("counter")==1  )
+    else if ( Session.get("counter")==1  )
     {//Here I should show a toast that indicates what the user just scanned
       
    
@@ -594,7 +607,7 @@ else
     
     //Materialize.toast(test3, 15000,'blue')
     }
-    else if (Template.instance().state.get("counter")===2 )
+    else if ( Session.get("counter")===2 )
     {
       
       /*
@@ -621,7 +634,7 @@ else
       return "Please scan the eKanban ticket part number: "
      
     }
-    else if (Template.instance().state.get("counter")>2 && kanbancount-Template.instance().state.get("counter")>=0)
+    else if ( Session.get("counter")>2 && kanbancount- Session.get("counter")>=0)
     {
         function test()
   {
@@ -639,7 +652,7 @@ else
       return "Please scan the next ekanban ticket part number"
 
     }
-    else if (kanbancount-Template.instance().state.get("counter")<0)
+    else if (kanbancount- Session.get("counter")<0)
 
     {
       Session.set("kanbanquestion", false)
@@ -655,6 +668,7 @@ Meteor.call('scansInsert',Session.get("tech") ,Session.get("scanned"),Session.ge
 console.log("test")
       //I need to have a session variable I setup next that triggers the final toast and snack bar to pop up
       Session.set("start", 3)
+      run=true
     }
     
       
@@ -677,7 +691,7 @@ console.log("test")
 //create a specific condition for the template instance confirming the user doesn't have an
 //ekanban ticket
 
-if ( Template.instance().state.get("kanbangood")===true && Template.instance().state.get("counter")>=2 &&Session.get("kanbanquestion")===true)
+if ( Template.instance().state.get("kanbangood")===true &&  Session.get("counter")>=2 &&Session.get("kanbanquestion")===true)
  
 { 
 console.log("inside the kanbancheck")
@@ -703,7 +717,7 @@ Session.set("kanbanquestion", false)
    
 
 }
-else if (Template.instance().state.get("counter")>=2 &&Session.get("kanbanquestion")===true)
+else if ( Session.get("counter")>=2 &&Session.get("kanbanquestion")===true)
 {
 
 Materialize.toast("Do you have a Kanban ticket?", 4000,'light-blue lighten-2 z-depth-2')
@@ -798,7 +812,7 @@ console.log("this is the colortest "+ colortest)
 
 //console.log("this is the text " +Template.instance().state.get("text"))
 /*
-kanbancount-Template.instance().state.get("counter")
+kanbancount- Session.get("counter")
 */
 
 
@@ -999,8 +1013,10 @@ return Session.get("scannedPartnumber")
 
  Template.three.events({
  'click .1': function(event, template){
- Router.go('two')
-  
+ Session.set("start",0)
+  count=-1
+    
+      Session.set("counter", count)
 
 },
 'click .2': function(event, template){
@@ -1035,11 +1051,11 @@ console.log("this is the input "+ Session.get("input"))
    Session.setPersistent("tech", test)
  console.log("these are the initials " + test)
  if (test.length==3)
- { $('#initials').val('');
+ {
   count=count+1
-    Template.instance().state.set("counter", count)
+   
       Session.set("counter", count)
- 
+ $('#initials').val('');
 $("#initials").focus();
 
 }
@@ -1060,10 +1076,107 @@ $("#initials").focus();
 
  Session.set("start",0)
   count=count+1
-    Template.instance().state.set("counter", count)
+
       Session.set("counter", count)
  
 $("#initials").focus();
+
+
+
+
+
+
+
+
+},
+'click .10': function(event, template){
+ //Router.go('one')
+//Go to the scan job order
+  Session.set("start",0)
+ Session.set("color", "white")
+    Session.set("scan2",0)
+Session.set("scan",0)
+Session.set("bagtag",0)
+Session.set("boxtag",0)
+
+Session.setPersistent("record", 0)
+Session.setPersistent("override", 0)
+
+Session.set("kanbancheck", false)
+
+Session.set("kanbantag", 0)
+
+ Session.set("kanbanquestion", false)
+ Session.set("descshow",false)
+ Session.set("result", null)
+$( ".cp" ).hide();
+ Session.setPersistent("scannedOrdernumber", null)
+  var x = document.getElementById("snackbar")
+   x.className = "cp z-depth-2";
+    colortest=true
+ good=null
+ bag=0
+ box=0
+ test=0
+ run=true
+ record=0
+  count=-2
+    
+      Session.set("counter", count)
+      setTimeout(function(){
+count=count+1
+
+      Session.set("counter", count)
+
+        }, 500);
+
+ 
+$("#initials").focus();
+
+
+
+
+
+
+
+
+},
+'click .11': function(event, template){
+ //Router.go('one')
+//There is a new tech at this point
+ Session.set("start",0)
+ Session.set("color", "white")
+    Session.set("scan2",0)
+Session.set("scan",0)
+Session.set("bagtag",0)
+Session.set("boxtag",0)
+
+Session.setPersistent("record", 0)
+Session.setPersistent("override", 0)
+
+Session.set("kanbancheck", false)
+
+Session.set("kanbantag", 0)
+
+ Session.set("kanbanquestion", false)
+ Session.set("descshow",false)
+ Session.set("result", null)
+$( ".cp" ).hide();
+ Session.setPersistent("scannedOrdernumber", null)
+  var x = document.getElementById("snackbar")
+   x.className = "cp z-depth-2";
+    colortest=true
+ good=null
+ bag=0
+ box=0
+ test=0
+ run=true
+ record=0
+  count=-2
+    
+      Session.set("counter", count)
+ $("#initials").focus();
+
 
 
 
@@ -1081,8 +1194,8 @@ $("#initials").focus();
 
 /*
 console.log("This is the count in green before incr " + count)
-    console.log("this is the react var count " + Template.instance().state.get("counter"))
-    count=Template.instance().state.get("counter")
+    console.log("this is the react var count " +  Session.get("counter"))
+    count= Session.get("counter")
     console.log("count after set equal to counter " + count)
     count = count+1
   console.log("this is the count after incr " + count)
