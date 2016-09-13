@@ -4,43 +4,16 @@
 
 Template.final.rendered =function(){
  
-
-console.log("test")
-
-  var x = document.getElementById("snackbar")
+ var x = document.getElementById("snackbar")
   console.log("This is the class name " + x.className)
   if (x.className != "show cp z-depth-2" && typeof Session.get("scannedPartnumber")=="string")
 {
     x.className = "show cp z-depth-2";
     //setTimeout(function(){ x.className = x.className.replace("show", ""); }, 999999000);
 }
-  
-    
- 
+console.log("test")
 
- /*
-MDSnackbars.init();
-var options = {
-    text: 'message',        // change snackbar's text/html
-    toast: false,           // change snackbar's style (true = rounded corners)
-    align: 'left',          // align 'left' or 'right'
-    fullWidth: false,       // snackbar takes all screen width (overrides align and toast style, also remove default 2px rounded corners)
-    bottom: 100,            // position from bottom (default to 20px or 0 if fullWidth is true)
-    timeout: 0,          // delay before the snackbar disappears (if 0, the snackbar is permanently showed until MDSnackbars.hide() is called or the snackbar clicked)
-    html: false ,           // allows HTML insertion
-    clickToClose: true,     // enable/disable the click to close behavior
-    animation: 'fade'       // change the animation type ('fade' or 'slideup', default to 'fade')
-};
-MDSnackbars.show(options)
-*/
 
-Materialize.toast('<span class="toasttextbig center spantest"> Good job </span>', 999999000, 'light-blue lighten-2 cp z-depth-2')
-
-//Add code to save the person and partnumber of job to a database
-console.log("tech " + Session.get("tech")+ " partnumber " + Session.get("scanned")+ "mismatch scans "+Session.get("record")+"override" + Session.get("override"))
-
-Meteor.call('scansInsert',Session.get("tech") ,Session.get("scanned"),Session.get("record"),Session.get("override"))
-console.log("just called scans insert")
 
 };
 
@@ -49,7 +22,8 @@ Template.final.events({
 
 $( ".cp" ).hide();
  var count=0
-Router.go('two');
+ Session.set("start",1)
+Router.go('three');
  
 
 
@@ -58,7 +32,7 @@ Router.go('two');
 
 $( ".cp" ).hide();
  
-Router.go('one');
+Router.go('three');
  
 
 
@@ -79,13 +53,33 @@ Router.go('one');
 
 Template.final.helpers({
     output: function () {
-/*
-So here I will need to  call a server side function
-that will calculate the pieces/bag and bags/box.
-Then I will create a toast that will show this data.
+ 
+  
+    
+ 
+
+ /*
+MDSnackbars.init();
+var options = {
+    text: 'message',        // change snackbar's text/html
+    toast: false,           // change snackbar's style (true = rounded corners)
+    align: 'left',          // align 'left' or 'right'
+    fullWidth: false,       // snackbar takes all screen width (overrides align and toast style, also remove default 2px rounded corners)
+    bottom: 100,            // position from bottom (default to 20px or 0 if fullWidth is true)
+    timeout: 0,          // delay before the snackbar disappears (if 0, the snackbar is permanently showed until MDSnackbars.hide() is called or the snackbar clicked)
+    html: false ,           // allows HTML insertion
+    clickToClose: true,     // enable/disable the click to close behavior
+    animation: 'fade'       // change the animation type ('fade' or 'slideup', default to 'fade')
+};
+MDSnackbars.show(options)
 */
 
-     
+
+//Add code to save the person and partnumber of job to a database
+console.log("tech " + Session.get("tech")+ " partnumber " + Session.get("scanned")+ "mismatch scans "+Session.get("record")+"override" + Session.get("override"))
+
+Meteor.call('scansInsert',Session.get("tech") ,Session.get("scanned"),Session.get("record"),Session.get("override"))
+console.log("just called scans insert")
 
   },
    piecesperbag: function () {

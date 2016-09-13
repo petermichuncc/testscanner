@@ -1,9 +1,19 @@
+/*
+use a session variable for 
+the color of the 
+
+
+
+*/
+
+
+Session.set("color", "white")
 var colortest=true
 var good=null
 var bag=0
 var box=0
 var test=0
-var count=-2
+var count=-3
 var temp=0
 var temp1=0
 var temp2=0
@@ -13,11 +23,12 @@ var record=0
 var go="green"
 var text=""
   Session.set("kanbancount",0)
-    Session.set("counter", -2)
+    Session.set("counter", -3)
     Session.set("scan2",0)
 Session.set("scan",0)
 Session.set("bagtag",0)
 Session.set("boxtag",0)
+Session.set("start",1)
  Session.setPersistent("scannedOrdernumber", null)
 //I need to record if a bag, box, and kanban ticket have been scanned
 //I need to send this into the 
@@ -86,6 +97,7 @@ Template.registerHelper('input',function(input){
 });
 
 
+
 }
 
    Template.three.created = function () {
@@ -99,7 +111,7 @@ Template.registerHelper('input',function(input){
 //initialize or setup all of the time stamps here 
 this.state.set('color', null);
 this.state.set('colorshow', 0);
-this.state.set('counter', -2);
+this.state.set('counter', -3);
 this.state.set('kanban', false);
 this.state.set('kanbancheck', false);
 this.state.set('barcode', 0);
@@ -148,6 +160,12 @@ $('#initials').on('blur',function(){
    if (this.value.length < 4) $(this).focus();
 });
 */
+ $('.input').keypress(function(e) {
+        if(e.which == 13) {
+            jQuery(this).blur();
+            jQuery('#submit').focus().click();
+        }
+    });
 
 }
 
@@ -165,9 +183,9 @@ Template.three.helpers({
   scan: function()
   {
 console.log("this is the counter "+ Session.get("counter"))
-if (Session.get("counter")>-2 && run===true)
+if (Session.get("counter")>-3 && run===true)
 {
-console.log("counter >-2")
+console.log("counter >-3")
 
 $("#initials").focus();
 test=0
@@ -289,7 +307,7 @@ run=false
  console.log("this is the order "+ Session.get("scannedOrdernumber") )
   // scan1=Session.get("scan")
 
-      go="green"
+      Session.set("color", "green")
     //return "green"
   }
   else if(Session.get("scan")!=0 && run===true&& ReactiveMethod.call('order', Session.get("scan"))===false)
@@ -299,7 +317,7 @@ run=false
      
    
     Materialize.toast('That was not a correct job order', 8000,'orange darken-2 z-depth-2')
-     go="red"
+     Session.set("color", "red")
       run=false
   }
   else if (Session.get("scan")==0 && run==true )
@@ -488,7 +506,7 @@ $('#test1').mouseup(function() { this.blur() })
      
     
     $('#initials').val('');
-    go="green"
+   Session.set("color", "green")
     
   }
   else if (result==="red")
@@ -506,8 +524,8 @@ $('#test1').mouseup(function() { this.blur() })
     
     
     $('#initials').val('');
-  
-    go="red"
+  Session.set("color", "red")
+   
     
   }
  
@@ -517,7 +535,7 @@ else
   $('#initials').val('');
 }
 
-return go
+
   },
   text:function()
   {
@@ -618,6 +636,8 @@ else
     else if (kanbancount-Template.instance().state.get("counter")<0)
 
     {
+      Materialize.toast('<span class="toasttextbig center spantest"> Good job </span>', 999999000, 'light-blue lighten-2 cp z-depth-2')
+
       Session.set("kanbanquestion", false)
       Router.go('final');
     }
@@ -817,6 +837,124 @@ x().then(function(done) {
 
 
  },
+ piecesperbag: function () {
+
+
+
+
+//So I need to take 1000 and divide it by the usage rate x 1000
+console.log("this is scan " + Session.get("scan"))
+var bag = ReactiveMethod.call('bags', Session.get("scan"))
+console.log("this is the type of bag " + typeof bag)
+if (typeof bag!="boolean")
+{
+var bagusage=bag.usagerate
+console.log("this is bag usagerate"+ bagusage)
+
+
+
+var piecesPerBag=Number(1000)/(Number(1000)*bagusage)
+Session.set("piecesPerBag",piecesPerBag)
+console.log("this is the pieces per bag " + piecesPerBag)
+      var output=piecesPerBag.toString()
+      if (piecesPerBag===1)
+      {
+     output= output.concat(" piece per bag")
+ }
+ else
+ {
+  output= output.concat(" pieces per bag")
+  }
+    //make a new toast to increase the size of text or put it inside of a 
+    //span element
+    var span1='<span class="toasttextbig center spantest">'
+output=span1.concat(output)
+var span2='</span>'
+output=output.concat(span2)
+     Materialize.toast(output, 999999000, 'light-blue lighten-2 cp z-depth-2')
+ }
+  },
+  bagsperbox: function () {
+
+
+var box = ReactiveMethod.call('boxes', Session.get("scan"))
+if (typeof box!="boolean")
+{
+var boxusage=box.usagerate
+console.log("this is box usage "+ boxusage)
+
+//So I need to take 1000 and divide it by the usage rate x 1000
+
+var boxes= Number(1000)/(Number(1000)*boxusage)
+console.log("this is the boxes " + boxes)
+
+var bagsPerBox= boxes/Session.get("piecesPerBag")
+//convert to string
+
+
+/*
+var span1='<span class="toasttextbig center spantest">'
+color=span1.concat(color)
+var span2='</span>'
+color=color.concat(span2)
+*/
+//put the bagsper box inside a span
+
+     console.log("this is the bags per box " + bagsPerBox)
+     var output=bagsPerBox.toString()
+     if (bagsPerBox==1)
+      {
+     output= output.concat(" bag per box")
+ }
+ else
+ {
+  output= output.concat(" bags per box")
+  }
+    
+var span1='<span class="toasttextbig center spantest">'
+output=span1.concat(output)
+var span2='</span>'
+output=output.concat(span2)
+     Materialize.toast(output, 999999000, 'light-blue lighten-2 cp z-depth-2 toasttextbig')
+  
+/*
+I need to output text with the Session.get("kanbancount") on it
+
+*/
+/*
+var output2=Session.get("kanbancount")
+
+if (output2<2)
+{
+  output2=output2.toString()
+output2= output2.concat(" plastic part")
+  }
+  else if (output2>=2)
+  {output2=output2.toString()
+    output2= output2.concat(" plastic parts")
+  }
+
+
+    
+var span1='<span class="toasttextbig center spantest">'
+output2=span1.concat(output2)
+var span2='</span>'
+output2=output2.concat(span2)
+  Materialize.toast(output2, 999999000, 'light-blue lighten-2 cp z-depth-2 toasttextbig')
+  */
+  }
+
+  },
+partnumber: function()
+{
+//create a reactive method that I call here that returns the current partnumber
+//or use a previously created partnumber
+if (typeof Session.get("scannedPartnumber")=="string")
+{
+return Session.get("scannedPartnumber")
+}
+
+},
  kanbanamount: function()
  {
   //basically I need to find the total kanban
@@ -896,6 +1034,24 @@ else
  $('#initials').val('');
 $("#initials").focus();
 }
+
+
+
+
+
+},
+'click .9': function(event, template){
+ //Router.go('one')
+
+ Session.set("start",0)
+  count=count+1
+    Template.instance().state.set("counter", count)
+      Session.set("counter", count)
+ 
+$("#initials").focus();
+
+
+
 
 
 

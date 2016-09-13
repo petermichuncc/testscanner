@@ -1,72 +1,35 @@
-<template name="two">
-<head>
-
-     
-   
-      <!--Let browser know website is optimized for mobile-->
-   
-
-   
-     <!--  <meta http-equiv="refresh" content="120" /> -->
-
-</head>
-
- {{kanbancomponent}}
-
-
-<body class={{check}}>
- 
-<div id="repairlog_container" class="center" >
-<img src="logo.jpg " class="z-depth-3"><br><br>
-            <div id="centered_box"  class="z-depth-5 center">
- <div class="center">
-   
-  
-        Please scan the job order: <input type="initials" name="initials" required class="form-control mytext"  id="initials" placeholder="UPC" autofocus>
-       </div>
-      
-
-<button class="btn btn-default 1 #78909c blue-grey lighten-1 z-depth-2 " type="submit">Restart job</button>
-<br>
-<button class="btn btn-default 4 blue z-depth-2 " type="submit">New technician</button>
-</div>
-
-</div>
-
-</body>
-
-</template>
 
 <template name="three">
 <head>
 
       <link type="text/css" rel="stylesheet" href="css/bootstrap-material-design.css"  />
   
-      <!--Let browser know website is optimized for mobile-->
-   
-
-   
-     <!--  <meta http-equiv="refresh" content="120" /> -->
-
+    
 </head>
 
-<!--<link href="css/toastr.css" rel="stylesheet"/>
-<script src="js/toastr.js"></script>-->
+
 <script src=https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.js></script>
-<!--testing out touch screen detection-->
-<body class={{good}}>
+
+<body class={{$.Session.get 'color'}}>
+{{good}}
 {{scan}}
 <div class="center" id="repairlog_container">
 <img src="logo.jpg " class="z-depth-3"><br><br>
             <div id="centered_box"  class="z-depth-5">
           
           {{#if $.Session.equals 'counter' -1}}
+
       {{kanbancomponent}}
         {{check}}
           {{/if}}
        
         
         <!-- Change the text here-->
+        {{#if $.Session.equals 'start' 1}}
+        <button class="btn btn-default 9 #78909c blue-grey lighten-1 z-depth-2 whitetext" type="submit">Start a new job</button>
+       
+{{/if}}
+{{#if $.Session.equals 'start' 0}}
        <div class="center ">
         {{text}}   {{kanbanamount}}
      
@@ -97,6 +60,10 @@
 <button class="btn btn-default 4 blue z-depth-2 " type="submit">New technician</button>
 
 {{/if}}
+{{/if}}
+
+
+
 </div>
 </div>
 

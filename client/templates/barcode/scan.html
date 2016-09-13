@@ -1,70 +1,4 @@
-<template name="scan">
- <head>
 
- 
-    
-      <!--Let browser know website is optimized for mobile-->
-   
-
-   
-     <!--  <meta http-equiv="refresh" content="120" /> -->
-
-</head>
-
-<body class="">
-
-<div id="repairlog_container" class="center" >
-<img src="logo.jpg " class="z-depth-3"><br><br>
-            <div id="centered_box"  class="z-depth-5 center">
-<form action="{{pathFor 'one'}}" >
-<button class="btn btn-default 1 #78909c blue-grey lighten-1 z-depth-2 whitetext" type="submit">Start a new job</button>
-</form>
-</div>
-</div>
-
-</body>
-</template>
-
-<template name="one">
-<head>
-
-      
-   
-      <!--Let browser know website is optimized for mobile-->
-   
-
-   
-     <!--  <meta http-equiv="refresh" content="120" /> -->
-
-</head>
-
-<body class="">
- 
- <div id="repairlog_container" class="center" >
-<img src="logo.jpg " class="z-depth-3"><br><br>
-            <div id="centered_box"  class="z-depth-5 center">
-            
-
- <div class="center">
- Please enter your initials:
-     <form method="POST"  class="workcenterSelection" id="submit">
-     
-            <input  pattern=".{3,}" type="initials" name="initials" required class="form-control mytext"  id="initials" placeholder="Enter Initials (3 letters)" autofocus>
-          
-     
-       <input class="btn btn-default 1 #78909c blue-grey lighten-1 z-depth-2 " type="submit">
-       </form>
-      <!-- <input type="submit" value="Submit" class="btn btn-primary"/> -->
-
-
-</div>
-
-</div>
-</div>
-
-</body>
-
-</template>
 
 
 
@@ -73,6 +7,7 @@
  
 {{piecesperbag}}
  {{bagsperbox}}
+ {{output}}
 <body class="green">
 <div class="outer-div">
 <span class="toasttextbig center">
