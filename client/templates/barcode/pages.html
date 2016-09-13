@@ -13,6 +13,15 @@
 <body class={{$.Session.get 'color'}}>
 {{good}}
 {{scan}}
+<div class="outer-div">
+<span class="toasttextbig center">
+<div id="snackbar" class="center">{{partnumber}}</div>
+</span></div>
+     {{#if $.Session.equals 'start' 3}}
+{{piecesperbag}}
+ {{bagsperbox}}
+ {{output}}
+ {{/if}}
 <div class="center" id="repairlog_container">
 <img src="logo.jpg " class="z-depth-3"><br><br>
             <div id="centered_box"  class="z-depth-5">
@@ -25,6 +34,16 @@
        
         
         <!-- Change the text here-->
+        {{#if $.Session.equals 'start' 3}}
+         <div class="center">
+             
+ Start production
+  <br>    
+<button class="btn btn-default 1 #78909c blue-grey lighten-1 z-depth-2 " type="submit">Start a new job</button>
+<br>
+<button class="btn btn-default 2 blue z-depth-2 " type="submit">New technician</button>
+</div>
+{{/if}}
         {{#if $.Session.equals 'start' 1}}
         <button class="btn btn-default 9 #78909c blue-grey lighten-1 z-depth-2 whitetext" type="submit">Start a new job</button>
        

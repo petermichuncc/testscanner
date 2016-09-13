@@ -76,9 +76,9 @@ MDSnackbars.show(options)
 
 
 //Add code to save the person and partnumber of job to a database
-console.log("tech " + Session.get("tech")+ " partnumber " + Session.get("scanned")+ "mismatch scans "+Session.get("record")+"override" + Session.get("override"))
+//console.log("tech " + Session.get("tech")+ " partnumber " + Session.get("scanned")+ "mismatch scans "+Session.get("record")+"override" + Session.get("override"))
 
-Meteor.call('scansInsert',Session.get("tech") ,Session.get("scanned"),Session.get("record"),Session.get("override"))
+
 console.log("just called scans insert")
 
   },

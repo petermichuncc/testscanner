@@ -130,7 +130,7 @@ this.state.set('partshould',null)
 this.state.set('partshoulddesc',null)
 
 
-
+Session.set("scannedPartnumber",null)
 Session.set('input',true)
 Session.setPersistent("record", 0)
 Session.setPersistent("override", 0)
@@ -166,6 +166,12 @@ $('#initials').on('blur',function(){
             jQuery('#submit').focus().click();
         }
     });
+
+
+ 
+
+
+
 
 }
 
@@ -636,10 +642,19 @@ else
     else if (kanbancount-Template.instance().state.get("counter")<0)
 
     {
-      Materialize.toast('<span class="toasttextbig center spantest"> Good job </span>', 999999000, 'light-blue lighten-2 cp z-depth-2')
-
       Session.set("kanbanquestion", false)
-      Router.go('final');
+       Materialize.toast('<span class="toasttextbig center spantest"> Good job </span>', 999999000, 'light-blue lighten-2 cp z-depth-2')
+Meteor.call('scansInsert',Session.get("tech") ,Session.get("scanned"),Session.get("record"),Session.get("override"))
+     var x = document.getElementById("snackbar")
+  console.log("This is the class name " + x.className)
+  if (x.className != "show cp z-depth-2" && typeof Session.get("scannedPartnumber")=="string")
+{
+    x.className = "show cp z-depth-2";
+    //setTimeout(function(){ x.className = x.className.replace("show", ""); }, 999999000);
+}
+console.log("test")
+      //I need to have a session variable I setup next that triggers the final toast and snack bar to pop up
+      Session.set("start", 3)
     }
     
       
