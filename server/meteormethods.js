@@ -183,42 +183,57 @@ console.log("error in the desc meteor method " + err)
   {
     try{
      
-
-      upc1=Number(upc)
-      upc=upc.trim()
+      var part=[]
+      upc1=upc
+      console.log("this is upc1 "+ upc1)
+      upc=upc.toString();
+      upc=upc.trim();
       //I need to return the partnumber
+        console.log("this is upc "+ upc)
+        Orders.find({partnumber:upc1}).map(function(doc) {
+     if(typeof doc.partnumber=="string")
+     {
+       partnumber= doc.partnumber
+       desc=doc.desc
+     }
+    
+
+});
+  Orders.find({partnumber:upc}).map(function(doc) {
+     if(typeof doc.partnumber=="string")
+     {
+       partnumber= doc.partnumber
+       desc=doc.desc
+     }
+
+});
+    part.push(partnumber)
+    part.push(desc)
+    return part
+    
+        /*
+        if (Orders.find({partnumber:upc1}).count()>=1)
+      {
+        
+      var partnumber=true
+        console.log("test a order")
+        partnumber= Orders.findOne({partnumber:upc1}).partnumber
       
-        if (Orders.find({ordernumber:upc1}).count()>=1)
-      {
-        
-        if (typeof Orders.find({ordernumber:upc1}).fetch().pop().partnumber ==="string")
-        {
-        return Orders.find({ordernumber:upc1}).fetch().pop().partnumber
-      }
-      else if (typeof Orders.findOne({ordernumber:upc1}).partnumber ==="string")
-      {
-
-        return Orders.findOne({ordernumber:upc1}).partnumber
-      }
         
       }
-    else if (Orders.find({ordernumber:upc}).count()>=1)
+    else if (Orders.find({partnumber:upc}).count()>=1)
     { 
-            
- if (typeof Orders.find({ordernumber:upc}).fetch().pop().partnumber ==="string")
-        {
-        return Orders.find({ordernumber:upc}).fetch().pop().partnumber
-      }
-      else if (typeof Orders.findOne({ordernumber:upc}).partnumber ==="string")
-      {
+            var partnumber=true
 
-        return Orders.findOne({ordernumber:upc}).partnumber
-      }
-      }  
-      else
-      {
-        return false
-      }
+          console.log("test b order")
+        partnumber= Orders.findOne({partnumber:upc}).partnumber
+      
+      } 
+      */ 
+      //  console.log("this is the typeof partnumber " + typeof partnumber)
+      //console.log("this is the partnumber "+ partnumber)
+
+      //return partnumber
 
 }catch(err)
 {
@@ -229,43 +244,32 @@ orderdesc: function(upc)
   {
     try{
      
- var order=null
-      upc1=Number(upc)
-      upc=upc.trim()
+
+      upc1=upc
+      upc=upc.toString();
+      upc=upc.trim();
       //I need to return the partnumber
-      
-        if (Orders.find({ordernumber:upc1}).count()>=1)
-      {
-        
-        if (typeof Orders.find({ordernumber:upc1}).fetch().pop().partnumber ==="string")
-        {
-        order=Orders.find({ordernumber:upc1}).fetch().pop().partnumber
-      }
-      else if (typeof Orders.findOne({ordernumber:upc1}).partnumber ==="string")
-      {
+        console.log("this is upc "+ upc)
+        Orders.find({partnumber:upc1}).map(function(doc) {
+     if(typeof doc.partnumber=="string")
+     {
+       partnumber= doc.partnumber
+     }
+    
 
-        order=Orders.findOne({ordernumber:upc1}).partnumber
-      }
-        
-      }
-    else if (Orders.find({ordernumber:upc}).count()>=1)
-    { 
-            
- if (typeof Orders.find({ordernumber:upc}).fetch().pop().partnumber ==="string")
-        {
-        order=Orders.find({ordernumber:upc}).fetch().pop().partnumber
-      }
-      else if (typeof Orders.findOne({ordernumber:upc}).partnumber ==="string")
-      {
+});
+  Orders.find({partnumber:upc}).map(function(doc) {
+     if(typeof doc.partnumber=="string")
+     {
+       partnumber= doc.partnumber
+     }
 
-        order=Orders.findOne({ordernumber:upc}).partnumber
-      }
-      }  
+});
    //Here I need to look in the upc database and retrieve the description for the 
    //associated partnumber
-   console.log("this is the partnumber "+ order)
    
-   var desc=Upcs.findOne({partnumber:order})
+   
+   var desc=Upcs.findOne({partnumber:partnumber})
    return desc
 
 
@@ -613,54 +617,81 @@ return text
     //and search for items with the itemid of the
     //items ids in the orders database
     //  {sort: {itemid: -1}, limit: 1}
-     var count=0
-      var upc1=Number(upc)
-      var upc=upc.trim()
-      //I need to return the partnumber
-     
-
-      //order.push()  this will add an item to the array
-      
-            if (Kanbans.find({ordernumber:upc1,itemid: { $regex: /^8/i }}).count()>=1 )
-      { 
-       
-       
-        var count=Kanbans.find({ordernumber:upc1,itemid: { $regex: /^8/i }}).count()
-      }
-
-      if (Kanbans.find({ordernumber:upc1,itemid: { $regex: /^9/i }}).count()>=1)
-      {
-        var count2=Kanbans.find({ordernumber:upc1,itemid: { $regex: /^9/i }}).count()
-        
-        count=count+count2
-              
-      }
-            
-            
-     
-    if (Kanbans.find({ordernumber:upc,itemid: { $regex: /^8/i }}).count()>=1)
-    {  
-      var count=Kanbans.find({ordernumber:upc,itemid: { $regex: /^8/i }}).count()
-      } 
     
-    if (Kanbans.find({ordernumber:upc,itemid: { $regex: /^9/i }}).count()>=1)
-    {  
-      var count2=Kanbans.find({ordernumber:upc,itemid: { $regex: /^9/i }}).count()
-    count=count+count2
-
           // order.push(Orders.find({ordernumber:upc}))
+          var contents=[]
+ upc1=upc
+      upc=upc.toString();
+      upc=upc.trim();
+      count=0
+      //So I need to use find one to grab a order with this partnumber
 
-      }  
+      //I need to return the partnumber
+       Kanbans.find({partnumber:upc1}).map(function(doc) {
+         
+     if(typeof doc.ordernumber=="string"||typeof doc.ordernumber=="number")
+     {
+      order=doc.ordernumber
+     }
+  });
+   Kanbans.find({partnumber:upc}).map(function(doc) {
+         
+     if(typeof doc.ordernumber=="string"||typeof doc.ordernumber=="number")
+     {
+      order=doc.ordernumber
+     }
+  });
+console.log("this is the order "+ order)
+   
+        console.log("this is upc in kanbandb"+ upc)
+        Kanbans.find({ordernumber:order,partnumber:upc1,itemid: { $regex: /^8/i }}).map(function(doc) {
+          console.log("test a typeof "+ typeof doc.itemid)
+     if(typeof doc.itemid=="string")
+     {
+      contents.push(doc.itemid)
+       count=count+1
+     }
+  });
+  
+  Kanbans.find({ordernumber:order,partnumber:upc1,itemid: { $regex: /^9/i }}).map(function(doc) {
+    console.log("test b typeof "+ typeof doc.itemid)
+     if(typeof doc.itemid=="string")
+     {
+      contents.push(doc.itemid)
+       count=count+1
+     }
+  });
 
-          // order.push(Orders.find({ordernumber:upc}))
+   Kanbans.find({ordernumber:order,partnumber:upc,itemid: { $regex: /^8/i }}).map(function(doc) {
+       console.log("test c typeof "+ typeof doc.itemid)
+     if(typeof doc.itemid=="string")
+     {
+      contents.push(doc.itemid)
+       count=count+1
+     }
+  });
+ Kanbans.find({ordernumber:order,partnumber:upc,itemid: { $regex: /^9/i }}).map(function(doc) {
+     console.log("test d typeof "+ typeof doc.itemid)
+     if(typeof doc.itemid=="string")
+     {
+      contents.push(doc.itemid)
+       count=count+1
+     }
+  });
 
-       
+
+       //I should return an array that contains the first item
+       //as the count and any additional items as
+       //entries in that array
      
      
    
      
         console.log("this is the kanbancount " + count)
-          return Number(count)
+        count=Number(count)
+        contents.push(count)
+
+          return contents
         
 
 }catch(err)

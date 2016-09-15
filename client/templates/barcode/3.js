@@ -23,10 +23,10 @@ var text=""
     Session.set("counter", -3)
     Session.set("start",1)
     Session.set("color", "white")
-    Session.set("scan2",0)
-Session.set("scan",0)
-Session.set("bagtag",0)
-Session.set("boxtag",0)
+    Session.set("scan2",null)
+Session.set("scan",null)
+Session.set("bagtag",null)
+Session.set("boxtag",null)
 
  Session.setPersistent("scannedOrdernumber", null)
 //I need to record if a bag, box, and kanban ticket have been scanned
@@ -133,7 +133,7 @@ Session.setPersistent("override", 0)
 
 Session.set("kanbancheck", false)
 
-Session.set("kanbantag", 0)
+
 Session.set("bagtag",0)
 Session.set("boxtag",0)
  Session.set("kanbanquestion", false)
@@ -190,7 +190,7 @@ if (Session.get("counter")>-2 && run===true)
 console.log("counter >-2")
 
 $("#initials").focus();
-test=5
+test=null
 var typingTimer;                //timer identifier
 var doneTypingInterval = 1000;
 var $input=$("#initials")
@@ -225,11 +225,13 @@ if (test.length==0 &&test=="")
 }
 console.log("this is test type "+ typeof test)
 console.log(" this is test initials" +test)
+/*
 console.log("this is scan2 "+Session.get("scan2") )
 console.log("this is scan "+Session.get("scan") )
 console.log("this is bagtag "+Session.get("bagtag") )
 console.log("this is boxtag "+Session.get("boxtag") )
-  if (test==Session.get("scan2")||test==Session.get("scan")&&runnew==true)
+*/
+ /* if (runnew==true)
   {
     //send an alert
     Materialize.toast('Please scan a new barcode', 3000,'blue')
@@ -238,7 +240,8 @@ console.log("please scan a new barcode")
    setTimeout(erase, 1000);
     //clear the input box
   }
-  else if (test!=5||test!=Session.get("scan2")||test!=Session.get("scan")&&runnew==true)
+  */
+  if (runnew==true)
   {
    if (Session.get("counter")<0)
    {
@@ -273,13 +276,17 @@ function erase() {
   kanbancomponent: function()
   {
     Template.instance().state.set("check",false)
-    
- if (typeof ReactiveMethod.call('kanbandb', Session.get("scan"))==="number")
+    var contents=ReactiveMethod.call('kanbandb', Session.get("scan"))
+    console.log("type of parts "+ typeof contents)
+    console.log("is array parts "+ Array.isArray(contents))
+
+ if (Array.isArray(contents))
  {    
   
- 
-      var count=ReactiveMethod.call('kanbandb', Session.get("scan"))
+ console.log("this is the last item  "+ contents[contents.length - 1])
+      var count=contents.pop();
       console.log("this is the count "+ count)
+      console.log("this is the last item  "+ contents[contents.length - 1])
 if (typeof count==="number")
 {
 Template.instance().state.set("check",true)
@@ -296,20 +303,12 @@ Template.instance().state.set("check",true)
  
   check: function()
   {
- console.log("this is scan " + Session.get("scan"))
-  console.log("this is the run " + run)
-if (typeof ReactiveMethod.call('orderdesc', Session.get("scan"))==="object"&& run===true&& Template.instance().state.get("check")===true)
-{
-   var object=ReactiveMethod.call('orderdesc', Session.get("scan"))
-   //I can return an object and grab the partnumber here too
-   var desc=object.desc
-   var partnumber=object.partnumber
-     var ordernumber=object.ordernumber
-  Session.setPersistent("scannedDesc", desc)
-  Session.setPersistent("scannedPartnumber", partnumber)
-    Session.setPersistent("scannedOrdernumber", Session.get("scan"))
-}
-if (typeof ReactiveMethod.call('order', Session.get("scan"))==="string"&& run===true && Template.instance().state.get("check")===true )
+    console.log("this is the scan " + Session.get("scan"))
+
+    var parts=ReactiveMethod.call('order', Session.get("scan"))
+    console.log("type of parts "+ typeof parts)
+    console.log("is array parts "+ Array.isArray(parts))
+if (Array.isArray(parts)&& run===true && Template.instance().state.get("check")===true )
  {      console.log("test a")    
  $('#initials').val('');
 run=false
@@ -317,16 +316,16 @@ run=false
      count=count+1
    
       Session.set("counter", count)
-   Session.setPersistent("scanned",ReactiveMethod.call('order', Session.get("scan")))
-  
- console.log("this is the desc "+ Session.get("scannedDesc") )
- console.log("this is the order "+ Session.get("scannedOrdernumber") )
+   Session.setPersistent("scanned",parts[0])
+   Session.setPersistent("scannedPartnumber", parts[0])
+    Session.setPersistent("scannedDesc", parts[1])
+
   // scan1=Session.get("scan")
 
       Session.set("color", "green")
     //return "green"
   }
-  else if(Session.get("scan")!=0 && run===true&& ReactiveMethod.call('order', Session.get("scan"))===false && $( "#initials" ).val()!='')
+  /*else if(Session.get("scan")!=0 && run===true&& Array.isArray(parts)===false )
   { console.log("test b")   
     $('#initials').val('');
   
@@ -335,7 +334,7 @@ run=false
     Materialize.toast('That job order is not in the system', 8000,'orange darken-2 z-depth-2')
      Session.set("color", "red")
       run=false
-  }
+  }*/
   else if (Session.get("scan")==0 && run==true )
   {console.log("test c")   
    
@@ -381,14 +380,9 @@ Template.instance().state.set('partscan', null);
     
     Template.instance().state.set('partshould',null)
     Template.instance().state.set('partshoulddesc',null)
- Session.set("kanbantag", false)
 
-      if (typeof ReactiveMethod.call('rawmaterial', Session.get("scan2"))==="string"&&run===true &&  Session.get("counter")<2)
-  {
-    //This checks if it is a raw material that was scanned
-    Session.set("kanbantag", Session.get("scan2"))
-     
-  }
+
+      
 
 
 
@@ -576,13 +570,13 @@ if(  Session.get("counter")==-2)
  if(  Session.get("counter")==-1)
    {
 
-    return "Please scan the job order"
+    return "Please scan the part number"
     //Session.set("scan",0)
     
   }  
  if(  Session.get("counter")==0)
    {
-
+    Template.instance().state.set("check",false)
     return "Please scan the printed bag or box label"
     //Session.set("scan",0)
    
@@ -1094,17 +1088,17 @@ $("#initials").focus();
 //Go to the scan job order
   Session.set("start",0)
  Session.set("color", "white")
-    Session.set("scan2",0)
-Session.set("scan",0)
-Session.set("bagtag",0)
-Session.set("boxtag",0)
+    Session.set("scan2",null)
+Session.set("scan",null)
+Session.set("bagtag",null)
+Session.set("boxtag",null)
 
 Session.setPersistent("record", 0)
 Session.setPersistent("override", 0)
 
 Session.set("kanbancheck", false)
 
-Session.set("kanbantag", 0)
+
 
  Session.set("kanbanquestion", false)
  Session.set("descshow",false)
@@ -1144,19 +1138,19 @@ $("#initials").focus();
 'click .11': function(event, template){
  //Router.go('one')
 //There is a new tech at this point
- Session.set("start",0)
+  Session.set("start",0)
  Session.set("color", "white")
-    Session.set("scan2",0)
-Session.set("scan",0)
-Session.set("bagtag",0)
-Session.set("boxtag",0)
+    Session.set("scan2",null)
+Session.set("scan",null)
+Session.set("bagtag",null)
+Session.set("boxtag",null)
 
 Session.setPersistent("record", 0)
 Session.setPersistent("override", 0)
 
 Session.set("kanbancheck", false)
 
-Session.set("kanbantag", 0)
+
 
  Session.set("kanbanquestion", false)
  Session.set("descshow",false)
