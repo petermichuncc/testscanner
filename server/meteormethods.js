@@ -84,7 +84,10 @@ console.log("error in the part meteor method " + err)
       var upc=upc
   
   //I need to also check if the scanned upc is actually a partnumber
+/*
+This is checking if there is upc that exists for the scanned printed bag/box label
 
+*/
   for (var i=0; i<upc.length; i++)
       {
         //this loop should have two different strings
@@ -426,6 +429,9 @@ if (Kanbans.find({ordernumber:upc1}).count()>=1)
   {
       
      try{
+      /*
+        Change this to check the partnumber
+      */
       upc=upc.toString()
       upc=upc.trim()
        order1=Number(order)

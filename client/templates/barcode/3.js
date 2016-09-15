@@ -133,7 +133,7 @@ Session.setPersistent("override", 0)
 
 Session.set("kanbancheck", false)
 
-
+Session.set("kanbantag", 0)
 Session.set("bagtag",0)
 Session.set("boxtag",0)
  Session.set("kanbanquestion", false)
@@ -376,21 +376,25 @@ run=false
     //basically this will return a boolean for whether the background should turn green or not and go to the next page
     //put this comparison on the server side
     //
+    /*
+      This function is going through and finding out if the scanned printed bag/box label
+      or kanban was good or not.  If it was incorrect it lets the user know what the scanned
+      item should have been. 
+
+    */
 Template.instance().state.set('partscan', null);
     
     Template.instance().state.set('partshould',null)
     Template.instance().state.set('partshoulddesc',null)
+ Session.set("kanbantag", false)
 
-
-      
-
-
-
-
-
+  
 
    if (typeof ReactiveMethod.call('total', Session.get("scan2"))==="object" &&run===true)
  {
+  /*
+checks if box label/printed bag was scanned
+  */
 
     if (Session.get("scan2").charAt(0)==7||Session.get("scan2").charAt(0)==8)
     {
@@ -408,18 +412,17 @@ Template.instance().state.set('partscan', null);
   }
   else if (typeof ReactiveMethod.call('rawmaterial', Session.get("scan2"),Session.get("scannedOrdernumber"))==="string"&&run===true &&  Session.get("counter")>=2)
   {
-    //This checks if it is a raw material that was
+     /*
+      checks if kanban was scanned
+  */
     Template.instance().state.set("kanban", true)
      //Template.instance().state.set("kanbangood", true)
      
      var scan2=ReactiveMethod.call('rawmaterial', Session.get("scan2"),Session.get("scannedOrdernumber"))
-     
- if (typeof ReactiveMethod.call('kanbanpart', Session.get("scan2"),Session.get("scannedOrdernumber"))==="string")
-  {
-    //This checks if it is a raw material that was
-    var scan2desc=ReactiveMethod.call('kanbanpart', Session.get("scan2"),Session.get("scannedOrdernumber"))
-    
-  }
+     /*
+        Need a description too.
+     */
+ 
   else
   {
     scan2desc=null
@@ -1098,7 +1101,7 @@ Session.setPersistent("override", 0)
 
 Session.set("kanbancheck", false)
 
-
+Session.set("kanbantag", 0)
 
  Session.set("kanbanquestion", false)
  Session.set("descshow",false)
@@ -1150,7 +1153,7 @@ Session.setPersistent("override", 0)
 
 Session.set("kanbancheck", false)
 
-
+Session.set("kanbantag", 0)
 
  Session.set("kanbanquestion", false)
  Session.set("descshow",false)
