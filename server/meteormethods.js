@@ -287,8 +287,9 @@ orderdesc: function(upc)
      
  var box=null
  var boxdesc=null
-      upc1=Number(upc)
-      upc=upc.trim()
+      upc1=upc
+      upc=upc.toString();
+      upc=upc.trim();
       //this fxn takes in the upc of the order
       /*
        I need to look for orders that contain a order number from the upc 
@@ -301,10 +302,12 @@ db.products.find( { sku: { $regex: /^ABC/i } } )  finds items that start with AB
 
 
         */
-        console.log("this is the count ")
-console.log("test start")
+       /*
+        It is taking in a partnumber from the job order
 
-       
+       */
+
+      /* 
       if (Kanbans.find({ itemid: { $regex: /^32/i },ordernumber:upc1}).count()>=1)
       {console.log("test 1")
         
@@ -324,7 +327,115 @@ console.log("test start")
     else if (Kanbans.find({ itemid: { $regex: /^31/i },ordernumber:upc}).count()>=1)
     { console.log("test 4")
             box= Kanbans.find({ itemid: { $regex: /^31/i },ordernumber:upc}).fetch().pop()
-    }   
+    } 
+*/
+var contents=[]
+/*
+slot 0 is the bag
+*/
+Kanbans.find({ itemid: { $regex: /^32/i }, partnumber:upc1}).map(function(doc) {
+          console.log("test a typeof "+ typeof doc.itemid)
+     if(typeof doc.usagerate=="number")
+     {
+      contents.push( doc.usagerate)
+     }
+  });
+  
+  Kanbans.find({ itemid: { $regex: /^31/i }, partnumber:upc1}).map(function(doc) {
+    console.log("test b typeof "+ typeof doc.itemid)
+    if(typeof doc.usagerate=="number")
+     {
+     contents.push( doc.usagerate)
+     }
+  });
+
+   Kanbans.find({ itemid: { $regex: /^32/i },ordernumber:upc}).map(function(doc) {
+       console.log("test c typeof "+ typeof doc.itemid)
+    if(typeof doc.usagerate=="number")
+     {
+      contents.push( doc.usagerate)
+     }
+  });
+ Kanbans.find({ itemid: { $regex: /^31/i },ordernumber:upc}).map(function(doc) {
+     console.log("test d typeof "+ typeof doc.itemid)
+     if(typeof doc.usagerate=="number")
+     {
+      contents.push( doc.usagerate)
+     }
+  });
+
+/*
+slot 1 is the box
+*/
+
+Kanbans.find({ itemid: { $regex: /^33/i },partnumber:upc1, desc:{ $regex: /POLY/i }}).map(function(doc) {
+          console.log("test a typeof "+ typeof doc.itemid)
+     if(typeof doc.usagerate=="number")
+     {
+     contents.push( doc.usagerate)
+     }
+  });
+  
+  Kanbans.find({ itemid: { $regex: /^33/i },partnumber:upc1, desc:{ $regex: /BAG/i }}).map(function(doc) {
+    console.log("test b typeof "+ typeof doc.itemid)
+    if(typeof doc.usagerate=="number")
+     {
+     contents.push( doc.usagerate)
+     }
+  });
+
+ Kanbans.find({ itemid: { $regex: /^33/i },partnumber:upc, desc:{ $regex: /POLY/i }}).map(function(doc) {
+          console.log("test a typeof "+ typeof doc.itemid)
+     if(typeof doc.usagerate=="number")
+     {
+     contents.push( doc.usagerate)
+     }
+  });
+  
+  Kanbans.find({ itemid: { $regex: /^33/i },partnumber:upc, desc:{ $regex: /BAG/i }}).map(function(doc) {
+    console.log("test b typeof "+ typeof doc.itemid)
+    if(typeof doc.usagerate=="number")
+     {
+     contents.push( doc.usagerate)
+     }
+  });
+
+return contents
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+if (typeof usagerate!="number")
+{
+return false
+}
+
+
+
+
+
+
+
+
    //Here I need to look in the upc database and retrieve the description for the 
    //associated partnumber
    console.log("this is the box "+ box)
@@ -366,26 +477,7 @@ desc field
 
 */
 //I need to go through the kanbans db
-      if (Kanbans.find({ itemid: { $regex: /^33/i },ordernumber:upc1, desc:{ $regex: /POLY/i }}).count()>=1)
-      {console.log("test 2")
-        
-       bag= Kanbans.find({ itemid: { $regex: /^33/i },ordernumber:upc1, desc:{ $regex: /POLY/i }}).fetch().pop()
-        
-      }
-      else if (Orders.find({ itemid: { $regex: /^33/i },ordernumber:upc1, desc:{ $regex: /BAG/i }}).count()>=1)
-      {console.log("test 2")
-        
-       bag= Kanbans.find({ itemid: { $regex: /^33/i },ordernumber:upc1, desc:{ $regex: /BAG/i }}).fetch().pop()
-        
-      }
-     if (Kanbans.find({ itemid: { $regex: /^33/i },ordernumber:upc, desc:{ $regex: /POLY/i }}).count()>=1)
-    { console.log("test 4")
-            bag= Kanbans.find({ itemid: { $regex: /^33/i },ordernumber:upc, desc:{ $regex: /POLY/i }}).fetch().pop()
-    }
-     else if (Kanbans.find({ itemid: { $regex: /^33/i },ordernumber:upc, desc:{ $regex: /BAG/i }}).count()>=1)
-    { console.log("test 4")
-            bag= Kanbans.find({ itemid: { $regex: /^33/i },ordernumber:upc, desc:{ $regex: /BAG/i }}).fetch().pop()
-    }    
+      
    //Here I need to look in the upc database and retrieve the description for the 
    //associated partnumber
    console.log("this is the bag "+ bag)
@@ -425,35 +517,49 @@ if (Kanbans.find({ordernumber:upc1}).count()>=1)
   return false
 }
   },  
-  rawmaterial: function(upc,order)
+  rawmaterial: function(upc)
   {
       
      try{
       /*
-        Change this to check the partnumber
-      */
-      upc=upc.toString()
-      upc=upc.trim()
-       order1=Number(order)
-      order=order.trim()
-      console.log("this is upc1 " + upc)
-      console.log("here is the order " + order)
-if (Orders.find({itemid:upc,ordernumber:order}).count()>=1)
-      {
-        console.log("there is a order ")
-        return Orders.find({itemid:upc,ordernumber:order}).fetch().pop().partnumber
-        
-      }
-     else if (Orders.find({itemid:upc,ordernumber:order1}).count()>=1)
-      {
-        console.log("there is a order ")
-        return Orders.find({itemid:upc,ordernumber:order1}).fetch().pop().partnumber
-        
-      }
-      else
-      {
+        Change this to check if the partnumber is in the 
+        kanban database 
+        if it is then return the partnumber and description
 
-      }
+      In this function the user is scanning the item id for the kanban
+      so only look at the item id 
+
+      */
+    var contents=[]
+     upc1=upc
+      upc=upc.toString();
+      upc=upc.trim();
+       
+      console.log("this is upc1 " + upc)
+      
+
+  Kanbans.find({itemid: upc1}).map(function(doc) {
+          console.log("test a typeof "+ typeof doc.itemid)
+     if(typeof doc.itemid=="string")
+     {
+      contents.push(doc.itemid)
+      contents.push(doc.desc)
+      contents.push(doc.partnumber)
+     }
+  });
+  
+
+   Kanbans.find({itemid:upc}).map(function(doc) {
+       console.log("test b typeof "+ typeof doc.itemid)
+     if(typeof doc.itemid=="string")
+     {
+      contents.push(doc.itemid)
+      contents.push(doc.desc)
+       contents.push(doc.partnumber)
+     }
+  });
+return contents
+
 }catch(err)
 {
 

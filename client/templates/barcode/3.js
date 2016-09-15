@@ -410,33 +410,37 @@ checks if box label/printed bag was scanned
      var scan2desc=scan2.desc
      scan2=scan2.partnumber
   }
-  else if (typeof ReactiveMethod.call('rawmaterial', Session.get("scan2"),Session.get("scannedOrdernumber"))==="string"&&run===true &&  Session.get("counter")>=2)
+  else if (Array.isArray( ReactiveMethod.call('rawmaterial', Session.get("scan2")))&&run===true &&  Session.get("counter")>=2)
   {
      /*
       checks if kanban was scanned
   */
+  var contents=ReactiveMethod.call('rawmaterial', Session.get("scan2"))
     Template.instance().state.set("kanban", true)
      //Template.instance().state.set("kanbangood", true)
      
-     var scan2=ReactiveMethod.call('rawmaterial', Session.get("scan2"),Session.get("scannedOrdernumber"))
+     var scan2=contents[2]
+     var scan2desc=contents[1]
      /*
         Need a description too.
      */
+ /*
+  scan2 is the item id,
+  Session.get("scanned") is the partnumber
+
+ */
  
-  else
-  {
-    scan2desc=null
   }
 
-
-
-  }
   console.log("this is scan2 " + scan2)
   console.log("this is typeof compare " + typeof ReactiveMethod.call('compare', scan2,Session.get("scanned")))
 //This function is comparing the job order partnumber to the partnumber of the scanned item
 // A more efficient thing to do would be to just check if the scanned item
 //partnumber is within the job order?
+/*
+This logic is comparing the partnumber of the job order to that of the printed bag,box label, or kanban
 
+*/
 if (typeof ReactiveMethod.call('compare', scan2,Session.get("scanned"))==="string" )
 {
 
@@ -870,11 +874,11 @@ x().then(function(done) {
 
 //So I need to take 1000 and divide it by the usage rate x 1000
 console.log("this is scan " + Session.get("scan"))
-var bag = ReactiveMethod.call('bags', Session.get("scan"))
+var bag = ReactiveMethod.call('boxes', Session.get("scan"))
 console.log("this is the type of bag " + typeof bag)
 if (typeof bag!="boolean")
 {
-var bagusage=bag.usagerate
+var bagusage=bag[1]
 console.log("this is bag usagerate"+ bagusage)
 
 
@@ -906,7 +910,7 @@ output=output.concat(span2)
 var box = ReactiveMethod.call('boxes', Session.get("scan"))
 if (typeof box!="boolean")
 {
-var boxusage=box.usagerate
+var boxusage=box[0]
 console.log("this is box usage "+ boxusage)
 
 //So I need to take 1000 and divide it by the usage rate x 1000
@@ -943,31 +947,7 @@ var span2='</span>'
 output=output.concat(span2)
      Materialize.toast(output, 999999000, 'light-blue lighten-2 cp z-depth-2 toasttextbig')
   
-/*
-I need to output text with the Session.get("kanbancount") on it
 
-*/
-/*
-var output2=Session.get("kanbancount")
-
-if (output2<2)
-{
-  output2=output2.toString()
-output2= output2.concat(" plastic part")
-  }
-  else if (output2>=2)
-  {output2=output2.toString()
-    output2= output2.concat(" plastic parts")
-  }
-
-
-    
-var span1='<span class="toasttextbig center spantest">'
-output2=span1.concat(output2)
-var span2='</span>'
-output2=output2.concat(span2)
-  Materialize.toast(output2, 999999000, 'light-blue lighten-2 cp z-depth-2 toasttextbig')
-  */
   }
 
   },
