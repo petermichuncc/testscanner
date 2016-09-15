@@ -194,7 +194,7 @@ console.log("error in the desc meteor method " + err)
       //I need to return the partnumber
         console.log("this is upc "+ upc)
         Orders.find({partnumber:upc1}).map(function(doc) {
-     if(typeof doc.partnumber=="string")
+     if(typeof doc.partnumber=="string"||typeof doc.partnumber=="number")
      {
        partnumber= doc.partnumber
        desc=doc.desc
@@ -203,17 +203,27 @@ console.log("error in the desc meteor method " + err)
 
 });
   Orders.find({partnumber:upc}).map(function(doc) {
-     if(typeof doc.partnumber=="string")
+     if(typeof doc.partnumber=="string"||typeof doc.partnumber=="number")
      {
        partnumber= doc.partnumber
        desc=doc.desc
      }
 
 });
+  console.log("this is typeof desc "+ typeof desc)
+  if (typeof desc=="string")
+  {
     part.push(partnumber)
     part.push(desc)
     return part
-    
+    }
+    else
+    {
+      console.log("returning false ")
+      return false
+    }
+
+
         /*
         if (Orders.find({partnumber:upc1}).count()>=1)
       {

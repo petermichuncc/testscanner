@@ -287,8 +287,9 @@ function erase() {
       var count=contents.pop();
       console.log("this is the count "+ count)
       console.log("this is the last item  "+ contents[contents.length - 1])
-if (typeof count==="number")
+if (count>0)
 {
+  console.log("count is greater than 0")
 Template.instance().state.set("check",true)
   Session.setPersistent("kanbancount", count)
 }
@@ -308,6 +309,7 @@ Template.instance().state.set("check",true)
     var parts=ReactiveMethod.call('order', Session.get("scan"))
     console.log("type of parts "+ typeof parts)
     console.log("is array parts "+ Array.isArray(parts))
+    console.log("kanban check " + Template.instance().state.get("check"))
 if (Array.isArray(parts)&& run===true && Template.instance().state.get("check")===true )
  {      console.log("test a")    
  $('#initials').val('');
@@ -325,17 +327,17 @@ run=false
       Session.set("color", "green")
     //return "green"
   }
-  /*else if(Session.get("scan")!=0 && run===true&& Array.isArray(parts)===false )
+ else if(Session.get("scan")!=null && run===true&& parts==false&& Template.instance().state.get("check")===false )
   { console.log("test b")   
     $('#initials').val('');
   
-     
+      run=false
    
     Materialize.toast('That job order is not in the system', 8000,'orange darken-2 z-depth-2')
      Session.set("color", "red")
-      run=false
-  }*/
-  else if (Session.get("scan")==0 && run==true )
+     
+  }
+  else if (Template.instance().state.get("check")===false && run==true )
   {console.log("test c")   
    
     //run=false
