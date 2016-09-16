@@ -191,15 +191,23 @@ console.log("error in the desc meteor method " + err)
       console.log("this is upc1 "+ upc1)
       upc=upc.toString();
       upc=upc.trim();
+      partnumber= null
+       desc=null
       //I need to return the partnumber
         console.log("this is upc "+ upc)
+        console.log("this is upc1 "+ upc1)
         Orders.find({partnumber:upc1}).map(function(doc) {
      if(typeof doc.partnumber=="string"||typeof doc.partnumber=="number")
      {
        partnumber= doc.partnumber
        desc=doc.desc
      }
-    
+    else
+     {
+       partnumber= null
+       desc=null
+     }
+
 
 });
   Orders.find({partnumber:upc}).map(function(doc) {
@@ -208,8 +216,14 @@ console.log("error in the desc meteor method " + err)
        partnumber= doc.partnumber
        desc=doc.desc
      }
+     else
+     {
+       partnumber= null
+       desc=null
+     }
 
 });
+  console.log("this is the desc " + desc)
   console.log("this is typeof desc "+ typeof desc)
   if (typeof desc=="string")
   {

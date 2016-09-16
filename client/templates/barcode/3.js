@@ -5,7 +5,11 @@ the color of the
 
 
 */
+/*
+Work on kanban ticket working for multiple partnumbers that could
+potentially be scanned.
 
+*/
 
 var count=-3
 var colortest=true
