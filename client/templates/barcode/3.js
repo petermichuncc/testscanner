@@ -10,6 +10,81 @@ Work on kanban ticket working for multiple partnumbers that could
 potentially be scanned.
 
 */
+function myFunction() {
+    var x = Math.floor((Math.random() * 11) + 1);
+
+if (x==1)
+{
+ return 'Nice work'
+}
+else if (x==2)
+{
+   return 'Good job'
+}
+else if (x==3)
+{
+  return'Congratz'
+}
+else if (x==4)
+{
+  return 'Great'
+}
+else if (x==5)
+{
+  return 'Keep it up'
+}
+else if (x==6)
+{
+  return 'Good going'
+}
+else if (x==7)
+{
+  return 'Good work'
+}
+else if (x==8)
+{
+  return 'Bravo'
+}
+else if (x==9)
+{
+  return 'Compliments'
+}
+else if (x==10)
+{
+  return 'Well done'
+}
+else if (x==11)
+{
+  return 'Perfect'
+}
+}
+
+function myFunctionColor() {
+    var x = Math.floor((Math.random() * 5) + 1);
+
+if (x==1)
+{
+ return 'green'
+}
+else if (x==2)
+{
+   return 'blue'
+}
+else if (x==3)
+{
+  return'green accent-3'
+}
+else if (x==4)
+{
+  return 'cyan accent-2'
+}
+else if (x==5)
+{
+  return 'deep-purple darken-4'
+}
+
+}
+
 
 var count=-3
 var colortest=true
@@ -131,7 +206,7 @@ this.state.set('partshoulddesc',null)
 
 
 Session.set("scannedPartnumber",null)
-
+Session.set("scanned",null)
 Session.setPersistent("record", 0)
 Session.setPersistent("override", 0)
 
@@ -389,14 +464,14 @@ run=false
 
     */
 Template.instance().state.set('partscan', null);
-    
+  
     Template.instance().state.set('partshould',null)
     Template.instance().state.set('partshoulddesc',null)
  Session.set("kanbantag", false)
 
   
 
-   if (typeof ReactiveMethod.call('total', Session.get("scan2"))==="object" &&run===true)
+   if (typeof ReactiveMethod.call('total', Session.get("scan2"))==="object" &&run===true )
  {
   /*
 checks if box label/printed bag was scanned
@@ -421,10 +496,11 @@ checks if box label/printed bag was scanned
      /*
       checks if kanban was scanned
   */
+  console.log("raw material is true ")
   var contents=ReactiveMethod.call('rawmaterial', Session.get("scan2"))
     Template.instance().state.set("kanban", true)
      //Template.instance().state.set("kanbangood", true)
-     
+     var scan2itemid=contents[0]
      var scan2=contents[2]
      var scan2desc=contents[1]
      /*
@@ -437,9 +513,20 @@ checks if box label/printed bag was scanned
  */
  
   }
+/*
+
+I will have two different if statements.
+One is for the raw material the other for printed bags/box labels 
+
+*/
+
+
+
+
 
   console.log("this is scan2 " + scan2)
   console.log("this is typeof compare " + typeof ReactiveMethod.call('compare', scan2,Session.get("scanned")))
+  console.log("this is the kanban " + Template.instance().state.get("kanban"))
 //This function is comparing the job order partnumber to the partnumber of the scanned item
 // A more efficient thing to do would be to just check if the scanned item
 //partnumber is within the job order?
@@ -447,7 +534,122 @@ checks if box label/printed bag was scanned
 This logic is comparing the partnumber of the job order to that of the printed bag,box label, or kanban
 
 */
-if (typeof ReactiveMethod.call('compare', scan2,Session.get("scanned"))==="string" )
+
+/*
+This first if statement runs through if there is a kanban ticket scanned  
+
+*/
+if (Template.instance().state.get("kanban")&&run===true && Session.get("counter")>=2)
+{
+
+     var result=ReactiveMethod.call('compareKanban', scan2itemid,Session.get("scanned"))
+     Session.set("result",result)
+     console.log("this is the result "+ result)
+
+ if(result==="red" && run===true)
+      {
+        if (Template.instance().state.get("kanban")===true)
+    {
+      Template.instance().state.set("kanbangood",true)
+      Template.instance().state.set("text", false)
+  
+    }
+ Session.set("descshow",true)
+  var test3="The partnumber you scanned was: "
+       test3=test3.concat(scan2)
+//don't show description if it was ekanban
+Materialize.toast(test3, 999000,'blue ch z-depth-2')
+        if (typeof scan2desc=="string")
+        {
+       var test4="Description: "
+         test4=test4.concat(scan2desc)
+        Materialize.toast(test4, 999000,'blue ch z-depth-2')
+        Template.instance().state.set('partscandesc',test4)
+      }
+     var test2="The partnumber should have been: "
+   
+    test2=test2.concat(Session.get("scanned"))
+     var test5="Description: "
+   
+    test5=test5.concat(Session.get("scannedDesc"))
+ 
+  Materialize.toast(test2, 999000,'orange ch z-depth-2')
+    Materialize.toast(test5, 999000,'orange ch z-depth-2')
+//I also need to show a toast with a button that in it
+//
+var colortest=' <button class="btn btn-default 6 #78909c blue z-depth-5 " id="test1" onclick="myFunction()" >Acknowledge</button>'
+  var $toastContent = $(colortest);
+  Materialize.toast1($toastContent, 999000, 'ch');
+$('#test1').mouseup(function() { this.blur() })
+
+
+    Template.instance().state.set('partscan', test3);
+    
+    Template.instance().state.set('partshould',test2)
+    Template.instance().state.set('partshoulddesc',test5)
+
+  
+     run=false
+   }
+   else if(result==="green" && run===true)
+   {
+    Session.set("descshow",false)
+    Materialize.toast('Match', 4000,'light-blue lighten-2 z-depth-2')
+    //count shouldn't go up after the bag and box are scanned and
+    //the scanned item was ekanban
+    console.log("This is the count in green before incr " + count)
+    console.log("this is the react var count " +  Session.get("counter"))
+    count= Session.get("counter")
+    console.log("count after set equal to counter " + count)
+    count = count+1
+  console.log("this is the count after incr " + count)
+
+      if (Template.instance().state.get("kanban")===true)
+    {
+  Template.instance().state.set("text", true)
+    }
+    
+
+
+    
+      Session.set("counter", count)
+ run=false
+   
+
+   }
+   
+  if (result==="green")
+  {
+
+     
+    
+    $('#initials').val('');
+   Session.set("color", "green")
+    
+  }
+  else if (result==="red")
+  {
+
+    if (Template.instance().state.get("kanban")===true)
+    {
+     
+
+    }
+    record=record+1
+
+    Session.setPersistent("record", record)
+    //Tell what partnumber should have been
+    
+    
+    $('#initials').val('');
+  Session.set("color", "red")
+   
+    
+  }
+ 
+}
+
+else if (typeof ReactiveMethod.call('compare', scan2,Session.get("scanned"))==="string" &&Template.instance().state.get("kanban")==false &&run==true )
 {
 
      var result=ReactiveMethod.call('compare', scan2,Session.get("scanned"))
@@ -662,6 +864,9 @@ else
     else if (kanbancount- Session.get("counter")<0)
 
     {
+      Session.set("scan2",null)
+      console.log("setting kanban false")
+       Template.instance().state.set("kanban", false)
       Session.set("kanbanquestion", false)
        Materialize.toast('<span class="toasttextbig center spantest"> Good job </span>', 999999000, 'light-blue lighten-2 cp z-depth-2')
 Meteor.call('scansInsert',Session.get("tech") ,Session.get("scanned"),Session.get("record"),Session.get("override"))
@@ -674,6 +879,7 @@ Meteor.call('scansInsert',Session.get("tech") ,Session.get("scanned"),Session.ge
 }
 console.log("test")
       //I need to have a session variable I setup next that triggers the final toast and snack bar to pop up
+       
       Session.set("start", 3)
       run=true
     }
@@ -882,7 +1088,7 @@ x().then(function(done) {
 console.log("this is scan " + Session.get("scan"))
 var bag = ReactiveMethod.call('boxes', Session.get("scan"))
 console.log("this is the type of bag " + typeof bag)
-if (typeof bag!="boolean")
+if (typeof bag!="boolean" &&typeof bag!="undefined" )
 {
 var bagusage=bag[1]
 console.log("this is bag usagerate"+ bagusage)
@@ -1088,7 +1294,7 @@ Session.setPersistent("override", 0)
 Session.set("kanbancheck", false)
 
 Session.set("kanbantag", 0)
-
+Session.set("scanned",null)
  Session.set("kanbanquestion", false)
  Session.set("descshow",false)
  Session.set("result", null)
@@ -1133,7 +1339,7 @@ $("#initials").focus();
 Session.set("scan",null)
 Session.set("bagtag",null)
 Session.set("boxtag",null)
-
+Session.set("scanned",null)
 Session.setPersistent("record", 0)
 Session.setPersistent("override", 0)
 

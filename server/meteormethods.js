@@ -564,7 +564,7 @@ if (Kanbans.find({ordernumber:upc1}).count()>=1)
 
   Kanbans.find({itemid: upc1}).map(function(doc) {
           console.log("test a typeof "+ typeof doc.itemid)
-     if(typeof doc.itemid=="string")
+     if(typeof doc.itemid=="string"||typeof doc.itemid=="number")
      {
       contents.push(doc.itemid)
       contents.push(doc.desc)
@@ -575,11 +575,12 @@ if (Kanbans.find({ordernumber:upc1}).count()>=1)
 
    Kanbans.find({itemid:upc}).map(function(doc) {
        console.log("test b typeof "+ typeof doc.itemid)
-     if(typeof doc.itemid=="string")
+     if(typeof doc.itemid=="string"||typeof doc.itemid=="number")
      {
       contents.push(doc.itemid)
       contents.push(doc.desc)
-       contents.push(doc.partnumber)
+      contents.push(doc.partnumber)
+       
      }
   });
 return contents
@@ -662,6 +663,51 @@ console.log("error in the part meteor method " + err)
 
 }
   },
+   compareKanban: function(itemid, partnumber) {
+    try{
+/*
+So this will take in an item id of a kanban
+it will then search through the Kanbans db
+for an entry that has that item id and part number of the original
+scanned sku
+
+*/
+var color=null
+ console.log("This is type of itemid and partnumber "+typeof itemid+" "+typeof partnumber)
+ console.log("This is itemid and partnumber "+itemid+" "+partnumber)
+ var count=Kanbans.find({partnumber:partnumber,itemid:itemid}).count()
+ console.log("this is the count of comparekanban "+ count)
+ Kanbans.find({partnumber:partnumber,itemid:itemid}).map(function(doc) {
+         
+     if(typeof doc.itemid=="string"||typeof doc.itemid=="number")
+     {
+      console.log("green inside the comparekanban")
+      color= "green"
+      return "green"
+     }
+  });
+
+if (color!="green")
+{
+  return "red"
+
+}
+return color
+
+
+
+
+
+ 
+
+}catch(err)
+{
+  return "red"
+console.log("error in the part meteor method " + err)
+
+}
+  },
+
   bagscanned: function(upc)
   {
 try{
