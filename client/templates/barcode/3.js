@@ -27,7 +27,7 @@ else if (x==3)
 }
 else if (x==4)
 {
-  return 'Great'
+  return 'Fantastic'
 }
 else if (x==5)
 {

@@ -357,7 +357,7 @@ var contents=[]
 /*
 slot 0 is the bag
 */
-Kanbans.find({ itemid: { $regex: /^32/i }, partnumber:upc1}).map(function(doc) {
+Kanbanstest.find({ itemid: { $regex: /^32/i }, partnumber:upc1}).map(function(doc) {
           console.log("test a typeof "+ typeof doc.itemid)
      if(typeof doc.usagerate=="number")
      {
@@ -365,7 +365,7 @@ Kanbans.find({ itemid: { $regex: /^32/i }, partnumber:upc1}).map(function(doc) {
      }
   });
   
-  Kanbans.find({ itemid: { $regex: /^31/i }, partnumber:upc1}).map(function(doc) {
+  Kanbanstest.find({ itemid: { $regex: /^31/i }, partnumber:upc1}).map(function(doc) {
     console.log("test b typeof "+ typeof doc.itemid)
     if(typeof doc.usagerate=="number")
      {
@@ -373,14 +373,14 @@ Kanbans.find({ itemid: { $regex: /^32/i }, partnumber:upc1}).map(function(doc) {
      }
   });
 
-   Kanbans.find({ itemid: { $regex: /^32/i },ordernumber:upc}).map(function(doc) {
+   Kanbanstest.find({ itemid: { $regex: /^32/i },partnumber:upc}).map(function(doc) {
        console.log("test c typeof "+ typeof doc.itemid)
     if(typeof doc.usagerate=="number")
      {
       contents.push( doc.usagerate)
      }
   });
- Kanbans.find({ itemid: { $regex: /^31/i },ordernumber:upc}).map(function(doc) {
+ Kanbanstest.find({ itemid: { $regex: /^31/i },partnumber:upc}).map(function(doc) {
      console.log("test d typeof "+ typeof doc.itemid)
      if(typeof doc.usagerate=="number")
      {
@@ -392,7 +392,7 @@ Kanbans.find({ itemid: { $regex: /^32/i }, partnumber:upc1}).map(function(doc) {
 slot 1 is the box
 */
 
-Kanbans.find({ itemid: { $regex: /^33/i },partnumber:upc1, desc:{ $regex: /POLY/i }}).map(function(doc) {
+Kanbanstest.find({ itemid: { $regex: /^33/i },partnumber:upc1, desc:{ $regex: /POLY/i }}).map(function(doc) {
           console.log("test a typeof "+ typeof doc.itemid)
      if(typeof doc.usagerate=="number")
      {
@@ -400,7 +400,7 @@ Kanbans.find({ itemid: { $regex: /^33/i },partnumber:upc1, desc:{ $regex: /POLY/
      }
   });
   
-  Kanbans.find({ itemid: { $regex: /^33/i },partnumber:upc1, desc:{ $regex: /BAG/i }}).map(function(doc) {
+  Kanbanstest.find({ itemid: { $regex: /^33/i },partnumber:upc1, desc:{ $regex: /BAG/i }}).map(function(doc) {
     console.log("test b typeof "+ typeof doc.itemid)
     if(typeof doc.usagerate=="number")
      {
@@ -408,7 +408,7 @@ Kanbans.find({ itemid: { $regex: /^33/i },partnumber:upc1, desc:{ $regex: /POLY/
      }
   });
 
- Kanbans.find({ itemid: { $regex: /^33/i },partnumber:upc, desc:{ $regex: /POLY/i }}).map(function(doc) {
+ Kanbanstest.find({ itemid: { $regex: /^33/i },partnumber:upc, desc:{ $regex: /POLY/i }}).map(function(doc) {
           console.log("test a typeof "+ typeof doc.itemid)
      if(typeof doc.usagerate=="number")
      {
@@ -416,7 +416,7 @@ Kanbans.find({ itemid: { $regex: /^33/i },partnumber:upc1, desc:{ $regex: /POLY/
      }
   });
   
-  Kanbans.find({ itemid: { $regex: /^33/i },partnumber:upc, desc:{ $regex: /BAG/i }}).map(function(doc) {
+  Kanbanstest.find({ itemid: { $regex: /^33/i },partnumber:upc, desc:{ $regex: /BAG/i }}).map(function(doc) {
     console.log("test b typeof "+ typeof doc.itemid)
     if(typeof doc.usagerate=="number")
      {
@@ -514,33 +514,7 @@ desc field
   return false
 }
   },
-   ekanbans: function(upc)
-  {
-    try{
-     
-  var count=0;
-
-      upc1=Number(upc)
-      upc=upc.trim()
-    
-if (Kanbans.find({ordernumber:upc1}).count()>=1)
-      { console.log("test 1 count")
-        count=Kanbans.find({ordernumber:upc1}).count()
-       }
-  if (Kanbans.find({ordernumber:upc}).count()>=1)
-    {   console.log("test 2 count")
-      count=Kanbans.find({ordernumber:upc}).count()
-    }  
-
- console.log("this is the kanban count "+ count)
-
-
-
-}catch(err)
-{
-  return false
-}
-  },  
+   
   rawmaterial: function(upc)
   {
       
@@ -562,8 +536,9 @@ if (Kanbans.find({ordernumber:upc1}).count()>=1)
       console.log("this is upc1 " + upc)
       
 
-  Kanbans.find({itemid: upc1}).map(function(doc) {
+  Kanbanstest.find({itemid: upc1}).map(function(doc) {
           console.log("test a typeof "+ typeof doc.itemid)
+          console.log("this is the itemid a " + doc.itemid)
      if(typeof doc.itemid=="string"||typeof doc.itemid=="number")
      {
       contents.push(doc.itemid)
@@ -573,8 +548,9 @@ if (Kanbans.find({ordernumber:upc1}).count()>=1)
   });
   
 
-   Kanbans.find({itemid:upc}).map(function(doc) {
+   Kanbanstest.find({itemid:upc}).map(function(doc) {
        console.log("test b typeof "+ typeof doc.itemid)
+       console.log("this is the itemid b " + doc.itemid)
      if(typeof doc.itemid=="string"||typeof doc.itemid=="number")
      {
       contents.push(doc.itemid)
@@ -592,37 +568,7 @@ return contents
 
   },
 
-   kanbanarray: function(upc,order)
-  {
-      
-     try{
-      upc=upc.toString()
-       order1=Number(order)
-      order=order.trim()
-      console.log("this is upc1 " + upc)
-      console.log("here is the order " + order)
-if (Orders.find({itemid:upc,ordernumber:order}).count()>=1)
-      {
-        console.log("there is a order ")
-        return Orders.find({itemid:upc,ordernumber:order}).fetch().pop().partnumber
-        
-      }
-     else if (Orders.find({itemid:upc,ordernumber:order1}).count()>=1)
-      {
-        console.log("there is a order ")
-        return Orders.find({itemid:upc,ordernumber:order1}).fetch().pop().partnumber
-        
-      }
-      else
-      {
-
-      }
-}catch(err)
-{
-
-}
-
-  }, 
+   
 
   compare: function(upc, upc2) {
     try{
@@ -675,9 +621,9 @@ scanned sku
 var color=null
  console.log("This is type of itemid and partnumber "+typeof itemid+" "+typeof partnumber)
  console.log("This is itemid and partnumber "+itemid+" "+partnumber)
- var count=Kanbans.find({partnumber:partnumber,itemid:itemid}).count()
+ var count=Kanbanstest.find({partnumber:partnumber,itemid:itemid}).count()
  console.log("this is the count of comparekanban "+ count)
- Kanbans.find({partnumber:partnumber,itemid:itemid}).map(function(doc) {
+ Kanbanstest.find({partnumber:partnumber,itemid:itemid}).map(function(doc) {
          
      if(typeof doc.itemid=="string"||typeof doc.itemid=="number")
      {
@@ -809,52 +755,38 @@ return text
       //So I need to use find one to grab a order with this partnumber
 
       //I need to return the partnumber
-       Kanbans.find({partnumber:upc1}).map(function(doc) {
-         
-     if(typeof doc.ordernumber=="string"||typeof doc.ordernumber=="number")
-     {
-      order=doc.ordernumber
-     }
-  });
-   Kanbans.find({partnumber:upc}).map(function(doc) {
-         
-     if(typeof doc.ordernumber=="string"||typeof doc.ordernumber=="number")
-     {
-      order=doc.ordernumber
-     }
-  });
-console.log("this is the order "+ order)
+     
    
         console.log("this is upc in kanbandb"+ upc)
-        Kanbans.find({ordernumber:order,partnumber:upc1,itemid: { $regex: /^8/i }}).map(function(doc) {
+         Kanbanstest.find({partnumber:upc1,itemid: { $regex: /^8/i }}).map(function(doc) {
           console.log("test a typeof "+ typeof doc.itemid)
-     if(typeof doc.itemid=="string")
+     if(typeof doc.itemid=="string"||typeof doc.itemid=="number")
      {
       contents.push(doc.itemid)
        count=count+1
      }
   });
   
-  Kanbans.find({ordernumber:order,partnumber:upc1,itemid: { $regex: /^9/i }}).map(function(doc) {
+  Kanbanstest.find({partnumber:upc1,itemid: { $regex: /^9/i }}).map(function(doc) {
     console.log("test b typeof "+ typeof doc.itemid)
-     if(typeof doc.itemid=="string")
+     if(typeof doc.itemid=="string"||typeof doc.itemid=="number")
      {
       contents.push(doc.itemid)
        count=count+1
      }
   });
 
-   Kanbans.find({ordernumber:order,partnumber:upc,itemid: { $regex: /^8/i }}).map(function(doc) {
+   Kanbanstest.find({partnumber:upc,itemid: { $regex: /^8/i }}).map(function(doc) {
        console.log("test c typeof "+ typeof doc.itemid)
-     if(typeof doc.itemid=="string")
+     if(typeof doc.itemid=="string"||typeof doc.itemid=="number")
      {
       contents.push(doc.itemid)
        count=count+1
      }
   });
- Kanbans.find({ordernumber:order,partnumber:upc,itemid: { $regex: /^9/i }}).map(function(doc) {
+ Kanbanstest.find({partnumber:upc,itemid: { $regex: /^9/i }}).map(function(doc) {
      console.log("test d typeof "+ typeof doc.itemid)
-     if(typeof doc.itemid=="string")
+     if(typeof doc.itemid=="string"||typeof doc.itemid=="number")
      {
       contents.push(doc.itemid)
        count=count+1
@@ -966,44 +898,7 @@ console.log("this is the order "+ order)
 
 
         },       
- kanbanpart: function (upc,order) {
-       //So this function will take in an ekanban upc or item id
-       //It will then find the suffix of the item id and then find the associated
-       //color from the colors collection.    
-      try{
-
-        upc=upc.toString()
-        upc=upc.trim()
-      console.log("this is upc1 " + upc)
-if (Orders.find({itemid:upc,ordernumber:order}).count()>=1)
-      {
-        
-        var partnumber= Orders.find({itemid:upc,ordernumber:order}).fetch().pop().partnumber
-        
-      }
-      else
-      {
-
-      }
-
-     console.log("this is the partnumber of the kanban " + partnumber)
-     //Now I need to look for the description of this partnumber 
-      if (Upcs.find({partnumber:partnumber}).count()>=1)
-      {
-        console.log("There is a description")
-        var desc=Upcs.find({partnumber:partnumber}).fetch().pop().desc
-        console.log("this is the description "+ desc)
-      }
-return desc
-
-
-}catch(err)
-{
-
-}
-
-
-        },
+ 
   datahistory: function () {
    var start=moment().format("YYYY-MM-DD 05:00:00.000")
        var count=Dataentries.find({timestamp: {$gte: start}})
