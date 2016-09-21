@@ -762,7 +762,7 @@ return text
           console.log("test a typeof "+ typeof doc.itemid)
      if(typeof doc.itemid=="string"||typeof doc.itemid=="number")
      {
-      contents.push(doc.itemid)
+      contents.push(doc.desc)
        count=count+1
      }
   });
@@ -771,7 +771,7 @@ return text
     console.log("test b typeof "+ typeof doc.itemid)
      if(typeof doc.itemid=="string"||typeof doc.itemid=="number")
      {
-      contents.push(doc.itemid)
+      contents.push(doc.desc)
        count=count+1
      }
   });
@@ -780,7 +780,7 @@ return text
        console.log("test c typeof "+ typeof doc.itemid)
      if(typeof doc.itemid=="string"||typeof doc.itemid=="number")
      {
-      contents.push(doc.itemid)
+      contents.push(doc.desc)
        count=count+1
      }
   });
@@ -788,7 +788,7 @@ return text
      console.log("test d typeof "+ typeof doc.itemid)
      if(typeof doc.itemid=="string"||typeof doc.itemid=="number")
      {
-      contents.push(doc.itemid)
+      contents.push(doc.desc)
        count=count+1
      }
   });

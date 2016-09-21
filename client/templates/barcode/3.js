@@ -57,6 +57,23 @@ else if (x==11)
 {
   return 'Perfect'
 }
+else if (x==12)
+{
+  return 'Marvelous'
+}
+else if (x==13)
+{
+  return 'Excellent'
+}
+else if (x==14)
+{
+  return 'Right on'
+}
+else if (x==15)
+{
+  return 'Nice going'
+}
+
 }
 
 function myFunctionColor() {
@@ -106,6 +123,7 @@ var text=""
 Session.set("scan",null)
 Session.set("bagtag",null)
 Session.set("boxtag",null)
+Session.set("contents",null)
 
  Session.setPersistent("scannedOrdernumber", null)
 //I need to record if a bag, box, and kanban ticket have been scanned
@@ -356,6 +374,7 @@ function erase() {
   {
     Template.instance().state.set("check",false)
     var contents=ReactiveMethod.call('kanbandb', Session.get("scan"))
+    Session.set("contents",contents)
     console.log("type of parts "+ typeof contents)
     console.log("is array parts "+ Array.isArray(contents))
 
@@ -1172,6 +1191,62 @@ output=output.concat(span2)
   }
 
   },
+  kanbanPieces: function () {
+
+
+var contents = ReactiveMethod.call('kanbandb', Session.get("scan"))
+ console.log("type of parts "+ typeof contents)
+    console.log("is array parts "+ Array.isArray(contents))
+
+ if (Array.isArray(contents))
+ {    
+  
+ console.log("this is the last item  "+ contents[contents.length - 1])
+      var count=contents.pop();
+      if (count >1)
+      {
+        countOutput=count.toString()
+        countOutput=countOutput.concat(" plastic pieces")
+        Materialize.toast(countOutput, 999999000, 'light-blue lighten-2 cp z-depth-2 toasttextbig')
+        for (var i=0; i<contents.length; i++)
+            {
+              
+                output=contents[i]
+//var span1='<span class="toasttextbig center spantest">'
+//output=span1.concat(output)
+//var span2='</span>'
+//output=output.concat(span2)
+     Materialize.toast(output, 999999000, 'light-blue lighten-2 cp z-depth-2 toasttextbig')
+  
+
+
+
+
+
+              } //end of for loop
+    
+      console.log("this is the count "+ count)
+      console.log("this is the last item  "+ contents[contents.length - 1])
+    }//end of count if
+  
+
+  }//end of is array if
+
+/*
+     console.log("this is the bags per box " + bagsPerBox)
+     var output=bagsPerBox.toString()
+     if (bagsPerBox==1)
+      {
+     output= output.concat(" bag per box")
+ }
+ else
+ {
+  output= output.concat(" bags per box")
+  }
+    */
+
+
+  },
 partnumber: function()
 {
 //create a reactive method that I call here that returns the current partnumber
@@ -1299,6 +1374,7 @@ Session.set("boxtag",null)
 
 Session.setPersistent("record", 0)
 Session.setPersistent("override", 0)
+Session.set("contents",null)
 
 Session.set("kanbancheck", false)
 
@@ -1351,7 +1427,7 @@ Session.set("boxtag",null)
 Session.set("scanned",null)
 Session.setPersistent("record", 0)
 Session.setPersistent("override", 0)
-
+Session.set("contents",null)
 Session.set("kanbancheck", false)
 
 Session.set("kanbantag", 0)
