@@ -576,7 +576,7 @@ return contents
  //and the printed bag, box label, and raw material
  //
  console.log("This is type of upc and upc2 "+typeof upc+" "+typeof upc2)
- 
+ console.log("this is upc and upc2 " + upc +" "+ upc2)
  if (typeof upc==="string"&&typeof upc2==="string")
  {console.log("this is upc 1 and 2 "+ upc+" "+upc2)
     if (upc==upc2)
