@@ -1,60 +1,53 @@
 <template name="asp">
 
 <head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 
-<meta http-equiv="Content-Language" content="en-us">
-<meta name="GENERATOR" content="Microsoft FrontPage 5.0">
-<meta name="ProgId" content="FrontPage.Editor.Document">
 
 <meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
 <title>sssssssss</title>
 </head>
+<script Language="JavaScript">
 
+
+function showDiv() {
+    if ( document.getElementById('div1').style.display == 'block')
+    {
+            document.getElementById('div1').style.display = 'none';
+           }
+           else
+           {
+            document.getElementById('div1').style.display = 'block';
+             
+           }
+           var value = document.getElementById('txt_name').value
+            console.log("testing showDiv new" + value)
+        }
+
+</script>
 <body>
-
-<form method="GET">
-  <p><input type="text" name="T1" size="20"></p>
+  <Button id="Button1"  Text="Button 1" OnClick="showDiv()" > Button 1</Button>
+  
+    
+  <!--<div id="div1" style="display:none">This is Div 1</div>-->
+  
+ 
+ <p>TEXT:<input type="text" id ="txt_name" name="T1" size="20"></p>
+<form method="GET" id="div1" style="display:none">
+ 
   <table border="1">
     <tbody>
-      <!--webbot bot="DatabaseRegionStart" s-columnnames="PERSON,INITIALS,loc" s-columntypes="202,202,200" s-dataconnection="CNC" b-tableformat="TRUE" b-menuformat="FALSE" s-menuchoice s-menuvalue b-tableborder="TRUE" b-tableexpand="FALSE" b-tableheader="FALSE" b-listlabels="TRUE" b-listseparator="TRUE" i-listformat="0" b-makeform="TRUE" s-recordsource s-displaycolumns="PERSON,INITIALS,loc" s-criteria s-order s-sql="select * from people2" b-procedure="FALSE" clientside suggestedext="asp" s-defaultfields s-norecordsfound i-maxrecords="0" i-groupsize="0" botid="0" u-dblib="_fpclass/fpdblib.inc" u-dbrgn1="_fpclass/fpdbrgn1.inc" u-dbrgn2="_fpclass/fpdbrgn2.inc" tag="TBODY" preview="&lt;tr&gt;&lt;td colspan=64 bgcolor=&quot;#FFFF00&quot; align=&quot;left&quot; width=&quot;100%&quot;&gt;&lt;font color=&quot;#000000&quot;&gt;This is the start of a Database Results region. The page must be fetched from a web server with a web browser to display correctly; the current web is stored on your local disk or network.&lt;/font&gt;&lt;/td&gt;&lt;/tr&gt;" startspan --><!--#include file="_fpclass/fpdblib.inc"-->
-<!--<% if 0 then %>-->
-<SCRIPT Language="JavaScript">
-document.write("<div style='background: yellow; color: black;'>The Database Results component on this page is unable to display database content. The page must have a filename ending in '.asp', and the web must be hosted on a server that supports Active Server Pages.</div>");
+     
 
-$("#buttonProductionSummary").click(function(e) {
-    $("#productionForm").show();
-
-    e.preventDefault();
-});
-
-</SCRIPT>
-<!--<% end if %>
-<%
-fp_sQry="select * from people2"
-fp_sDefault=""
-fp_sNoRecords="<tr><td colspan=3 align=left width=""100%""></td></tr>"
-fp_sDataConn="CNC"
-fp_iMaxRecords=0
-fp_iCommandType=1
-fp_iPageSize=0
-fp_fTableFormat=True
-fp_fMenuFormat=False
-fp_sMenuChoice=""
-fp_sMenuValue=""
-fp_iDisplayCols=3
-fp_fCustomQuery=True
-BOTID=0
-fp_iRegion=BOTID
-%>-->
-<!--#include file="_fpclass/fpdbrgn1.inc"-->
-<!--webbot bot="DatabaseRegionStart" endspan --><tr>
-      
+<tr>
+      test
       </tr>
-      <!--webbot bot="DatabaseRegionEnd" b-tableformat="TRUE" b-menuformat="FALSE" u-dbrgn2="_fpclass/fpdbrgn2.inc" i-groupsize="0" clientside tag="TBODY" preview="&lt;tr&gt;&lt;td colspan=64 bgcolor=&quot;#FFFF00&quot; align=&quot;left&quot; width=&quot;100%&quot;&gt;&lt;font color=&quot;#000000&quot;&gt;This is the end of a Database Results region.&lt;/font&gt;&lt;/td&gt;&lt;/tr&gt;" startspan --><!--#include file="_fpclass/fpdbrgn2.inc"-->
-<!--webbot bot="DatabaseRegionEnd" endspan --></tbody>
+      
+     </tbody>
   </table>
-  <p><input id="buttonProductionSummary"  class="buttonProductionSummary" type="submit" value="Submit" name="B2"></p>
+  
 </form>
+
 <form method="POST" action="11.asp" webbot-action="--WEBBOT-SELF--">
   <!--webbot bot="SaveResults" u-file="_private/form_results.csv" s-format="TEXT/CSV" s-label-fields="TRUE" startspan --><input TYPE="hidden" NAME="VTI-GROUP" VALUE="0"><!--webbot bot="SaveResults" i-checksum="43374" endspan -->
  
