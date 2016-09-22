@@ -1,3 +1,5 @@
+
+<%@ language="javascript"%>
 <html>
 
 <head>
@@ -14,8 +16,26 @@ FP_CodePage = 1252 %>
 </head>
 
 <body>
+<script Language="JavaScript">
 
-<form method="GET">
+
+function showDiv() {
+    if ( document.getElementById('div1').style.display == 'block')
+    {
+            document.getElementById('div1').style.display = 'none';
+           }
+           else
+           {
+            document.getElementById('div1').style.display = 'block';
+             
+           }
+           var value = document.getElementById('txt_name').value
+            console.log("testing showDiv new" + value)
+        }
+
+</script>
+ <Button id="Button1"  Text="Button 1" OnClick="showDiv()" > Button 1</Button>
+<form method="GET" id="div1">
   <p><input type="text" name="T1" size="20"></p>
   <table border="1">
     <tbody>
@@ -54,7 +74,7 @@ fp_iRegion=BOTID
       <!--webbot bot="DatabaseRegionEnd" b-tableformat="TRUE" b-menuformat="FALSE" u-dbrgn2="_fpclass/fpdbrgn2.inc" i-groupsize="0" clientside tag="TBODY" preview="&lt;tr&gt;&lt;td colspan=64 bgcolor=&quot;#FFFF00&quot; align=&quot;left&quot; width=&quot;100%&quot;&gt;&lt;font color=&quot;#000000&quot;&gt;This is the end of a Database Results region.&lt;/font&gt;&lt;/td&gt;&lt;/tr&gt;" startspan --><!--#include file="_fpclass/fpdbrgn2.inc"-->
 <!--webbot bot="DatabaseRegionEnd" endspan --></tbody>
   </table>
-  <p><input type="button" value="Button" name="B2"></p>
+  
 </form>
 <form method="POST" action="11.asp" webbot-action="--WEBBOT-SELF--">
   <!--webbot bot="SaveResults" u-file="_private/form_results.csv" s-format="TEXT/CSV" s-label-fields="TRUE" startspan --><input TYPE="hidden" NAME="VTI-GROUP" VALUE="0"><!--webbot bot="SaveResults" i-checksum="43374" endspan --><p>

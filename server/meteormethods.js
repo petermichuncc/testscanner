@@ -1449,7 +1449,45 @@ return avgarray
 
 
         },
+ missingPartnumber: function () {
+          
+          var count=0
+            var parts=[]
 
+        /*  Kanbanstest.find({}).map(function(doc) {
+         var partnumber=doc.partnumber
+            if(Upcs.find({partnumber:partnumber}).count()<1)
+            {
+                console.log("no partnumber for " +doc.partnumber)
+                parts.push(doc.partnumber)
+            }
+
+
+
+
+
+});*/
+         Partnumbers.find({}).map(function(doc) {
+ var partnumber=doc.partnumber
+            if(typeof Upcs.findOne({partnumber:partnumber})=="undefined")
+            {
+                console.log("no partnumber for " +partnumber)
+                parts.push(partnumber)
+            }
+
+       
+
+     
+        });
+
+       console.log("done")
+//for (var)
+      
+           return parts
+          
+
+
+        },
   getServerTime: function () {
             var _time = moment().format("YYYY-MM-DD HH:mm:ss.SSS")
             //console.log(_time);

@@ -11,3 +11,7 @@ Meteor.publish('datacenters', function() {
 Meteor.publish('dataentries', function() {
   return Dataentries.find();
 });
+
+Meteor.publish('kanbanstest', function() {
+  return Dataentries.find();
+});

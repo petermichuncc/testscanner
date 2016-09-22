@@ -1,0 +1,33 @@
+
+
+<template name="table2">
+
+  
+ <div id="tabletest"  class="z-depth-5 center">
+          
+
+
+  <button class="btn btn-default z-depth-5" id="btnExport">Export to Excel</button> 
+   <div id="dvData">
+<table >
+  <tr>
+    <th>Partnumber</th>
+    
+  </tr>
+  <!-- Load session variables here -->
+  
+  {{#each kanbanstest}}
+  <tr>
+   
+    <td>{{this}}</td>
+
+  </tr>
+  {{/each}}
+</table>
+</div>
+
+</div>
+ 
+</template>
+
+
