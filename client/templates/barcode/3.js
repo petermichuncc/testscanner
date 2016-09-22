@@ -102,7 +102,7 @@ else if (x==5)
 
 }
 
-
+var password="1234567890"
 var count=-3
 var colortest=true
 var good=null
@@ -1463,7 +1463,29 @@ $( ".cp" ).hide();
 'click .15': function(event, template){
 var test = $('#txt_name').val();
 console.log("this is the test "+ test)
+/*
+Basically if test is equal to the password then
 
+
+*/
+
+if (test==password)
+{
+//Have a toast pop up for 10 seconds saying correct
+Materialize.toast('Password correct, nice job', 8000,'light-blue accent-4 z-depth-2')
+console.log("correct password")
+count=count+1
+
+      Session.set("counter", count)
+       $('#myModalNorm').modal('toggle');
+//At this point the count needs to increase by 1
+}
+else if (test!=password)
+{
+  //toast saying it was incorrect
+Materialize.toast('Please re-enter the password', 8000,'orange darken-2 z-depth-2')
+   $('#txt_name').val('');
+}
 
 }
  });
