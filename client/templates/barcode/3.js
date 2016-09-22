@@ -1296,7 +1296,7 @@ return Session.get("scannedPartnumber")
 
    Session.setPersistent("override",true)
    Session.set("descshow",false)
-Router.go('final')
+//I need to go to the the final part of the app at this point
 },
 'click .3': function(event, template){
 
@@ -1457,6 +1457,12 @@ $( ".cp" ).hide();
 
 
 
+
+
+},
+'click .15': function(event, template){
+var test = $('#txt_name').val();
+console.log("this is the test "+ test)
 
 
 }
