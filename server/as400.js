@@ -166,7 +166,7 @@ db.open(cn, function (err) {
 });
 
 */
-/*
+ var response = Async.runSync(function(done) {
 var db = require("odbc")()
     , cn = "DRIVER={Client Access ODBC Driver (32-bit)};SERVER=10.87.15.251;UID=CDATWATER;PWD=BabyGirl43;DATABASE=GCOVE; System=10.87.15.251;"
     ;
@@ -178,15 +178,76 @@ db.open(cn, function (err) {
  
     //we now have an open connection to the database 
     //so lets get some data 
-    db.query("SELECT MFMOMR03 FROM CCSDTACD.DMFMOMR WHERE MFMOMR03 LIKE '%9401%' GROUP BY MFMOMR03", function (err, rows, moreResultSets) {
+    
+
+    db.query("SELECT MFMOMR03 FROM CCSDTACD.DMFMOMR GROUP BY MFMOMR03", function (err, rows, moreResultSets) {
         if (err) {
             return console.log(err);
         }
-        console.log("type of rows "+ typeof rows)
-        console.log("no error..")
-        console.log(rows);
-        var foo=rows
-           for(var i in foo){
+       
+
+   setTimeout(function() { 
+
+    done(null, rows);
+    
+  }, 1000);
+
+   if (err) {
+       return console.error(err);
+   }
+   console.log("here are the rows " + rows)
+   /*rows.forEach( function (row){
+       console.log( row );
+   });
+*/
+
+
+
+     
+
+
+
+
+        //if moreResultSets is truthy, then this callback function will be called 
+        //again with the next set of rows. 
+
+
+
+
+    });//end of db query
+
+})
+
+
+
+
+});//end of async response
+
+var rows=response.result
+
+rows.forEach( function (row){
+
+      // console.log( row );
+ for(var i in row){
+                console.log("test "+ row[i])
+                  //test[i] is the partnumber
+                  //so I need to insert it into the Parts database.
+                    var part=row[i]
+                    
+                    Partnumbers.insert({
+                      partnumber: part
+                       
+                        });
+
+
+            }
+
+
+   });
+
+
+/*
+for(var i in foo){
             console.log(i); // alerts key
             var test= foo[i]
 
@@ -194,16 +255,16 @@ db.open(cn, function (err) {
                 console.log("test "+ test[i])
                   //test[i] is the partnumber
                   //so I need to insert it into the Parts database.
-
-
+                    var part=test[i]
+                    
+                    Partnumbers.insert({
+                      partnumber: part
+                       
+                        });
 
 
             }
            
            
           }
-        //if moreResultSets is truthy, then this callback function will be called 
-        //again with the next set of rows. 
-    });
-});
 */
