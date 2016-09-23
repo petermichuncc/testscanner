@@ -166,3 +166,44 @@ db.open(cn, function (err) {
 });
 
 */
+/*
+var db = require("odbc")()
+    , cn = "DRIVER={Client Access ODBC Driver (32-bit)};SERVER=10.87.15.251;UID=CDATWATER;PWD=BabyGirl43;DATABASE=GCOVE; System=10.87.15.251;"
+    ;
+ 
+db.open(cn, function (err) {
+    if (err) {
+        return console.log(err);
+    }
+ 
+    //we now have an open connection to the database 
+    //so lets get some data 
+    db.query("SELECT MFMOMR03 FROM CCSDTACD.DMFMOMR WHERE MFMOMR03 LIKE '%9401%' GROUP BY MFMOMR03", function (err, rows, moreResultSets) {
+        if (err) {
+            return console.log(err);
+        }
+        console.log("type of rows "+ typeof rows)
+        console.log("no error..")
+        console.log(rows);
+        var foo=rows
+           for(var i in foo){
+            console.log(i); // alerts key
+            var test= foo[i]
+
+            for(var i in test){
+                console.log("test "+ test[i])
+                  //test[i] is the partnumber
+                  //so I need to insert it into the Parts database.
+
+
+
+
+            }
+           
+           
+          }
+        //if moreResultSets is truthy, then this callback function will be called 
+        //again with the next set of rows. 
+    });
+});
+*/
