@@ -180,7 +180,7 @@ db.open(cn, function (err) {
     //so lets get some data 
     
 
-    db.query("SELECT MFMOMR03 FROM CCSDTACD.DMFMOMR GROUP BY MFMOMR03", function (err, rows, moreResultSets) {
+    db.query("SELECT CCSDTACD.DMFMOMR.MFMOMR03 FROM CCSDTACD.DMFMOMR,CCSDTACD.DCSDIM,CCSDTACD.DMFMAPR  WHERE CCSDTACD.DMFMAPR.PLT LIKE '%CD%' AND CCSDTACD.DMFMAPR.ORDNO = CCSDTACD.DMFMOMR.MFMOMR02 AND CCSDTACD.DMFMOMR.MFMOMR01 LIKE '%CD%' AND CCSDTACD.DMFMAPR.ITMID = CCSDTACD.DCSDIM.ITMID GROUP BY CCSDTACD.DMFMOMR.MFMOMR03", function (err, rows, moreResultSets) {
         if (err) {
             return console.log(err);
         }
@@ -196,34 +196,18 @@ db.open(cn, function (err) {
        return console.error(err);
    }
    console.log("here are the rows " + rows)
-   /*rows.forEach( function (row){
-       console.log( row );
-   });
-*/
-
-
-
-     
-
-
-
-
+  
         //if moreResultSets is truthy, then this callback function will be called 
         //again with the next set of rows. 
-
-
-
 
     });//end of db query
 
 })
 
-
-
-
 });//end of async response
 
 var rows=response.result
+Partnumbers.remove({ } )
 
 rows.forEach( function (row){
 
@@ -245,26 +229,4 @@ rows.forEach( function (row){
 
    });
 
-
-/*
-for(var i in foo){
-            console.log(i); // alerts key
-            var test= foo[i]
-
-            for(var i in test){
-                console.log("test "+ test[i])
-                  //test[i] is the partnumber
-                  //so I need to insert it into the Parts database.
-                    var part=test[i]
-                    
-                    Partnumbers.insert({
-                      partnumber: part
-                       
-                        });
-
-
-            }
-           
-           
-          }
-*/
+//End of first query inserting items into part number db
