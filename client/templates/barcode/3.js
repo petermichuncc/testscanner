@@ -124,7 +124,7 @@ Session.set("scan",null)
 Session.set("bagtag",null)
 Session.set("boxtag",null)
 Session.set("contents",null)
-
+Session.set("testColor",null)
  Session.setPersistent("scannedOrdernumber", null)
 //I need to record if a bag, box, and kanban ticket have been scanned
 //I need to send this into the 
@@ -412,6 +412,8 @@ if (Array.isArray(parts)&& run===true && Template.instance().state.get("check")=
  {      console.log("test a")    
  $('#initials').val('');
 run=false
+  var testColor=myFunctionColor()
+  Session.set("testColor",testColor)
      Materialize.toast('That was a correct job order', 8000,'light-blue accent-4 z-depth-2')
      count=count+1
    
@@ -1293,7 +1295,8 @@ return Session.get("scannedPartnumber")
 
 },
 'click .2': function(event, template){
-
+   
+   setTimeout(function(){ $('#txt_name').focus(); }, 500);
    Session.setPersistent("override",true)
    Session.set("descshow",false)
 //I need to go to the the final part of the app at this point
@@ -1461,6 +1464,7 @@ $( ".cp" ).hide();
 
 },
 'click .15': function(event, template){
+
 var test = $('#txt_name').val();
 console.log("this is the test "+ test)
 /*
@@ -1478,6 +1482,9 @@ count=count+1
 
       Session.set("counter", count)
        $('#myModalNorm').modal('toggle');
+       //set timeout for half a second
+       setTimeout(function(){ $("#initials").focus(); }, 500);
+    
 //At this point the count needs to increase by 1
 }
 else if (test!=password)
