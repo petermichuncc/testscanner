@@ -80,7 +80,7 @@ db.open(cn, function (err) {
     
 
 
-    db.query("SELECT CCSDTACD.DMFMAPR.ITMID, CCSDTACD.DMFMOMR.MFMOMR03 ,  CCSDTACD.DCSDIM.ITMDESC FROM CCSDTACD.DMFMOMR,  CCSDTACD.DCSDIM, CCSDTACD.DMFMAPR WHERE CCSDTACD.DMFMAPR.PLT LIKE '%CD%' AND CCSDTACD.DMFMAPR.ORDNO = CCSDTACD.DMFMOMR.MFMOMR02 AND CCSDTACD.DMFMOMR.MFMOMR01 LIKE '%CD%'AND CCSDTACD.DMFMOMR.MFMOMR03 LIKE '%FB2DRKS4B%' AND CCSDTACD.DMFMAPR.ITMID = CCSDTACD.DCSDIM.ITMID  GROUP BY CCSDTACD.DMFMOMR.MFMOMR03, CCSDTACD.DCSDIM.ITMDESC, CCSDTACD.DMFMAPR.ITMID", function (err, rows, moreResultSets) {
+    db.query("SELECT CCSDTACD.DMFMAPR.ITMID, CCSDTACD.DMFMOMR.MFMOMR03 ,  CCSDTACD.DCSDIM.ITMDESC FROM CCSDTACD.DMFMOMR,  CCSDTACD.DCSDIM, CCSDTACD.DMFMAPR WHERE CCSDTACD.DMFMAPR.PLT LIKE '%CD%' AND CCSDTACD.DMFMAPR.ORDNO = CCSDTACD.DMFMOMR.MFMOMR02 AND CCSDTACD.DMFMOMR.MFMOMR01 LIKE '%CD%' AND CCSDTACD.DMFMAPR.ITMID = CCSDTACD.DCSDIM.ITMID  GROUP BY CCSDTACD.DMFMOMR.MFMOMR03, CCSDTACD.DCSDIM.ITMDESC, CCSDTACD.DMFMAPR.ITMID", function (err, rows, moreResultSets) {
         if (err) {
 
             return console.log(err);
@@ -111,38 +111,21 @@ var rows=response.result
 //Partnumbers.remove({ } )
 
 rows.forEach( function (row){
-console.log("here is row " + row)
-console.log("here is typeof row " + typeof row)
-console.log(" favorite fruit is " + row['ITMID']);
-console.log(" favorite fruit is " + row['MFMOMR03']);
-console.log(" favorite fruit is " + row['ITMDESC']);
-/*
-ITMID
-MFMOMR03
-ITMDESC
 
-*/
-    // console.log( row );
- /*for(var i in row){
-               console.log("test "+ row[i])
-                  //test[i] is the partnumber
-                  //so I need to insert it into the Parts database.
-                    var part=row[i]
-                    
-                 
+var itemid=row['ITMID']
+var partnumber=row['MFMOMR03']
+var description=row['ITMDESC']
 
-
-            }
-            */
-
-              // Partnumbers.insert({
-                   //   partnumber: part
+  Orderstest.insert({
+                itemid:itemid,
+               partnumber: partnumber,
+               desc: description
                        
-                     //   });
-            console.log("complete row")
+                  });
+               
 
    });
-
+ console.log("completed all row")
 
 //End of second query inserting items into part number db
 
