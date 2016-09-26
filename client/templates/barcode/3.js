@@ -385,12 +385,11 @@ function erase() {
       var count=contents.pop();
       console.log("this is the count "+ count)
       console.log("this is the last item  "+ contents[contents.length - 1])
-if (count>0)
-{
-  console.log("count is greater than 0")
+
+ 
 Template.instance().state.set("check",true)
   Session.setPersistent("kanbancount", count)
-}
+
       
 
 
