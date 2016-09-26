@@ -116,6 +116,10 @@ var itemid=row['ITMID']
 var partnumber=row['MFMOMR03']
 var description=row['ITMDESC']
 
+itemid=itemid.trim()
+partnumber=partnumber.trim()
+description=description.trim()
+
   Orderstest.insert({
                 itemid:itemid,
                partnumber: partnumber,
