@@ -836,7 +836,7 @@ else
     
     //Materialize.toast(test3, 15000,'blue')
     }
-    else if ( Session.get("counter")===2 )
+    else if ( Session.get("counter")===2 && Session.get("kanbancount")>0 )
     {
       
       /*
@@ -863,7 +863,7 @@ else
       return "Please scan the eKanban ticket part number: "
      
     }
-    else if ( Session.get("counter")>2 && kanbancount- Session.get("counter")>=0)
+    else if ( Session.get("counter")>2 && kanbancount- Session.get("counter")>=0 && Session.get("kanbancount")>0)
     {
         function test()
   {
@@ -881,7 +881,7 @@ else
       return "Please scan the next ekanban ticket part number"
 
     }
-    else if (kanbancount- Session.get("counter")<0)
+    else if (kanbancount- Session.get("counter")<0 || (Session.get("counter")>1&&Session.get("kanbancount")==0))
 
     {
       Session.set("scan2",null)
