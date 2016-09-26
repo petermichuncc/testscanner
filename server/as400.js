@@ -108,7 +108,7 @@ db.open(cn, function (err) {
 });//end of async response
 
 var rows=response.result
-//Partnumbers.remove({ } )
+Orders.remove({ } )
 
 rows.forEach( function (row){
 
@@ -120,7 +120,7 @@ itemid=itemid.trim()
 partnumber=partnumber.trim()
 description=description.trim()
 
-  Orderstest.insert({
+  Orders.insert({
                 itemid:itemid,
                partnumber: partnumber,
                desc: description
