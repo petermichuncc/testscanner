@@ -1,3 +1,10 @@
+/*Meteor.startup(function () {
+  query.start();
+});*/
+
+
+
+
 /*
  var response = Async.runSync(function(done) {
 var db = require("odbc")()
@@ -214,4 +221,10 @@ majorid=majorid.trim()
 //End of second query inserting items into part number db
 
 
-//year, month 0-11, date, hour, min (can add ,sec,msec)
+var schedule = later.parse.recur().on(18).hour(); // on fifth minute of every hour, every day
+//var hourlyEmailer = new ScheduledTask(schedule, sendHourlyEmails);
+
+var task = new ScheduledTask(schedule, function () {
+  console.log("Scheduled task was run.");
+});
+task.start();
