@@ -134,7 +134,7 @@ description=description.trim()
 //End of second query inserting items into part number db
 
 //Third query to grab Kanban items
-
+/*
 console.log("start of third query ")
 
  var response = Async.runSync(function(done) {
@@ -210,5 +210,8 @@ majorid=majorid.trim()
 
    });
  console.log("completed all row")
-
+*/
 //End of second query inserting items into part number db
+
+
+//year, month 0-11, date, hour, min (can add ,sec,msec)

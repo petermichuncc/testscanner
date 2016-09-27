@@ -102,7 +102,7 @@ else if (x==5)
 
 }
 
-var password="1234567890"
+var password="ekanban"
 var count=-3
 var colortest=true
 var good=null
@@ -980,6 +980,12 @@ return good
 //only do this if the job scanned was green
 var kanbancount=Number(Session.get("kanbancount"))
 kanbancount=kanbancount+1
+/*
+If there isn't a kanban ticket for this order
+I need to find the partnumber of the kan
+
+
+*/
 
  if (typeof ReactiveMethod.call('color', Session.get("scan2"))==="object"&&Template.instance().state.get("kanban")===true &&Session.get("result")==="green")
   {
@@ -1295,7 +1301,11 @@ return Session.get("scannedPartnumber")
 },
 'click .2': function(event, template){
    
-   setTimeout(function(){ $('#txt_name').focus(); }, 500);
+   setTimeout(function(){ $('#txt_name2').focus(); 
+
+
+
+ }, 500);
    Session.setPersistent("override",true)
    Session.set("descshow",false)
 //I need to go to the the final part of the app at this point
@@ -1469,10 +1479,27 @@ console.log("this is the test "+ test)
 /*
 Basically if test is equal to the password then
 
-
 */
+var test2 = $('#txt_name2').val();
+ if (test2.length==3)
+ {
 
-if (test==password)
+   
+     
+// $('#initials').val('');
+//$("#initials").focus();
+
+}
+else
+{
+ Materialize.toast('Please enter 3 letter initials', 8000,'orange darken-2 z-depth-2')
+ $('#txt_name2').val('');
+$("#txt_name2").focus();
+}
+
+
+
+if (test==password && test2.length==3)
 {
 //Have a toast pop up for 10 seconds saying correct
 Materialize.toast('Password correct, nice job', 8000,'light-blue accent-4 z-depth-2')
