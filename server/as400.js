@@ -2,7 +2,7 @@
   query.start();
 });*/
 
-
+var later = require('later');
 
 
 /*
@@ -221,7 +221,7 @@ majorid=majorid.trim()
 //End of second query inserting items into part number db
 
 
-var schedule = later.parse.recur().on(18).hour(); // on fifth minute of every hour, every day
+var schedule = later.parse.recur().on(13).hour(); // on fifth minute of every hour, every day
 //var hourlyEmailer = new ScheduledTask(schedule, sendHourlyEmails);
 
 var task = new ScheduledTask(schedule, function () {
