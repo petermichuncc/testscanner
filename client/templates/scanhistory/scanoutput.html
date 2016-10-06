@@ -1,0 +1,56 @@
+
+
+<template name="outputnew">
+
+<!--<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">-->
+<link rel="stylesheet" href="css/material.css">
+<script defer src="js/material.js"></script>
+
+
+ <div id=""  class="z-depth-5 center">
+          
+
+  {{> reactiveTable collection=dataentries class="center bordered "}}
+
+ <div class="mytext ">
+            
+      
+                
+              {{#if success}}
+             <button class="btn btn-default 20 blue z-depth-2 " type="submit">Success</button>
+             {{/if}}
+               
+           
+              <div class="input-field col ">
+                <label for="" class="datetext"> <span class="mdl-badge" data-badge="1">  Start Time: </span> </label>
+                <input id="start" type="text" class="validate required" autofocus autocomplete="off" required placeholder="MM-DD-YYYY"/>
+               
+            </div>
+
+              <div class="input-field col ">
+                <label for="" class="datetext"> <span class="mdl-badge" data-badge="2">  End Time: </span> </label>
+                <input id="end" type="text" class="validate required" autofocus autocomplete="off" required placeholder="MM-DD-YYYY"/>
+               
+            </div>
+
+                <div class="input-field col ">
+              <label for="" class="datetext"> <span class="mdl-badge" data-badge="3"> Partnumber:  </span></label>
+
+                <input id="name" type="text" class="validate required" autofocus autocomplete="off" required />
+                 </div>
+
+                <div class="input-field col ">
+               <button class="btn btn-default 2 blue z-depth-2 " >Menu Page</button>
+                 </div>
+        </div>
+
+</div>
+ <script>
+
+$("#start").focus();
+
+
+ </script>
+</template>
+
+

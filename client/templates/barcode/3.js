@@ -1,7 +1,5 @@
 /*
-use a session variable for 
-the color of the 
-
+Test this code out and add a color when the user uses kanban override.
 
 
 */
@@ -407,13 +405,19 @@ Template.instance().state.set("check",true)
     console.log("type of parts "+ typeof parts)
     console.log("is array parts "+ Array.isArray(parts))
     console.log("kanban check " + Template.instance().state.get("check"))
+  
+
 if (Array.isArray(parts)&& run===true && Template.instance().state.get("check")===true )
  {      console.log("test a")    
  $('#initials').val('');
+$( ".alert" ).hide();
+     
 run=false
   var testColor=myFunctionColor()
   Session.set("testColor",testColor)
      Materialize.toast('That was a correct job order', 8000,'light-blue accent-4 z-depth-2')
+     console.log("this test if the alert div is hidden " + $('.alert').not(':visible'))
+
      count=count+1
    
       Session.set("counter", count)
@@ -429,7 +433,7 @@ run=false
  else if(Session.get("scan")!=null && run===true&& parts==false&& Template.instance().state.get("check")===false )
   { console.log("test b")   
     $('#initials').val('');
-  
+  $( ".alert" ).hide();
       run=false
    
     Materialize.toast('That job order is not in the system', 8000,'orange darken-2 z-depth-2')
@@ -908,7 +912,7 @@ Meteor.call('scansInsert',Session.get("tech") ,Session.get("scanned"),Session.ge
 }
 console.log("test")
       //I need to have a session variable I setup next that triggers the final toast and snack bar to pop up
-       
+    
       Session.set("start", 3)
       run=true
     }
@@ -1396,6 +1400,7 @@ Session.set("scanned",null)
  Session.set("descshow",false)
  Session.set("result", null)
 $( ".cp" ).hide();
+
  Session.setPersistent("scannedOrdernumber", null)
   var x = document.getElementById("snackbar")
    x.className = "cp z-depth-2";
@@ -1415,7 +1420,45 @@ count=count+1
       Session.set("counter", count)
 
         }, 500);
-
+   if ( $('.alert').not(':visible') )
+     {
+    //find the current tech
+    var name =Session.get("tech") 
+var notify =   $.notify({
+  // options
+    message: 'Current tech: '+name,
+ 
+},{
+  // settings
+  element: 'body',
+  position: null,
+  type: "info",
+  allow_dismiss: true,
+  newest_on_top: false,
+  showProgressbar: false,
+  placement: {
+    from: "bottom",
+    align: "left"
+  },
+  offset: 20,
+  spacing: 10,
+  z_index: 1031,
+  delay: 9999000,
+  timer: 1000,
+  url_target: '_blank',
+  mouse_over: null,
+  animate: {
+    enter: 'animated fadeInUp ',
+    exit: 'animated fadeOutDown'
+  },
+  onShow: null,
+  onShown: null,
+  onClose: null,
+  onClosed: null,
+  icon_type: 'class',
+ 
+});
+}
  
 $("#initials").focus();
 
@@ -1447,7 +1490,8 @@ Session.set("kanbantag", 0)
  Session.set("kanbanquestion", false)
  Session.set("descshow",false)
  Session.set("result", null)
-$( ".cp" ).hide();
+
+
  Session.setPersistent("scannedOrdernumber", null)
   var x = document.getElementById("snackbar")
    x.className = "cp z-depth-2";
@@ -1510,7 +1554,14 @@ count=count+1
        $('#myModalNorm').modal('toggle');
        //set timeout for half a second
        setTimeout(function(){ $("#initials").focus(); }, 500);
-    
+    //This refocuses the browser on the next input if there is another 
+
+  /*
+      I need to at this point figure out if there is a kanban for this order
+      if there is I need to then send in the value of what the partnumber ought to be
+      to the colors template helper function.
+
+  */
 //At this point the count needs to increase by 1
 }
 else if (test!=password)
@@ -1519,6 +1570,17 @@ else if (test!=password)
 Materialize.toast('Please re-enter the password', 8000,'orange darken-2 z-depth-2')
    $('#txt_name').val('');
 }
+
+},
+'click .16': function(event, template){
+ //Router.go('one')
+//There is a new tech at this point
+  
+
+ 
+
+
+
 
 }
  });

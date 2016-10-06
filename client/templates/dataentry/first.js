@@ -438,7 +438,7 @@ var amount="You entered ".concat(datacount)
 var amount=amount.concat(" entries today")
  Materialize.toast(amount, 8000, color)
  Materialize.toast('Have a good day', 8000, color)
- if (typeof datacount==number)
+ if (typeof datacount=="number")
  {
 count=0
 Session.set("count",count)
